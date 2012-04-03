@@ -1,5 +1,4 @@
 @(content: Html)
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -20,10 +19,7 @@
 </head>
 <body>
 <div id="app_header" class="ui-layout-north">@global.header()</div>
-<div id="app_page" class="ui-layout-center">
-  <div id="app_content" class="ui-layout-center">@content</div>
-  <div id="app_layers" class="ui-layout-east">RIGHT</div>
-</div>
+<div id="app_page" class="ui-layout-center">@content</div>
 <div id="app_footer" class="ui-layout-south">@global.footer()</div>
 </body>
 </html>
