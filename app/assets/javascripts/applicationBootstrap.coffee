@@ -1,6 +1,7 @@
 $ ->
   do setTopLevelLayout
   do initializeMap
+  do setCollapses
 
 setTopLevelLayout = ->
   lite = 
@@ -16,3 +17,14 @@ initializeMap = ->
   ol_wms = new OpenLayers.Layer.WMS("OpenLayers WMS", "http://vmap0.tiles.osgeo.org/wms/vmap0", {layers: "basic"})
   map.addLayers([ol_wms])
   map.zoomToMaxExtent()
+
+setCollapses = ->
+  $(".collapse").each (index, element) ->
+    $(element).on "show", ->
+      $(element).siblings("h3").addClass "ui-corner-top"
+      $(element).siblings("h3").removeClass "ui-corner-all"
+    $(element).on "hidden", ->
+      $(element).siblings("h3").addClass "ui-corner-all"
+      $(element).siblings("h3").removeClass "ui-corner-top"
+
+
