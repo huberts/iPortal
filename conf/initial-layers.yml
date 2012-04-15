@@ -1,0 +1,24 @@
+sources:
+
+  - !!models.MapSource
+      name: Geoportal
+
+  - !!models.MapSource
+      name: Systherm-Info
+
+wms:
+
+  - !!models.MapWMS
+      url: http://sdi.geoportal.gov.pl/wms_hydro/wmservice.aspx
+      name: Hydro
+      source:
+        !!models.MapSource
+          name: Geoportal
+
+layers:
+  - !!models.MapLayer
+      name: HYDRO_50_92
+      wms:
+        !!models.MapWMS
+          name: Hydro
+

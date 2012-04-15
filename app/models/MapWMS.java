@@ -12,7 +12,13 @@ public class MapWMS extends Model {
     public Long id;
 
     @Required
+    public String name;
+
+    @Required
     public String url;
+
+    @ManyToOne
+    public MapSource source;
 
     @OneToMany( cascade=CascadeType.ALL )
     @OrderBy("id")

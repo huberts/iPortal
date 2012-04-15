@@ -19,4 +19,8 @@ public class MapLayer extends Model {
     @Required
     public Boolean canBeUsed = true;
 
+    @ManyToOne
+    public MapWMS wms;
+
+    public static Model.Finder<Long,MapLayer> find = new Model.Finder(Long.class, MapLayer.class);
 }
