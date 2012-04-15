@@ -1,3 +1,19 @@
 @(sources: List[MapSource])
 <div id="app_content" class="ui-layout-center">@openLayersMap()</div>
 <div id="app_layers" class="ui-layout-east">@layersSwitcher(sources)</div>
+<script type="text/javascript">
+  window.layers = new Array();
+  @for(source <- sources) {
+    @for(wms <- source.webMapServices) {
+      @for(layer <- wms.layers) {
+        var index = "@source.name.@wms.name.@layer.name";
+        window.layers[index] = new Object();
+        window.layers[index].sourceName = "@source.name";
+        window.layers[index].serviceName = "@wms.name";
+        window.layers[index].serviceUrl = "@wms.url";
+        window.layers[index].name = "@layer.name";
+        window.layers[index].visibleName = "@layer.visibleName";
+      }
+    }
+  }
+</script>

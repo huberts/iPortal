@@ -6,7 +6,7 @@
 create table map_layer (
   id                        bigint not null,
   name                      varchar(255),
-  x                         bigint,
+  visible_name              varchar(255),
   default_visible           boolean,
   can_be_used               boolean,
   map_wms_id                bigint,

@@ -8,7 +8,7 @@
     <div>
       <button class="btn btn-primary" data-toggle="button">@wms.name</button>
       @for(layer <- wms.layers) {
-      <button class="btn" data-toggle="button">@layer.name</button>
+      <button class="btn" data-toggle="button">@layer.visibleName</button>
       }
     </div>
     }

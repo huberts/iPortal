@@ -18,12 +18,33 @@ wms:
     mapSource: !!models.MapSource
       id: 1
 
+  - !!models.MapWMS
+    id: 2
+    name: Działki
+    url: http://sdi.geoportal.gov.pl/wms_dzkat/wmservice.aspx
+    mapSource: !!models.MapSource
+      id: 1
+
 
 layers:
 
   - !!models.MapLayer
     id: 1
     name: HYDRO_50_92
+    visibleName: Hydracyjna (92)
     mapWMS: !!models.MapWMS
       id: 1
 
+  - !!models.MapLayer
+    id: 2
+    name: Dzialki
+    visibleName: Działki
+    mapWMS: !!models.MapWMS
+      id: 2
+
+  - !!models.MapLayer
+    id: 3
+    name: Numery_dzialek
+    visibleName: Numery
+    mapWMS: !!models.MapWMS
+      id: 2

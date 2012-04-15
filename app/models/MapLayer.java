@@ -13,7 +13,8 @@ public class MapLayer extends Model {
     @Required
     public String name;
 
-    Long x;
+    @Required
+    public String visibleName;
 
     @Required
     public Boolean defaultVisible = true;
