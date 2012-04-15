@@ -1,36 +1,17 @@
-@()
-<div class="well">
-  <h3 data-toggle="collapse" data-target="#wms_owner_1">WMS Owner No. 1</h3>
-  <div id="wms_owner_1" class="collapse">
-    <div>
-      <button class="btn btn-primary" data-toggle="button">WMS Source No. 1</button>
-      <button class="btn btn-info" data-toggle="button">Layer No. 1</button>
-      <button class="btn btn-info" data-toggle="button">Layer No. 2</button>
-      <button class="btn btn-info" data-toggle="button">Layer No. 3</button>
-    </div>
-    <div>
-      <button class="btn btn-primary" data-toggle="button">WMS Source No. 2</button>
-      <button class="btn btn-info" data-toggle="button">Layer No. 4</button>
-      <button class="btn btn-info" data-toggle="button">Layer No. 5</button>
-      <button class="btn btn-info" data-toggle="button">Layer No. 6</button>
-    </div>
-  </div>
-</div>
+@(sources: List[MapSource])
 
+@for(source <- sources) {
 <div class="well">
-  <h3 data-toggle="collapse" data-target="#wms_owner_2">WMS Owner No. 2</h3>
-  <div id="wms_owner_2" class="collapse">
+  <h3 data-toggle="collapse" data-target="#wms_owner_@source.name">@source.name</h3>
+  <div id="wms_owner_@source.name" class="collapse">
+    @for(wms <- source.webMapServices) {
     <div>
-      <button class="btn btn-primary" data-toggle="button">WMS Source No. 1</button>
-      <button class="btn btn-info" data-toggle="button">Layer No. 1</button>
-      <button class="btn btn-info" data-toggle="button">Layer No. 2</button>
-      <button class="btn btn-info" data-toggle="button">Layer No. 3</button>
+      <button class="btn btn-primary" data-toggle="button">@wms.name</button>
+      @for(layer <- wms.layers) {
+      <button class="btn" data-toggle="button">@layer.name</button>
+      }
     </div>
-    <div>
-      <button class="btn btn-primary" data-toggle="button">WMS Source No. 2</button>
-      <button class="btn btn-info" data-toggle="button">Layer No. 4</button>
-      <button class="btn btn-info" data-toggle="button">Layer No. 5</button>
-      <button class="btn btn-info" data-toggle="button">Layer No. 6</button>
-    </div>
+    }
   </div>
 </div>
+}

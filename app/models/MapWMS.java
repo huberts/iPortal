@@ -18,9 +18,11 @@ public class MapWMS extends Model {
     public String url;
 
     @ManyToOne
-    public MapSource source;
+    public MapSource mapSource;
 
     @OneToMany( cascade=CascadeType.ALL )
     @OrderBy("id")
-    Set<MapLayer> layers;
+    public Set<MapLayer> layers;
+
+    public static Model.Finder<Long,MapWMS> find = new Model.Finder(Long.class, MapWMS.class);
 }

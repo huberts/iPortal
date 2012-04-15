@@ -13,6 +13,8 @@ public class MapLayer extends Model {
     @Required
     public String name;
 
+    Long x;
+
     @Required
     public Boolean defaultVisible = true;
 
@@ -20,7 +22,7 @@ public class MapLayer extends Model {
     public Boolean canBeUsed = true;
 
     @ManyToOne
-    public MapWMS wms;
+    public MapWMS mapWMS;
 
     public static Model.Finder<Long,MapLayer> find = new Model.Finder(Long.class, MapLayer.class);
 }

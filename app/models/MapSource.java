@@ -17,7 +17,7 @@ public class MapSource extends Model {
 
     @OneToMany( cascade=CascadeType.ALL )
     @OrderBy("id")
-    Set<MapWMS> layers;
+    public Set<MapWMS> webMapServices;
 
     public static Model.Finder<Long,MapSource> find = new Model.Finder(Long.class, MapSource.class);
 }
