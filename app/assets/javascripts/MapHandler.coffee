@@ -17,7 +17,7 @@ createMap = ->
   window.map = new OpenLayers.Map "open_layers_map", {
     allOverlays: true,
     projection: window.epsg2180,
-    maxExtent: new OpenLayers.Bounds(329511.16, 440448.231, 336647.24, 449035.96)
+    maxExtent: new OpenLayers.Bounds(508000, 380000, 525000, 404000)
   }
 
 
