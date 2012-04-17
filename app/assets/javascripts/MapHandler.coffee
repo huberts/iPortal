@@ -23,7 +23,9 @@ createMap = ->
 
 createLayersSwitcher = ->
   addLayer layer for layer in window.layers
-  do activateToggleButtons
+  do activateCollapsingWells
+  do activateCurrentLayersSection
+  do activateLayersSelection
 
 
 addLayer = (layer) ->
@@ -35,13 +37,33 @@ addLayer = (layer) ->
   window.map.addLayer olLayer
 
 
-activateToggleButtons = ->
+activateCollapsingWells = ->
+  $("#wms_all_visible_layers").disableSelection();
+  $(".well h3").disableSelection();
+
+
+activateCurrentLayersSection = ->
+  $("#wms_all_visible_layers").sortable();
+
+
+addLayerToCurrentLayersSection = (layer) ->
+  html = """
+ <div class="alert alert-info"><a class="close">&times;</a><i class="icon-resize-vertical"></i> #{layer.name}</div>
+  """
+  $("#wms_all_visible_layers").prepend html
+
+
+activateLayersSelection = ->
   $("button.layer-toggler").click( ->
     $(this).button "toggle"
     layer = findLayer buildIdWithPrefix $(this).attr("id"), "layer"
     if layer==null
       return
-    layer.setVisibility $(this).hasClass "active"
+    if $(this).hasClass "active"
+      layer.setVisibility true
+      addLayerToCurrentLayersSection(layer)
+    else
+      layer.setVisibility false
   )
 
 findLayer = (id) ->
