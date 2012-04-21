@@ -20,7 +20,6 @@ createMap = ->
     maxExtent: new OpenLayers.Bounds(508000, 380000, 525000, 404000)
   }
 
-
 createLayersSwitcher = ->
   addLayer layer for layer in window.layers
   do activateCollapsingWells
@@ -47,10 +46,26 @@ activateCurrentLayersSection = ->
 
 
 addLayerToCurrentLayersSection = (layer) ->
+  id = buildIdWithPrefix layer.id, "currentLayer"
   html = """
- <div class="alert alert-info"><a class="close">&times;</a><i class="icon-resize-vertical"></i> #{layer.name}</div>
+ <div id="#{id}" class="alert alert-info"><a class="close">&times;</a><i class="icon-resize-vertical"></i> #{layer.name}</div>
   """
   $("#wms_all_visible_layers").prepend html
+  $("#" + id + " a").click( ->
+    $("#" + (buildIdWithPrefix layer.id, "toggler")).button "toggle"
+    removeLayerFromCurrentLayersSection layer
+  )
+  layer.setVisibility true
+  if $("#wms_all_visible_layers div").length==1
+    $("#wms_all_visible_layers").collapse "show"
+
+
+removeLayerFromCurrentLayersSection = (layer) ->
+  if $("#wms_all_visible_layers div").length==1
+    $("#wms_all_visible_layers").collapse "hide"
+  id = buildIdWithPrefix layer.id, "currentLayer"
+  $('#'+id).remove()
+  layer.setVisibility false
 
 
 activateLayersSelection = ->
@@ -60,10 +75,9 @@ activateLayersSelection = ->
     if layer==null
       return
     if $(this).hasClass "active"
-      layer.setVisibility true
-      addLayerToCurrentLayersSection(layer)
+      addLayerToCurrentLayersSection layer
     else
-      layer.setVisibility false
+      removeLayerFromCurrentLayersSection layer
   )
 
 findLayer = (id) ->
