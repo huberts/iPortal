@@ -15,6 +15,9 @@ public class MapWMS extends Model {
     public String name;
 
     @Required
+    public String displayName;
+
+    @Required
     public String url;
 
     @ManyToOne

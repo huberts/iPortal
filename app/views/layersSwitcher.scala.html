@@ -6,13 +6,13 @@
 
 @for(source <- sources) {
 <div class="well">
-  <h3 data-toggle="collapse" data-target="#wms_owner_@source.name">@source.name</h3>
+  <h3 data-toggle="collapse" data-target="#wms_owner_@source.name">@source.displayName</h3>
   <div id="wms_owner_@source.name" class="collapse">
     @for(wms <- source.webMapServices) {
     <div>
-      <button class="btn btn-success" data-toggle="button">@wms.name</button>
+      <button class="btn btn-success" data-toggle="button">@wms.displayName</button>
       @for(layer <- wms.layers) {
-      <button id="toggler-@source.id-@wms.id-@layer.id" class="btn btn-primary layer-toggler">@layer.visibleName</button>
+      <button id="toggler-@source.id-@wms.id-@layer.id" class="btn btn-primary layer-toggler">@layer.displayName</button>
       }
     </div>
     }

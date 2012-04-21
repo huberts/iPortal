@@ -9,10 +9,12 @@
         var newLayer = new Object();
         newLayer.index = "@source.id-@wms.id-@layer.id";
         newLayer.sourceName = "@source.name";
+        newLayer.sourceDisplayName = "@source.displayName";
         newLayer.serviceName = "@wms.name";
+        newLayer.serviceDisplayName = "@wms.displayName";
         newLayer.serviceUrl = "@wms.url";
         newLayer.name = "@layer.name";
-        newLayer.visibleName = "@layer.visibleName";
+        newLayer.displayName = "@layer.displayName";
         window.layers.push(newLayer);
       }
     }

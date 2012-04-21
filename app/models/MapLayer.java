@@ -14,10 +14,10 @@ public class MapLayer extends Model {
     public String name;
 
     @Required
-    public String visibleName;
+    public String displayName;
 
     @Required
-    public Boolean defaultVisible = true;
+    public Boolean defaultVisible = false;
 
     @Required
     public Boolean canBeUsed = true;

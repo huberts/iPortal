@@ -6,7 +6,7 @@
 create table map_layer (
   id                        bigint not null,
   name                      varchar(255),
-  visible_name              varchar(255),
+  display_name              varchar(255),
   default_visible           boolean,
   can_be_used               boolean,
   map_wms_id                bigint,
@@ -16,12 +16,14 @@ create table map_layer (
 create table map_source (
   id                        bigint not null,
   name                      varchar(255),
+  display_name              varchar(255),
   constraint pk_map_source primary key (id))
 ;
 
 create table map_wms (
   id                        bigint not null,
   name                      varchar(255),
+  display_name              varchar(255),
   url                       varchar(255),
   map_source_id             bigint,
   constraint pk_map_wms primary key (id))

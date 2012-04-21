@@ -28,7 +28,7 @@ createLayersSwitcher = ->
 
 
 addLayer = (layer) ->
-  olLayer = new OpenLayers  .Layer.WMS(layer.visibleName, layer.serviceUrl,
+  olLayer = new OpenLayers  .Layer.WMS(layer.displayName, layer.serviceUrl,
     {layers: layer.name, transparent: true},
     {visibility: false}
   )
