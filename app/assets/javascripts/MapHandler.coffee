@@ -21,10 +21,10 @@ createMap = ->
   }
 
 createLayersSwitcher = ->
-  addLayer layer for layer in window.layers
   do activateCollapsingWells
   do activateCurrentLayersSection
   do activateLayersSelection
+  addLayer layer for layer in window.layers
 
 
 addLayer = (layer) ->
@@ -34,6 +34,8 @@ addLayer = (layer) ->
   )
   olLayer.id = "layer-" + layer.index;
   window.map.addLayer olLayer
+  if layer.defaultVisible==true
+    $("#" + buildIdWithPrefix olLayer.id, "toggler").click()
 
 
 activateCollapsingWells = ->

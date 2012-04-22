@@ -28,4 +28,5 @@ public class MapWMS extends Model {
     public Set<MapLayer> layers;
 
     public static Model.Finder<Long,MapWMS> find = new Model.Finder(Long.class, MapWMS.class);
+
 }

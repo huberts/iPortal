@@ -4,18 +4,25 @@
 <script type="text/javascript">
   window.layers = new Array();
   @for(source <- sources) {
-    @for(wms <- source.webMapServices) {
-      @for(layer <- wms.layers) {
-        var newLayer = new Object();
-        newLayer.index = "@source.id-@wms.id-@layer.id";
-        newLayer.sourceName = "@source.name";
-        newLayer.sourceDisplayName = "@source.displayName";
-        newLayer.serviceName = "@wms.name";
-        newLayer.serviceDisplayName = "@wms.displayName";
-        newLayer.serviceUrl = "@wms.url";
-        newLayer.name = "@layer.name";
-        newLayer.displayName = "@layer.displayName";
-        window.layers.push(newLayer);
+    @if(MapSourceCollection.getInstance().canBeUsed(source)) {
+      @for(wms <- source.webMapServices) {
+        @if(MapWMSCollection.getInstance().canBeUsed(wms)) {
+          @for(layer <- wms.layers) {
+            @if(layer.canBeUsed) {
+              var newLayer = new Object();
+              newLayer.index = "@source.id-@wms.id-@layer.id";
+              newLayer.sourceName = "@source.name";
+              newLayer.sourceDisplayName = "@source.displayName";
+              newLayer.serviceName = "@wms.name";
+              newLayer.serviceDisplayName = "@wms.displayName";
+              newLayer.serviceUrl = "@wms.url";
+              newLayer.name = "@layer.name";
+              newLayer.displayName = "@layer.displayName";
+              newLayer.defaultVisible = @layer.defaultVisible;
+              window.layers.push(newLayer);
+            }
+          }
+        }
       }
     }
   }
