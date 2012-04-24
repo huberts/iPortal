@@ -71,6 +71,26 @@ removeLayerFromCurrentLayersSection = (layer) ->
 
 
 activateLayersSelection = ->
+  $("button.wms-toggler").click( ->
+    $(this).button "toggle"
+    if $(this).hasClass "active"
+      $(this).siblings("button.layer-toggler").each( (index, element) ->
+        if !$(element).hasClass "active"
+          $(element).click()
+      )
+    else
+      canDeactivate = true
+      $(this).siblings("button.layer-toggler").each( (index, element) ->
+        if !$(element).hasClass "active"
+          canDeactivate = false
+      )
+      if canDeactivate
+        $(this).siblings("button.layer-toggler").each( (index, element) ->
+          $(element).click()
+        )
+  )
+
+
   $("button.layer-toggler").click( ->
     $(this).button "toggle"
     layer = findLayer buildIdWithPrefix $(this).attr("id"), "layer"

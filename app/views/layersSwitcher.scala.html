@@ -12,7 +12,7 @@
     @for(wms <- source.webMapServices) {
       @if(MapWMSCollection.getInstance().canBeUsed(wms)) {
     <div>
-      <button class="btn btn-success" data-toggle="button">@wms.displayName</button>
+      <button class="btn btn-success wms-toggler">@wms.displayName</button>
       @for(layer <- wms.layers) {
         @if(layer.canBeUsed) {
       <button id="toggler-@source.id-@wms.id-@layer.id" class="btn btn-primary layer-toggler">@layer.displayName</button>
