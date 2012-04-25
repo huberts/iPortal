@@ -23,8 +23,7 @@ public class MapWMS extends Model {
     @ManyToOne
     public MapSource mapSource;
 
-    @OneToMany( cascade=CascadeType.ALL )
-    @OrderBy("id")
+    @OneToMany( cascade=CascadeType.ALL, mappedBy="mapWMS" )
     public Set<MapLayer> layers;
 
     public static Model.Finder<Long,MapWMS> find = new Model.Finder(Long.class, MapWMS.class);

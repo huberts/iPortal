@@ -17,6 +17,7 @@ public class MapSourceCollection {
         return Ebean.find(MapSource.class)
                 .fetch("webMapServices", new FetchConfig().query())
                 .fetch("webMapServices.layers", new FetchConfig().query())
+                .orderBy("id")
                 .findList();
     }
 
