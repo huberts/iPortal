@@ -1,6 +1,6 @@
 @(sources: List[MapSource])
 <div id="app_content" class="ui-layout-center">@openLayersMap()</div>
-<div id="app_layers" class="ui-layout-east">@layersSwitcher(sources)</div>
+<div id="app_layers" class="ui-layout-west">@layersSwitcher(sources)</div>
 <script type="text/javascript">
   window.layers = new Array();
   @for(source <- sources) {
