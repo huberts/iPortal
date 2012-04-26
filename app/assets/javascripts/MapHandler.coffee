@@ -2,6 +2,7 @@ window.prepareMap = ->
   do createProjections
   do createMap
   do createLayersSwitcher
+  do createControllers
   do finish
 
 
@@ -17,6 +18,7 @@ createMap = ->
   window.map = new OpenLayers.Map "open_layers_map", {
     allOverlays: true,
     projection: window.epsg2180,
+    displayProjection: window.epsg4326,
     maxExtent: new OpenLayers.Bounds(508000, 380000, 525000, 404000)
   }
 
