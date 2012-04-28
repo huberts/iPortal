@@ -1,16 +1,25 @@
 window.createControllers = ->
 
   window.map.addControl new OpenLayers.Control.Scale "open_layers_status_scale", {
+    div:
+      OpenLayers.Util.getElement "open_layers_status_scale"
     updateScale:
       -> this.element.innerHTML = OpenLayers.i18n "Scale = 1 : ${scaleDenom}", {'scaleDenom': Math.round this.map.getScale()}
   }
 
 
-  window.map.addControl new OpenLayers.Control.ScaleLine
+  window.map.addControl new OpenLayers.Control.ScaleLine {
+    div:
+      OpenLayers.Util.getElement "open_layers_status_scaleline"
+    bottomInUnits:
+      ""
+    bottomOutUnits:
+      ""
+  }
 
 
   window.map.addControl new OpenLayers.Control.MousePosition {
-    element:
+    div:
       OpenLayers.Util.getElement "open_layers_status_coords_map"
     emptyString:
       "współrzędne (szer./dł.)"
@@ -20,7 +29,7 @@ window.createControllers = ->
 
 
   window.map.addControl new OpenLayers.Control.MousePosition {
-    element:
+    div:
       OpenLayers.Util.getElement "open_layers_status_coords_lonlat"
     emptyString:
       "współrzędne (1992)"
@@ -35,4 +44,6 @@ window.createControllers = ->
     formatOutput:
       (lonLat) -> this.prefix + lonLat.lat.toFixed(parseInt this.numDigits) + this.separator + lonLat.lon.toFixed(parseInt this.numDigits)
   }
+
+  window.map.addControl new OpenLayers.Control.PanZoomBar
 

@@ -16,6 +16,7 @@ createProjections = ->
 
 createMap = ->
   window.map = new OpenLayers.Map "open_layers_map", {
+    controls: [],
     allOverlays: true,
     projection: window.epsg2180,
     displayProjection: window.epsg4326,
