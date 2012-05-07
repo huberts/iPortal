@@ -47,3 +47,9 @@ window.createControllers = ->
 
   window.map.addControl new OpenLayers.Control.PanZoomBar
 
+  window.map.addControl new OpenLayers.Control.Navigation {
+    zoomBoxEnabled:
+      true
+    zoomWheelEnabled:
+      true
+  }
