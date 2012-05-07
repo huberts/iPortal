@@ -4,5 +4,15 @@ window.setTopLevelLayout = ->
     slidable: false
     closable: false
     spacing_open: false
+  layersSwitcherOptions =
+    slidable: false
+    resizerTip: "zmień rozmiar"
+    togglerTip_open: "zamknij"
+    togglerTip_closed: "otwórz"
+    minSize: 200
+    size: 350
+    maxSize: 600
+    spacing_open: 5
+    spacing_closed: 5
   $("body").layout {defaults: lite}
-  $("#app_page").layout {north: lite, west:{size: 350}}
+  $("#app_page").layout {north: lite, west: layersSwitcherOptions}
