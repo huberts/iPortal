@@ -1,0 +1,11 @@
+@(stylesheets: List[String], scripts: List[String])
+
+<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")" />
+
+@for(stylesheet <- stylesheets) {
+<link rel="stylesheet" href="@{ routes.Assets.at("stylesheets/" + stylesheet + ".css") }" />
+}
+
+@for(script <- scripts) {
+<script src="@{ routes.Assets.at("javascripts/" + script + ".js") }" type="text/javascript"></script>
+}
