@@ -11,12 +11,60 @@ MapLayer(Geoportal_PRG_Wojewodztwa):
   name: Wojewodztwa
   displayName: Województwa
   mapWMS: Geoportal_PRG
+MapLayer(Geoportal_PRG_Powiaty):
+  name: Powiaty
+  displayName: Powiaty
+  mapWMS: Geoportal_PRG
 
 
 
 MapSource(Systherm):
   name: Systherm-Info
   displayName: Mapy Systherm-Info
+
+MapWMS(Systherm_Stargard):
+  name: Stargard
+  displayName: Stargard
+  url: http://mapserv.podgik.stargard.pl/mapserv/mapserv?MAP=/usr/local/wms/htdocs/stargard.map
+  mapSource: Systherm
+MapLayer(Systherm_Stargard_Gminy):
+  name: gminy
+  displayName: Gminy
+  mapWMS: Systherm_Stargard
+MapLayer(Systherm_Stargard_Obreby):
+  name: obreby
+  displayName: Obręby
+  mapWMS: Systherm_Stargard
+MapLayer(Systherm_Stargard_Dzialki):
+  name: dzialki
+  displayName: Działki
+  mapWMS: Systherm_Stargard
+MapLayer(Systherm_Stargard_NumeryDzialek):
+  name: numery_dzialek
+  displayName: Numery działek
+  mapWMS: Systherm_Stargard
+MapLayer(Systherm_Stargard_Klasouzytki):
+  name: klasouzytki
+  displayName: Klasoużytki
+  mapWMS: Systherm_Stargard
+MapLayer(Systherm_Stargard_budynki):
+  name: budynki
+  displayName: Budynki
+  mapWMS: Systherm_Stargard
+MapLayer(Systherm_Stargard_NazwyUlic):
+  name: nazwy_ulic
+  displayName: Nazwy ulic
+  mapWMS: Systherm_Stargard
+MapLayer(Systherm_Stargard_PunktyAdresowe):
+  name: punkty_adresowe
+  displayName: Punkty adresowe
+  mapWMS: Systherm_Stargard
+
+
+
+
+
+
 
 MapSource(OpenStreetMaps):
   name: OpenStreetMaps
