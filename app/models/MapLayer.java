@@ -1,14 +1,12 @@
 package models;
 
-import play.db.ebean.*;
-import play.data.validation.Constraints.*;
+import play.db.jpa.Model;
+import play.data.validation.Required;
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class MapLayer extends Model {
-
-    @Id
-    public Long id;
 
     @Required
     public String name;
@@ -20,10 +18,9 @@ public class MapLayer extends Model {
     public Boolean defaultVisible = false;
 
     @Required
-    public Boolean canBeUsed = true;
+    public Boolean canBeUsed= true;
 
     @ManyToOne
     public MapWMS mapWMS;
 
-    public static Model.Finder<Long,MapLayer> find = new Model.Finder(Long.class, MapLayer.class);
 }

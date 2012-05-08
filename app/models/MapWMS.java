@@ -1,15 +1,12 @@
 package models;
 
-import play.db.ebean.*;
-import play.data.validation.Constraints.*;
+import play.db.jpa.Model;
+import play.data.validation.Required;
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 public class MapWMS extends Model {
-
-    @Id
-    public Long id;
 
     @Required
     public String name;
@@ -25,7 +22,5 @@ public class MapWMS extends Model {
 
     @OneToMany( cascade=CascadeType.ALL, mappedBy="mapWMS" )
     public Set<MapLayer> layers;
-
-    public static Model.Finder<Long,MapWMS> find = new Model.Finder(Long.class, MapWMS.class);
 
 }

@@ -1,0 +1,27 @@
+<div class="well">
+    <h3 data-toggle="collapse" data-target="#wms_all_visible_layers">Widoczne warstwy</h3>
+    <div id="wms_all_visible_layers" class="collapse"></div>
+</div>
+
+
+#{list _sources, as:'source'}
+#{if models.MapSourceCollection.getInstance().canBeUsed(source)}
+<div class="well">
+    <h3 data-toggle="collapse" data-target="#wms_owner_${source.name}">${source.displayName}</h3>
+    <div id="wms_owner_${source.name}" class="collapse">
+    #{list source.webMapServices, as:'wms'}
+    #{if models.MapWMSCollection.getInstance().canBeUsed(wms)}
+        <div>
+        <button class="btn btn-success wms-toggler">${wms.displayName}</button>
+        #{list wms.layers, as: 'layer'}
+        #{if layer.canBeUsed}
+        <button id="toggler-${source.id}-${wms.id}-${layer.id}" class="btn btn-primary layer-toggler">${layer.displayName}</button>
+        #{/if}
+        #{/list}
+        </div>
+    #{/if}
+    #{/list}
+    </div>
+</div>
+#{/if}
+#{/list}

@@ -1,0 +1,6 @@
+# Application dependencies
+
+require:
+    - play
+    - play -> coffee 1.0
+    - play -> less 0.9.1

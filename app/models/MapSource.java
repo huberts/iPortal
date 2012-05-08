@@ -1,22 +1,12 @@
 package models;
 
-import com.avaje.ebean.Ebean;
-import com.avaje.ebean.FetchConfig;
-import com.avaje.ebean.bean.EntityBean;
-import play.Logger;
-import play.data.validation.Constraints.Required;
-import play.db.ebean.Model;
-
+import play.db.jpa.Model;
+import play.data.validation.Required;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Entity
 public class MapSource extends Model {
-
-    @Id
-    public Long id;
 
     @Required
     public String name;
@@ -26,7 +16,5 @@ public class MapSource extends Model {
 
     @OneToMany( cascade=CascadeType.ALL, mappedBy="mapSource" )
     public Set<MapWMS> webMapServices;
-
-    public static Model.Finder<Long,MapSource> find = new Model.Finder(Long.class, MapSource.class);
 
 }

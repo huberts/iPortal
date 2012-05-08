@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>&{"app.name"}</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}" />
+    #{stylesheets /}
+    #{javascripts /}
+</head>
+<body>
+<div id="app_header" class="ui-layout-north">#{pageHeader /}</div>
+<div id="app_page" class="ui-layout-center">#{doLayout /}</div>
+<div id="app_footer" class="ui-layout-south">#{pageFooter /}</div>
+</body>
+</html>

@@ -18,9 +18,14 @@ createMap = ->
   window.map = new OpenLayers.Map "open_layers_map", {
     controls: [],
     allOverlays: true,
+    minResolution: "auto",
+    maxResoulution: "auto",
+    maxExtent: new OpenLayers.Bounds(130000, 120000, 900000, 780000),
     projection: window.epsg2180,
     displayProjection: window.epsg4326,
-    maxExtent: new OpenLayers.Bounds(508000, 380000, 525000, 404000)
+    minScale: 100,
+    maxScale: 1000000,
+    units: "m"
   }
 
 createLayersSwitcher = ->

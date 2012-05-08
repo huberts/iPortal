@@ -1,73 +1,50 @@
-sources:
+﻿MapSource(Geoportal):
+  name: Geoportal
+  displayName: Mapy Geoportalu
+  webMapServices: []
 
-  - !!models.MapSource
-    id: 1
-    name: Geoportal
-    displayName: Mapy Geoportalu
+MapSource(Systherm):
+  name: Systherm-Info
+  displayName: Mapy Systherm-Info
 
-  - !!models.MapSource
-    id: 2
-    name: Systherm-Info
-    displayName: Mapy Systherm-Info
+MapSource(OpenStreetMaps):
+  name: OpenStreetMaps
+  displayName: Mapy Open Street Maps
 
-  - !!models.MapSource
-    id: 3
-    name: OpenStreetMaps
-    displayName: Mapy Open Street Maps
+MapWMS(Hydro):
+  name: Hydro
+  displayName: Hydrologiczna
+  url: http://sdi.geoportal.gov.pl/wms_hydro/wmservice.aspx
+  mapSource: Geoportal
 
+MapWMS(Dzialki):
+  name: Dzialki
+  displayName: Działki
+  url: http://sdi.geoportal.gov.pl/wms_dzkat/wmservice.aspx
+  mapSource: Geoportal
 
-wms:
+MapWMS(OSMAuto):
+  name: OSMAuto
+  displayName: Automatyczne
+  url: http://129.206.228.72/cached/osm
+  mapSource: OpenStreetMaps
 
-  - !!models.MapWMS
-    id: 1
-    name: Hydro
-    displayName: Hydrologiczna
-    url: http://sdi.geoportal.gov.pl/wms_hydro/wmservice.aspx
-    mapSource: !!models.MapSource
-      id: 1
+MapLayer(HYDRO_50_92):
+  name: HYDRO_50_92
+  displayName: Hydracyjna (92)
+  mapWMS: Hydro
 
-  - !!models.MapWMS
-    id: 2
-    name: Dzialki
-    displayName: Działki
-    url: http://sdi.geoportal.gov.pl/wms_dzkat/wmservice.aspx
-    mapSource: !!models.MapSource
-      id: 1
+MapLayer(Dzialki):
+  name: Dzialki
+  displayName: Działki
+  mapWMS: Dzialki
 
-  - !!models.MapWMS
-    id: 3
-    name: OSMAuto
-    displayName: Automatyczne
-    url: http://129.206.228.72/cached/osm
-    mapSource: !!models.MapSource
-      id: 3
+MapLayer(Numery):
+  name: Numery_dzialek
+  displayName: Numery
+  mapWMS: Dzialki
 
-layers:
-
-  - !!models.MapLayer
-    id: 1
-    name: HYDRO_50_92
-    displayName: Hydracyjna (92)
-    mapWMS: !!models.MapWMS
-      id: 1
-
-  - !!models.MapLayer
-    id: 2
-    name: Dzialki
-    displayName: Działki
-    mapWMS: !!models.MapWMS
-      id: 2
-
-  - !!models.MapLayer
-    id: 3
-    name: Numery_dzialek
-    displayName: Numery
-    mapWMS: !!models.MapWMS
-      id: 2
-
-  - !!models.MapLayer
-    id: 4
-    name: osm_auto:all
-    displayName: Wszystko
-    mapWMS: !!models.MapWMS
-      id: 3
+MapLayer(OSMAll):
+  name: osm_auto:all
+  displayName: Wszystko
+  mapWMS: OSMAuto

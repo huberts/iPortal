@@ -1,0 +1,35 @@
+#{extends 'layout.html' /}
+
+<div id="app_content" class="ui-layout-center">#{openLayersMap /}</div>
+<div id="app_layers" class="ui-layout-west">#{layersSwitcher sources:sources /}</div>
+
+<script type="text/javascript">
+
+    window.layers = new Array();
+
+#{list sources, as:'source'}
+ #{if models.MapSourceCollection.getInstance().canBeUsed(source)}
+  #{list source.webMapServices, as:'wms'}
+   #{if models.MapWMSCollection.getInstance().canBeUsed(wms)}
+    #{list wms.layers, as: 'layer'}
+     #{if layer.canBeUsed}
+
+    var newLayer = new Object();
+    newLayer.index = "${source.id}-${wms.id}-${layer.id}";
+    newLayer.sourceName = "${source.name}";
+    newLayer.sourceDisplayName = "${source.displayName}";
+    newLayer.serviceName = "${wms.name}";
+    newLayer.serviceDisplayName = "${wms.displayName}";
+    newLayer.serviceUrl = "${wms.url}";
+    newLayer.name = "${layer.name}";
+    newLayer.displayName = "${layer.displayName}";
+    newLayer.defaultVisible = ${layer.defaultVisible};
+    window.layers.push(newLayer);
+
+     #{/if}
+    #{/list}
+   #{/if}
+  #{/list}
+ #{/if}
+#{/list}
+</script>
