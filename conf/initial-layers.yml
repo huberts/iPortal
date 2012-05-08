@@ -1,7 +1,18 @@
 ﻿MapSource(Geoportal):
   name: Geoportal
   displayName: Mapy Geoportalu
-  webMapServices: []
+
+MapWMS(Geoportal_PRG):
+  name: PRG
+  displayName: PRG
+  url: http://sdi.geoportal.gov.pl/wms_prg/wmservice.aspx
+  mapSource: Geoportal
+MapLayer(Geoportal_PRG_Wojewodztwa):
+  name: Wojewodztwa
+  displayName: Województwa
+  mapWMS: Geoportal_PRG
+
+
 
 MapSource(Systherm):
   name: Systherm-Info
@@ -10,6 +21,7 @@ MapSource(Systherm):
 MapSource(OpenStreetMaps):
   name: OpenStreetMaps
   displayName: Mapy Open Street Maps
+
 
 MapWMS(Hydro):
   name: Hydro

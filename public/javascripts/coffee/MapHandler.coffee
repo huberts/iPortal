@@ -18,13 +18,17 @@ createMap = ->
   window.map = new OpenLayers.Map "open_layers_map", {
     controls: [],
     allOverlays: true,
-    minResolution: "auto",
-    maxResoulution: "auto",
-    maxExtent: new OpenLayers.Bounds(130000, 120000, 900000, 780000),
     projection: window.epsg2180,
     displayProjection: window.epsg4326,
-    minScale: 100,
-    maxScale: 1000000,
+    maxExtent: new OpenLayers.Bounds(
+      window.configurationSettings.mapBoundingLeft,
+      window.configurationSettings.mapBoundingBottom,
+      window.configurationSettings.mapBoundingRight,
+      window.configurationSettings.mapBoundingTop
+    ),
+    minScale: window.configurationSettings.mapMinScale,
+    maxScale: window.configurationSettings.mapMaxScale,
+    numZoomLevels: window.configurationSettings.mapNumZoomLevels,
     units: "m"
   }
 
@@ -124,4 +128,7 @@ buildIdWithPrefix = (id, prefix) ->
   return parts.join "-"
 
 finish = ->
-  window.map.zoomToMaxExtent()
+  window.map.setCenter(
+    new OpenLayers.LonLat(configurationSettings.mapInitialX, configurationSettings.mapInitialY),
+    configurationSettings.mapInitialZ
+  )
