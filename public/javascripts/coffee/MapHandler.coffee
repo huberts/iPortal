@@ -33,7 +33,8 @@ createMap = ->
   }
 
 createLayersSwitcher = ->
-  do activateCollapsingWells
+  do disableTextSelection
+  do activateIconChanges
   do activateLayersSelection
   addLayer layer for layer in window.layers
 
@@ -49,49 +50,65 @@ addLayer = (layer) ->
     $("#" + buildIdWithPrefix olLayer.id, "toggler").click()
 
 
-activateCollapsingWells = ->
-  $(".well h3").disableSelection();
+disableTextSelection = ->
+  $(".well").disableSelection();
 
 
-addLayerToCurrentLayersSection = (layer) ->
-  layer.setVisibility true
+activateIconChanges = ->
+  $("#app_layers .collapse").on "show", ->
+    if $(this).hasClass "in"
+      return
+    $(this).prev().children("i").removeClass("icon-plus").addClass("icon-minus")
 
-
-removeLayerFromCurrentLayersSection = (layer) ->
-  layer.setVisibility false
+  $("#app_layers .collapse").on "hidden", ->
+    if $(this).hasClass "in"
+      return
+    $(this).prev().children("i").removeClass("icon-minus").addClass("icon-plus")
 
 
 activateLayersSelection = ->
-  $("button.wms-toggler").click( ->
-    $(this).button "toggle"
-    if $(this).hasClass "active"
-      $(this).siblings("button.layer-toggler").each( (index, element) ->
-        if !$(element).hasClass "active"
-          $(element).click()
-      )
-    else
-      canDeactivate = true
-      $(this).siblings("button.layer-toggler").each( (index, element) ->
-        if !$(element).hasClass "active"
-          canDeactivate = false
-      )
-      if canDeactivate
-        $(this).siblings("button.layer-toggler").each( (index, element) ->
-          $(element).click()
-        )
-  )
 
+  checkAllLayersFor = (element, activated) ->
+    allChecked = true
+    $(element).parent().next(".tier3").find(".layer-toggler").each (i, e) ->
+      if $(e).is(":checked")!=activated
+        allChecked = false
+    return allChecked
 
-  $("button.layer-toggler").click( ->
-    $(this).button "toggle"
+  checkAllWMSFor = (element, activated) ->
+    allChecked = true
+    $(element).parent().next(".tier2").find(".wms-toggler").each (i, e) ->
+      if $(e).is(":checked")!=activated
+        allChecked = false
+    return allChecked
+
+  $("#app_layers .layer-toggler").change ->
     layer = findLayer buildIdWithPrefix $(this).attr("id"), "layer"
     if layer==null
       return
-    if $(this).hasClass "active"
-      addLayerToCurrentLayersSection layer
+    layer.setVisibility $(this).is(":checked")
+    if checkAllLayersFor $(this).parents(".tier2").find(".wms-toggler"), false
+      $(this).parents(".tier2").find(".wms-toggler").attr "checked", false
+
+  $("#app_layers .wms-toggler").change ->
+    if $(this).is(":checked")
+      $(this).parent().next(".tier3").find(".layer-toggler").each (index, element) ->
+        $(element).attr "checked", true
     else
-      removeLayerFromCurrentLayersSection layer
-  )
+      if checkAllLayersFor $(this), true
+        $(this).parent().next(".tier3").find(".layer-toggler").each (index, element) ->
+          $(element).attr "checked", false
+    if checkAllWMSFor $(this).parents(".tier1").find(".source-toggler"), false
+      $(this).parents(".tier1").find(".source-toggler").attr "checked", false
+
+  $("#app_layers .source-toggler").change ->
+    if $(this).is(":checked")
+      $(this).parent().next(".tier2").find(".wms-toggler").each (index, element) ->
+        $(element).attr "checked", true
+    else
+      if checkAllWMSFor $(this), true
+        $(this).parent().next(".tier2").find(".wms-toggler").each (index, element) ->
+          $(element).attr "checked", false
 
 
 findLayer = (id) ->

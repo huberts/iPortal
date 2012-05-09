@@ -1,33 +1,35 @@
 #{list _sources, as:'source'}
 #{if models.MapSourceCollection.getInstance().canBeUsed(source)}
 <div class="well tier1">
-    <h3>
-        <i class="icon-ban-circle icon-white"></i>
-        <i class="icon-plus icon-white" data-toggle="collapse" data-target="#source_${source.name}"></i>
-        ${source.displayName}
-    </h3>
-    <div id="source_${source.name}" class="collapse tier2">
+  <h3>
+    <i class="icon-plus icon-white" data-toggle="collapse" data-target="#source_${source.name}"></i>
+    <input type="checkbox" class="source-toggler" />
+    ${source.displayName}
+  </h3>
+  <div id="source_${source.name}" class="collapse tier2">
 
-    #{list source.webMapServices, as:'wms'}
-    #{if models.MapWMSCollection.getInstance().canBeUsed(wms)}
-        <h4>
-            <i class="icon-ban-circle icon-white"></i>
-            <i class="icon-plus icon-white" data-toggle="collapse" data-target="#wms_${source.name}_${wms.name}"></i>
-            ${wms.displayName}
-        </h4>
-        <div id="wms_${source.name}_${wms.name}" class="collapse tier3">
+  #{list source.webMapServices, as:'wms'}
+  #{if models.MapWMSCollection.getInstance().canBeUsed(wms)}
+    <h4>
+      <i class="icon-plus icon-white" data-toggle="collapse" data-target="#wms_${source.name}_${wms.name}"></i>
+      <input type="checkbox" class="wms-toggler" />
+      ${wms.displayName}
+    </h4>
+    <div id="wms_${source.name}_${wms.name}" class="collapse tier3">
 
-        #{list wms.layers, as: 'layer'}
-        #{if layer.canBeUsed}
-            <h5><i class="icon-ban-circle icon-white"></i>${layer.displayName}</h5>
-            <button id="toggler-${source.id}-${wms.id}-${layer.id}" class="btn btn-primary layer-toggler">${layer.displayName}</button>
-        #{/if}
-        #{/list}
-        </div>
+    #{list wms.layers, as: 'layer'}
+    #{if layer.canBeUsed}
+      <h5>
+        <input type="checkbox" id="toggler-${source.id}-${wms.id}-${layer.id}" class="layer-toggler" />${layer.displayName}
+      </h5>
     #{/if}
     #{/list}
 
     </div>
+  #{/if}
+  #{/list}
+
+  </div>
 </div>
 #{/if}
 #{/list}
