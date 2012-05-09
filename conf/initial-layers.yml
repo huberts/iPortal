@@ -1,110 +1,4 @@
-﻿MapSource(Geoportal):
-  name: Geoportal
-  displayName: Mapy Geoportalu
-
-MapWMS(Geoportal_PRG):
-  name: PRG
-  displayName: PRG
-  url: http://sdi.geoportal.gov.pl/wms_prg/wmservice.aspx
-  mapSource: Geoportal
-MapLayer(Geoportal_PRG_Wojewodztwa):
-  name: Wojewodztwa
-  displayName: Województwa
-  mapWMS: Geoportal_PRG
-MapLayer(Geoportal_PRG_Powiaty):
-  name: Powiaty
-  displayName: Powiaty
-  mapWMS: Geoportal_PRG
-MapLayer(Geoportal_PRG_Gminy):
-  name: Gminy
-  displayName: Gminy
-  mapWMS: Geoportal_PRG
-MapLayer(Geoportal_PRG_NazwyWojewodztw):
-  name: Nazwa_wojewodztwa
-  displayName: Nazwy województw
-  mapWMS: Geoportal_PRG
-MapLayer(Geoportal_PRG_NazwyPowiatow):
-  name: Nazwa_powiatu
-  displayName: Nazwy powiatów
-  mapWMS: Geoportal_PRG
-MapLayer(Geoportal_PRG_NazwyGmin):
-  name: Nazwa_gminy
-  displayName: Nazwy gmin
-  mapWMS: Geoportal_PRG
-
-MapWMS(Geoportal_DaneKatastralne):
-  name: DaneKatastralne
-  displayName: Dane katastralne
-  url: http://sdi.geoportal.gov.pl/wms_dzkat/wmservice.aspx
-  mapSource: Geoportal
-MapLayer(Geoportal_DaneKatastralne_Dzialki):
-  name: Dzialki
-  displayName: Działki
-  mapWMS: Geoportal_DaneKatastralne
-MapLayer(Geoportal_DaneKatastralne_NumeryDzialek):
-  name: Numery_dzialek
-  displayName: Numery działek
-  mapWMS: Geoportal_DaneKatastralne
-
-MapWMS(Geoportal_Ortofotomapa):
-  name: Ortofotomapa
-  displayName: Ortofotomapa
-  url: http://sdi.geoportal.gov.pl/wms_orto/wmservice.aspx
-  mapSource: Geoportal
-MapLayer(Geoportal_Ortofotomapa_Ortofoto):
-  name: ORTOFOTO
-  displayName: Ortofoto
-  mapWMS: Geoportal_Ortofotomapa
-MapLayer(Geoportal_Ortofotomapa_ScenySatelitarne):
-  name: SCENY_SATELITARNE
-  displayName: Sceny satelitarne
-  mapWMS: Geoportal_Ortofotomapa
-
-MapWMS(Geoportal_Topo):
-  name: Topograficzna
-  displayName: Mapy topograficzne
-  url: http://sdi.geoportal.gov.pl/wms_topo/wmservice.aspx
-  mapSource: Geoportal
-MapLayer(Geoportal_Topo_50WGS84):
-  name: TOPO_50_WGS84
-  displayName: 50 (WGS84)
-  mapWMS: Geoportal_Topo
-MapLayer(Geoportal_Topo_5092):
-  name: TOPO_50_92
-  displayName: 50 (1992)
-  mapWMS: Geoportal_Topo
-MapLayer(Geoportal_Topo_5065):
-  name: TOPO_50_65
-  displayName: 50 (1965)
-  mapWMS: Geoportal_Topo
-MapLayer(Geoportal_Topo_5042):
-  name: TOPO_50_42
-  displayName: 50 (1942)
-  mapWMS: Geoportal_Topo
-MapLayer(Geoportal_Topo_2565):
-  name: TOPO_25_65
-  displayName: 25 (1965)
-  mapWMS: Geoportal_Topo
-MapLayer(Geoportal_Topo_10080):
-  name: TOPO_100_80
-  displayName: 100 (1980)
-  mapWMS: Geoportal_Topo
-MapLayer(Geoportal_Topo_1092):
-  name: TOPO_10_92
-  displayName: 10 (1992)
-  mapWMS: Geoportal_Topo
-MapLayer(Geoportal_Topo_1065):
-  name: TOPO_10_65
-  displayName: 10 (1965)
-  mapWMS: Geoportal_Topo
-MapLayer(Geoportal_Topo_1042):
-  name: TOPO_10_42
-  displayName: 10 (1942)
-  mapWMS: Geoportal_Topo
-
-
-
-MapSource(Systherm):
+﻿MapSource(Systherm):
   name: Systherm-Info
   displayName: Systherm-Info
 
@@ -497,6 +391,112 @@ MapLayer(Systherm_Swinoujscie_PunktyAdresowe):
   name: punkty_adresowe
   displayName: Punkty adresowe
   mapWMS: Systherm_Swinoujscie
+
+
+
+MapSource(Geoportal):
+  name: Geoportal
+  displayName: Geoportal
+
+MapWMS(Geoportal_PRG):
+  name: PRG
+  displayName: PRG
+  url: http://sdi.geoportal.gov.pl/wms_prg/wmservice.aspx
+  mapSource: Geoportal
+MapLayer(Geoportal_PRG_Wojewodztwa):
+  name: Wojewodztwa
+  displayName: Województwa
+  mapWMS: Geoportal_PRG
+MapLayer(Geoportal_PRG_Powiaty):
+  name: Powiaty
+  displayName: Powiaty
+  mapWMS: Geoportal_PRG
+MapLayer(Geoportal_PRG_Gminy):
+  name: Gminy
+  displayName: Gminy
+  mapWMS: Geoportal_PRG
+MapLayer(Geoportal_PRG_NazwyWojewodztw):
+  name: Nazwa_wojewodztwa
+  displayName: Nazwy województw
+  mapWMS: Geoportal_PRG
+MapLayer(Geoportal_PRG_NazwyPowiatow):
+  name: Nazwa_powiatu
+  displayName: Nazwy powiatów
+  mapWMS: Geoportal_PRG
+MapLayer(Geoportal_PRG_NazwyGmin):
+  name: Nazwa_gminy
+  displayName: Nazwy gmin
+  mapWMS: Geoportal_PRG
+
+MapWMS(Geoportal_DaneKatastralne):
+  name: DaneKatastralne
+  displayName: Dane katastralne
+  url: http://sdi.geoportal.gov.pl/wms_dzkat/wmservice.aspx
+  mapSource: Geoportal
+MapLayer(Geoportal_DaneKatastralne_Dzialki):
+  name: Dzialki
+  displayName: Działki
+  mapWMS: Geoportal_DaneKatastralne
+MapLayer(Geoportal_DaneKatastralne_NumeryDzialek):
+  name: Numery_dzialek
+  displayName: Numery działek
+  mapWMS: Geoportal_DaneKatastralne
+
+MapWMS(Geoportal_Ortofotomapa):
+  name: Ortofotomapa
+  displayName: Ortofotomapa
+  url: http://sdi.geoportal.gov.pl/wms_orto/wmservice.aspx
+  mapSource: Geoportal
+MapLayer(Geoportal_Ortofotomapa_Ortofoto):
+  name: ORTOFOTO
+  displayName: Ortofoto
+  mapWMS: Geoportal_Ortofotomapa
+MapLayer(Geoportal_Ortofotomapa_ScenySatelitarne):
+  name: SCENY_SATELITARNE
+  displayName: Sceny satelitarne
+  mapWMS: Geoportal_Ortofotomapa
+
+MapWMS(Geoportal_Topo):
+  name: Topograficzna
+  displayName: Mapy topograficzne
+  url: http://sdi.geoportal.gov.pl/wms_topo/wmservice.aspx
+  mapSource: Geoportal
+MapLayer(Geoportal_Topo_50WGS84):
+  name: TOPO_50_WGS84
+  displayName: 50 (WGS84)
+  mapWMS: Geoportal_Topo
+MapLayer(Geoportal_Topo_5092):
+  name: TOPO_50_92
+  displayName: 50 (1992)
+  mapWMS: Geoportal_Topo
+MapLayer(Geoportal_Topo_5065):
+  name: TOPO_50_65
+  displayName: 50 (1965)
+  mapWMS: Geoportal_Topo
+MapLayer(Geoportal_Topo_5042):
+  name: TOPO_50_42
+  displayName: 50 (1942)
+  mapWMS: Geoportal_Topo
+MapLayer(Geoportal_Topo_2565):
+  name: TOPO_25_65
+  displayName: 25 (1965)
+  mapWMS: Geoportal_Topo
+MapLayer(Geoportal_Topo_10080):
+  name: TOPO_100_80
+  displayName: 100 (1980)
+  mapWMS: Geoportal_Topo
+MapLayer(Geoportal_Topo_1092):
+  name: TOPO_10_92
+  displayName: 10 (1992)
+  mapWMS: Geoportal_Topo
+MapLayer(Geoportal_Topo_1065):
+  name: TOPO_10_65
+  displayName: 10 (1965)
+  mapWMS: Geoportal_Topo
+MapLayer(Geoportal_Topo_1042):
+  name: TOPO_10_42
+  displayName: 10 (1942)
+  mapWMS: Geoportal_Topo
 
 
 

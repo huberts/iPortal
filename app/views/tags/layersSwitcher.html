@@ -1,26 +1,32 @@
-<div class="well">
-    <h3 data-toggle="collapse" data-target="#wms_all_visible_layers">Widoczne warstwy</h3>
-    <div id="wms_all_visible_layers" class="collapse"></div>
-</div>
-
-
 #{list _sources, as:'source'}
 #{if models.MapSourceCollection.getInstance().canBeUsed(source)}
-<div class="well">
-    <h3 data-toggle="collapse" data-target="#wms_owner_${source.name}">${source.displayName}</h3>
-    <div id="wms_owner_${source.name}" class="collapse">
+<div class="well tier1">
+    <h3>
+        <i class="icon-ban-circle icon-white"></i>
+        <i class="icon-plus icon-white" data-toggle="collapse" data-target="#source_${source.name}"></i>
+        ${source.displayName}
+    </h3>
+    <div id="source_${source.name}" class="collapse tier2">
+
     #{list source.webMapServices, as:'wms'}
     #{if models.MapWMSCollection.getInstance().canBeUsed(wms)}
-        <div>
-        <button class="btn btn-success wms-toggler">${wms.displayName}</button>
+        <h4>
+            <i class="icon-ban-circle icon-white"></i>
+            <i class="icon-plus icon-white" data-toggle="collapse" data-target="#wms_${source.name}_${wms.name}"></i>
+            ${wms.displayName}
+        </h4>
+        <div id="wms_${source.name}_${wms.name}" class="collapse tier3">
+
         #{list wms.layers, as: 'layer'}
         #{if layer.canBeUsed}
-        <button id="toggler-${source.id}-${wms.id}-${layer.id}" class="btn btn-primary layer-toggler">${layer.displayName}</button>
+            <h5><i class="icon-ban-circle icon-white"></i>${layer.displayName}</h5>
+            <button id="toggler-${source.id}-${wms.id}-${layer.id}" class="btn btn-primary layer-toggler">${layer.displayName}</button>
         #{/if}
         #{/list}
         </div>
     #{/if}
     #{/list}
+
     </div>
 </div>
 #{/if}

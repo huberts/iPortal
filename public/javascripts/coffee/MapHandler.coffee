@@ -34,7 +34,6 @@ createMap = ->
 
 createLayersSwitcher = ->
   do activateCollapsingWells
-  do activateCurrentLayersSection
   do activateLayersSelection
   addLayer layer for layer in window.layers
 
@@ -51,34 +50,14 @@ addLayer = (layer) ->
 
 
 activateCollapsingWells = ->
-  $("#wms_all_visible_layers").disableSelection();
   $(".well h3").disableSelection();
 
 
-activateCurrentLayersSection = ->
-  $("#wms_all_visible_layers").sortable();
-
-
 addLayerToCurrentLayersSection = (layer) ->
-  id = buildIdWithPrefix layer.id, "currentLayer"
-  html = """
- <div id="#{id}" class="alert alert-info"><a class="close">&times;</a><i class="icon-resize-vertical"></i> #{layer.name}</div>
-  """
-  $("#wms_all_visible_layers").prepend html
-  $("#" + id + " a").click( ->
-    $("#" + (buildIdWithPrefix layer.id, "toggler")).button "toggle"
-    removeLayerFromCurrentLayersSection layer
-  )
   layer.setVisibility true
-  if $("#wms_all_visible_layers div").length==1
-    $("#wms_all_visible_layers").collapse "show"
 
 
 removeLayerFromCurrentLayersSection = (layer) ->
-  if $("#wms_all_visible_layers div").length==1
-    $("#wms_all_visible_layers").collapse "hide"
-  id = buildIdWithPrefix layer.id, "currentLayer"
-  $('#'+id).remove()
   layer.setVisibility false
 
 
@@ -114,6 +93,7 @@ activateLayersSelection = ->
       removeLayerFromCurrentLayersSection layer
   )
 
+
 findLayer = (id) ->
   layers = (layer for layer in window.map.layers when layer.id==id)
   if layers.empty
@@ -126,6 +106,7 @@ buildIdWithPrefix = (id, prefix) ->
   parts = id.split "-"
   parts[0] = prefix
   return parts.join "-"
+
 
 finish = ->
   window.map.setCenter(
