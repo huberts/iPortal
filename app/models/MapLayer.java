@@ -18,7 +18,7 @@ public class MapLayer extends Model {
     public Boolean defaultVisible = false;
 
     @Required
-    public Boolean canBeUsed= true;
+    public Boolean canBeUsed = true;
 
     @ManyToOne
     public MapWMS mapWMS;
