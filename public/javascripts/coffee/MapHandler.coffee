@@ -68,16 +68,16 @@ activateIconChanges = ->
 
 activateLayersSelection = ->
 
-  checkAllLayersFor = (element, activated) ->
+  checkAllLayersFor = (wmsToggler, activated) ->
     allChecked = true
-    $(element).parent().next(".tier3").find(".layer-toggler").each (i, e) ->
+    $(wmsToggler).parent().next(".tier3").find(".layer-toggler").each (i, e) ->
       if $(e).is(":checked")!=activated
         allChecked = false
     return allChecked
 
-  checkAllWMSFor = (element, activated) ->
+  checkAllWMSFor = (sourceToggler, activated) ->
     allChecked = true
-    $(element).parent().next(".tier2").find(".wms-toggler").each (i, e) ->
+    $(sourceToggler).parent().next(".tier2").find(".wms-toggler").each (i, e) ->
       if $(e).is(":checked")!=activated
         allChecked = false
     return allChecked
@@ -92,23 +92,27 @@ activateLayersSelection = ->
 
   $("#app_layers .wms-toggler").change ->
     if $(this).is(":checked")
-      $(this).parent().next(".tier3").find(".layer-toggler").each (index, element) ->
-        $(element).attr "checked", true
+      $(this).parent().next(".tier3").find(".layer-toggler").each (index, layerToggler) ->
+        $(layerToggler).attr "checked", true
+        $(layerToggler).change()
     else
       if checkAllLayersFor $(this), true
-        $(this).parent().next(".tier3").find(".layer-toggler").each (index, element) ->
-          $(element).attr "checked", false
+        $(this).parent().next(".tier3").find(".layer-toggler").each (index, layerToggler) ->
+          $(layerToggler).attr "checked", false
+          $(layerToggler).change()
     if checkAllWMSFor $(this).parents(".tier1").find(".source-toggler"), false
       $(this).parents(".tier1").find(".source-toggler").attr "checked", false
 
   $("#app_layers .source-toggler").change ->
     if $(this).is(":checked")
-      $(this).parent().next(".tier2").find(".wms-toggler").each (index, element) ->
-        $(element).attr "checked", true
+      $(this).parent().next(".tier2").find(".wms-toggler").each (index, wmsToggler) ->
+        $(wmsToggler).attr "checked", true
+        $(wmsToggler).change()
     else
       if checkAllWMSFor $(this), true
-        $(this).parent().next(".tier2").find(".wms-toggler").each (index, element) ->
-          $(element).attr "checked", false
+        $(this).parent().next(".tier2").find(".wms-toggler").each (index, wmsToggler) ->
+          $(wmsToggler).attr "checked", false
+          $(wmsToggler).change()
 
 
 findLayer = (id) ->
