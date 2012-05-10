@@ -32,11 +32,14 @@ createMap = ->
     units: "m"
   }
 
+
+
 createLayersSwitcher = ->
   do disableTextSelection
   do activateIconChanges
   do activateLayersSelection
   addLayer layer for layer in window.layers
+
 
 
 addLayer = (layer) ->
@@ -50,20 +53,21 @@ addLayer = (layer) ->
     $("#" + buildIdWithPrefix olLayer.id, "toggler").click()
 
 
+
 disableTextSelection = ->
-  $(".well").disableSelection();
+  $("#app_layers .well").disableSelection();
+
 
 
 activateIconChanges = ->
-  $("#app_layers .collapse").on "show", ->
-    if $(this).hasClass "in"
-      return
-    $(this).prev().children("i").removeClass("icon-plus").addClass("icon-minus")
+  $("#app_layers i").click ->
+    if $(this).hasClass "icon-plus"
+      $(this).removeClass("icon-plus").addClass("icon-minus")
+      $(this).parent().next().show(400)
+    else if $(this).hasClass "icon-minus"
+      $(this).removeClass("icon-minus").addClass("icon-plus")
+      $(this).parent().next().hide(400)
 
-  $("#app_layers .collapse").on "hidden", ->
-    if $(this).hasClass "in"
-      return
-    $(this).prev().children("i").removeClass("icon-minus").addClass("icon-plus")
 
 
 activateLayersSelection = ->
