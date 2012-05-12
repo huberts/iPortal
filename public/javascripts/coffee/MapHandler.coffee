@@ -61,12 +61,9 @@ disableTextSelection = ->
 
 activateIconChanges = ->
   $("#app_layers i").click ->
-    if $(this).hasClass "icon-plus"
-      $(this).removeClass("icon-plus").addClass("icon-minus")
-      $(this).parent().next().show()
-    else if $(this).hasClass "icon-minus"
-      $(this).removeClass("icon-minus").addClass("icon-plus")
-      $(this).parent().next().hide()
+    $(this).toggleClass("icon-plus").toggleClass("icon-minus").parent().next().toggle()
+  $("#app_layers label").click ->
+    $(this).siblings("i").toggleClass("icon-plus").toggleClass("icon-minus").parent().next().toggle()
 
 
 
