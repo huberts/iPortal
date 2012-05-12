@@ -26,7 +26,7 @@ public class Application extends Controller {
     }
 
     public static void index() {
-        List<MapSource> sources = MapSource.findAll();
+        List<MapSource> sources = MapSourceCollection.getInstance().allSortedBy("id");
         render(sources);
     }
 

@@ -15,6 +15,7 @@ public class MapSource extends Model {
     public String displayName;
 
     @OneToMany( cascade=CascadeType.ALL, mappedBy="mapSource" )
+    @OrderBy( "id" )
     public Set<MapWMS> webMapServices;
 
 }

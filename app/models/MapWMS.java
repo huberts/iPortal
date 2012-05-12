@@ -21,6 +21,7 @@ public class MapWMS extends Model {
     public MapSource mapSource;
 
     @OneToMany( cascade=CascadeType.ALL, mappedBy="mapWMS" )
+    @OrderBy( "id" )
     public Set<MapLayer> layers;
 
 }
