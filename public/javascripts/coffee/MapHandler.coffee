@@ -63,10 +63,10 @@ activateIconChanges = ->
   $("#app_layers i").click ->
     if $(this).hasClass "icon-plus"
       $(this).removeClass("icon-plus").addClass("icon-minus")
-      $(this).parent().next().show(400)
+      $(this).parent().next().show()
     else if $(this).hasClass "icon-minus"
       $(this).removeClass("icon-minus").addClass("icon-plus")
-      $(this).parent().next().hide(400)
+      $(this).parent().next().hide()
 
 
 
