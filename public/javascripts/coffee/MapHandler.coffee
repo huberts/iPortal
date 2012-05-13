@@ -7,17 +7,19 @@ window.prepareMap = ->
 
 
 createProjections = ->
-  Proj4js.defs['EPSG:2180'] = '+proj=tmerc +lat_0=0 +lon_0=19 +k=0.9993 +x_0=500000 +y_0=-5300000 +ellps=GRS80 +units=m +no_defs';
   Proj4js.defs["EPSG:2177"] = '+proj=tmerc +lat_0=0 +lon_0=18 +k=0.999923 +x_0=6500000 +y_0=0 +ellps=GRS80 +units=m +no_defs';
+  Proj4js.defs['EPSG:2180'] = '+proj=tmerc +lat_0=0 +lon_0=19 +k=0.9993 +x_0=500000 +y_0=-5300000 +ellps=GRS80 +units=m +no_defs';
   window.epsg2177 = new OpenLayers.Projection('EPSG:2177');
   window.epsg2180 = new OpenLayers.Projection('EPSG:2180');
   window.epsg4326 = new OpenLayers.Projection('EPSG:4326');
+
 
 
 createMap = ->
   window.map = new OpenLayers.Map "open_layers_map", {
     controls: [],
     allOverlays: true,
+    units: "m",
     projection: window.epsg2180,
     displayProjection: window.epsg4326,
     maxExtent: new OpenLayers.Bounds(
@@ -28,29 +30,16 @@ createMap = ->
     ),
     minScale: window.configurationSettings.mapMinScale,
     maxScale: window.configurationSettings.mapMaxScale,
-    numZoomLevels: window.configurationSettings.mapNumZoomLevels,
-    units: "m"
+    numZoomLevels: window.configurationSettings.mapNumZoomLevels
   }
 
 
 
 createLayersSwitcher = ->
   do disableTextSelection
-  do activateIconChanges
+  do activateTreeComponent
   do activateLayersSelection
   addLayer layer for layer in window.layers
-
-
-
-addLayer = (layer) ->
-  olLayer = new OpenLayers  .Layer.WMS(layer.displayName, layer.serviceUrl,
-    {layers: layer.name, transparent: true},
-    {visibility: false}
-  )
-  olLayer.id = "layer-" + layer.index;
-  window.map.addLayer olLayer
-  if layer.defaultVisible==true
-    $("#" + buildIdWithPrefix olLayer.id, "toggler").click()
 
 
 
@@ -59,7 +48,7 @@ disableTextSelection = ->
 
 
 
-activateIconChanges = ->
+activateTreeComponent = ->
   $("#app_layers i").click ->
     $(this).toggleClass("icon-plus").toggleClass("icon-minus").parent().next().toggle()
   $("#app_layers label").click ->
@@ -69,27 +58,26 @@ activateIconChanges = ->
 
 activateLayersSelection = ->
 
-  checkAllLayersFor = (wmsToggler, activated) ->
-    allChecked = true
-    $(wmsToggler).parent().next(".tier3").find(".layer-toggler").each (i, e) ->
-      if $(e).is(":checked")!=activated
-        allChecked = false
-    return allChecked
+  checkAllLayersForBeingActivated = (wmsToggler, activated) -> areAllElementsChecked wmsToggler, activated, "tier3", "layer-toggler"
 
-  checkAllWMSFor = (sourceToggler, activated) ->
+  checkAllWMSForBeingActivated = (sourceToggler, activated) -> areAllElementsChecked sourceToggler, activated, "tier2", "wms-toggler"
+
+  areAllElementsChecked = (toggler, checked, nextTier, nextTogglers) ->
     allChecked = true
-    $(sourceToggler).parent().next(".tier2").find(".wms-toggler").each (i, e) ->
-      if $(e).is(":checked")!=activated
+    $(toggler).parent().next("."+nextTier).find("."+nextTogglers).each (i, e) ->
+      if $(e).is(":checked")!=checked
         allChecked = false
-    return allChecked
+    allChecked
+
 
   $("#app_layers .layer-toggler").change ->
     layer = findLayer buildIdWithPrefix $(this).attr("id"), "layer"
     if layer==null
       return
     layer.setVisibility $(this).is(":checked")
-    if checkAllLayersFor $(this).parents(".tier2").find(".wms-toggler"), false
+    if checkAllLayersForBeingActivated $(this).parents(".tier2").find(".wms-toggler"), false
       $(this).parents(".tier2").find(".wms-toggler").attr "checked", false
+
 
   $("#app_layers .wms-toggler").change ->
     if $(this).is(":checked")
@@ -97,12 +85,13 @@ activateLayersSelection = ->
         $(layerToggler).attr "checked", true
         $(layerToggler).change()
     else
-      if checkAllLayersFor $(this), true
+      if checkAllLayersForBeingActivated $(this), true
         $(this).parent().next(".tier3").find(".layer-toggler").each (index, layerToggler) ->
           $(layerToggler).attr "checked", false
           $(layerToggler).change()
-    if checkAllWMSFor $(this).parents(".tier1").find(".source-toggler"), false
+    if checkAllWMSForBeingActivated $(this).parents(".tier1").find(".source-toggler"), false
       $(this).parents(".tier1").find(".source-toggler").attr "checked", false
+
 
   $("#app_layers .source-toggler").change ->
     if $(this).is(":checked")
@@ -110,10 +99,23 @@ activateLayersSelection = ->
         $(wmsToggler).attr "checked", true
         $(wmsToggler).change()
     else
-      if checkAllWMSFor $(this), true
+      if checkAllWMSForBeingActivated $(this), true
         $(this).parent().next(".tier2").find(".wms-toggler").each (index, wmsToggler) ->
           $(wmsToggler).attr "checked", false
           $(wmsToggler).change()
+
+
+
+addLayer = (layer) ->
+  olLayer = new OpenLayers.Layer.WMS(layer.displayName, layer.serviceUrl,
+    {layers: layer.name, transparent: true},
+    {visibility: false}
+  )
+  olLayer.id = "layer-" + layer.index;
+  window.map.addLayer olLayer
+  if layer.defaultVisible==true
+    $("#" + buildIdWithPrefix olLayer.id, "toggler").click()
+
 
 
 findLayer = (id) ->
