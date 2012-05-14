@@ -39,6 +39,7 @@ createLayersSwitcher = ->
   do disableTextSelection
   do activateTreeComponent
   do activateLayersSelection
+  do activateLayersSort
   addLayer layer for layer in window.layers
 
 
@@ -103,6 +104,16 @@ activateLayersSelection = ->
         $(this).parent().next(".tier2").find(".wms-toggler").each (index, wmsToggler) ->
           $(wmsToggler).attr "checked", false
           $(wmsToggler).change()
+
+
+activateLayersSort = ->
+  $("#app_layers").sortable()
+  $(".tier2").sortable()
+  $(".tier3").sortable {
+    stop: (event, ui) ->
+      alert "h"
+
+  }
 
 
 

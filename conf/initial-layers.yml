@@ -11,7 +11,7 @@ MapLayer(Systherm_Bierun_Gminy):
   name: GMINY
   displayName: Gminy
   mapWMS: Systherm_Bierun
-  defaultVisible: true
+  defaultVisible: false
 MapLayer(Systherm_Bierun_Obreby):
   name: OBREBY
   displayName: Obręby
@@ -50,7 +50,7 @@ MapLayer(Systherm_Choszczno_Gminy):
   name: gminy
   displayName: Gminy
   mapWMS: Systherm_Choszczno
-  defaultVisible: true
+  defaultVisible: false
 MapLayer(Systherm_Choszczno_Obreby):
   name: obreby
   displayName: Obręby
