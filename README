@@ -1,4 +1,39 @@
-This is your new Play 2.0 application
-=====================================
+iPortal
+=======
 
-This file will be packaged with your application, when using `play dist`.
+iPortal jest przeglądarką dla WMS pracującą przez przeglądarkę internetową. Obsługa mapy zrealizowana jest w OpenLayers,
+natomiast całość oparta na PlayFramework 1.2 w Javie.
+
+W tym momencie apliakcja skonfigurowana jest do pracy z pamięciową bazą danych H2, a inicjalne dane zapisane są w pliku
+"initial-layers.yml". Warstwy WMS podzielone są ze względu na źródła danych (dostawcę WMS), potem na poszczególne WMS
+i w końcu na warstwy. W ten sposób powstaje trójpoziomowa hierarchia danych.
+
+Do uruchomienia aplikacji wystarczy Java oraz framework Play, z którym będzie można skompilować źródła. Uruchomienie
+w trybie developerskim odbywa się - jak zwykle w PlayFramework - przez komendę "play run". Aby uruchomić jako oddzielny
+proces: "play start". Zatrzymanie procesu to "play stop". Jeśli potrzebne jest przekierowanie portu 9000 (domyślny port
+aplikacji) przez bramowy serwer HTTP (np. Apache), wówczas należy także zresetować serwer po uruchomieniu procesu
+aplikacji. Szczegóły konfiguracji znaleźć można pod adresem http://www.playframework.org/documentation/1.2.4/production.
+
+W pliku "application.conf" zebrana jest konfiguracja programu:
+
+# Application views configuration
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+views.use_application_arms = false // użycie logo klienta w prawym górnym rogu
+
+# Map configuration
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+map.bounding_box.left = 130000 // granice zakresu mapy w  układzie PL 1992
+map.bounding_box.bottom = 120000
+map.bounding_box.right = 980000
+map.bounding_box.top = 780000
+map.min_scale = 100 // minimalna skala
+map.max_scale = 3500000 // maksymalna skala
+map.num_zoom_levels = 25 // liczba poziomów przybliżenia
+map.initial.x = 245000 // początkowe położenie mapy
+map.initial.y = 620000
+map.initial.z = 4 // początkowe przybliżenie mapy
+
+Pozdrowienia,
+
+HubertS
+
