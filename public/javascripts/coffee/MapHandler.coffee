@@ -107,12 +107,10 @@ activateLayersSelection = ->
 
 
 activateLayersSort = ->
-  $("#app_layers").sortable()
-  $(".tier2").sortable()
-  $(".tier3").sortable {
+  $("#app_layers, .tier2, .tier3").sortable {
     stop: (event, ui) ->
-      alert "h"
-
+      $("#app_layers .tier3 input").each (i, e) ->
+        window.map.setLayerIndex findLayer(buildIdWithPrefix($(this).attr("id"), "layer"), i)
   }
 
 
