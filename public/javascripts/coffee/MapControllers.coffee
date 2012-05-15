@@ -45,7 +45,9 @@ window.createControllers = ->
       (lonLat) -> this.prefix + lonLat.lat.toFixed(parseInt this.numDigits) + this.separator + lonLat.lon.toFixed(parseInt this.numDigits)
   }
 
-  window.map.addControl new OpenLayers.Control.PanZoomBar
+  window.map.addControl new OpenLayers.Control.PanZoomBar {
+    zoomWorldIcon: true
+  }
 
   window.map.addControl new OpenLayers.Control.Navigation {
     zoomBoxEnabled:
@@ -53,3 +55,4 @@ window.createControllers = ->
     zoomWheelEnabled:
       true
   }
+
