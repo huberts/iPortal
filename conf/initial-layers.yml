@@ -158,6 +158,45 @@ MapLayer(Systherm_KamienPomorski_PunktyAdresowe):
   displayName: Punkty adresowe
   mapWMS: Systherm_KamienPomorski
 
+MapWMS(Systherm_Koscian):
+  name: Koscian
+  displayName: Kościan
+  url: http://88.199.154.173/cgi-bin/koscian
+  mapSource: Systherm
+MapLayer(Systherm_Koscian_Gminy):
+  name: gminy
+  displayName: Gminy
+  mapWMS: Systherm_Koscian
+  defaultVisible: true
+MapLayer(Systherm_Koscian_Obreby):
+  name: obreby
+  displayName: Obręby
+  mapWMS: Systherm_Koscian
+MapLayer(Systherm_Koscian_Dzialki):
+  name: dzialki
+  displayName: Działki
+  mapWMS: Systherm_Koscian
+MapLayer(Systherm_Koscian_NumeryDzialek):
+  name: numery_dzialek
+  displayName: Numery działek
+  mapWMS: Systherm_Koscian
+MapLayer(Systherm_Koscian_Klasouzytki):
+  name: klasouzytki
+  displayName: Klasoużytki
+  mapWMS: Systherm_Koscian
+MapLayer(Systherm_Koscian_budynki):
+  name: budynki
+  displayName: Budynki
+  mapWMS: Systherm_Koscian
+MapLayer(Systherm_Koscian_NazwyUlic):
+  name: nazwy_ulic
+  displayName: Nazwy ulic
+  mapWMS: Systherm_Koscian
+MapLayer(Systherm_Koscian_PunktyAdresowe):
+  name: punkty_adresowe
+  displayName: Punkty adresowe
+  mapWMS: Systherm_Koscian
+
 MapWMS(Systherm_Lobez):
   name: Lobez
   displayName: Łobez
