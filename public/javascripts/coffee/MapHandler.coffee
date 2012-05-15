@@ -106,24 +106,27 @@ activateLayersSelection = ->
           $(wmsToggler).change()
 
 
+
 activateLayersSort = ->
-  $("#app_layers, .tier2, .tier3").sortable {
-    stop: (event, ui) ->
-      $("#app_layers .tier3 input").each (i, e) ->
-        window.map.setLayerIndex findLayer(buildIdWithPrefix($(this).attr("id"), "layer"), i)
-  }
+  $("#app_layers, .tier2, .tier3").sortable {stop: (event, ui) -> sortLayers()}
 
 
 
 addLayer = (layer) ->
   olLayer = new OpenLayers.Layer.WMS(layer.displayName, layer.serviceUrl,
     {layers: layer.name, transparent: true},
-    {visibility: false}
+    {visibility: false, singleTile: true, ratio: 1.0, buffer: 1, transitionEffect: "resize"}
   )
   olLayer.id = "layer-" + layer.index;
   window.map.addLayer olLayer
   if layer.defaultVisible==true
     $("#" + buildIdWithPrefix olLayer.id, "toggler").click()
+
+
+
+sortLayers = ->
+  $("#app_layers .tier3 input").each (i, e) ->
+    window.map.setLayerIndex findLayer(buildIdWithPrefix($(this).attr("id"), "layer"), i)
 
 
 
@@ -135,10 +138,12 @@ findLayer = (id) ->
     return layers[0]
 
 
+
 buildIdWithPrefix = (id, prefix) ->
   parts = id.split "-"
   parts[0] = prefix
-  return parts.join "-"
+  parts.join "-"
+
 
 
 finish = ->
@@ -146,3 +151,4 @@ finish = ->
     new OpenLayers.LonLat(configurationSettings.mapInitialX, configurationSettings.mapInitialY),
     configurationSettings.mapInitialZ
   )
+  do sortLayers
