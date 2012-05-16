@@ -3,7 +3,6 @@ window.prepareMap = ->
   do createMap
   do createLayersSwitcher
   do createControllers
-  do tests
   do finish
 
 
@@ -59,33 +58,23 @@ activateTreeComponent = ->
 
 activateLayersSelection = ->
 
-  areAllLayersDeactivated = (tier2Content) ->
-    allDeactivated = true
-    $(tier2Content).find(".layer-toggler").each (i, e) ->
-      if $(e).is(":checked")==true
-        allDeactivated = false
-    allDeactivated
+  areAllChecked = (tierContent, togglers, haveToBeChecked) ->
+    result = true
+    $(tierContent).find(togglers).each (i, e) ->
+      if $(e).is(":checked")!=haveToBeChecked
+        result = false
+    result
 
-  areAllLayersActivated = (tier2Content) ->
-    allActivated = true
-    $(tier2Content).find(".layer-toggler").each (i, e) ->
-      if $(e).is(":checked")==false
-        allActivated = false
-    allActivated
+  setChecked = (element, tier, togglers, haveToBeChecked, triggerChangeEvent) ->
+    $(element).parents(tier).find(togglers).each (i, toggler) ->
+      $(toggler).attr "checked", haveToBeChecked
+      if triggerChangeEvent
+        $(toggler).change()
 
-  areAllWmsDeactivated = (tier1Content) ->
-    allDeactivated = true
-    $(tier1Content).find(".wms-toggler").each (i, e) ->
-      if $(e).is(":checked")==true
-        allDeactivated = false
-    allDeactivated
-
-  areAllWmsActivated = (tier1Content) ->
-    allActivated = true
-    $(tier1Content).find(".wms-toggler").each (i, e) ->
-      if $(e).is(":checked")==false
-        allActivated = false
-    allActivated
+  areAllWmsActivated = (tier1Content) -> areAllChecked tier1Content, ".wms-toggler", true
+  areAllWmsDeactivated = (tier1Content) -> areAllChecked tier1Content, ".wms-toggler", false
+  areAllLayersActivated = (tier2Content) -> areAllChecked tier2Content, ".layer-toggler", true
+  areAllLayersDeactivated = (tier2Content) -> areAllChecked tier2Content, ".layer-toggler", false
 
 
   $("#app_layers .layer-toggler").change ->
@@ -93,32 +82,28 @@ activateLayersSelection = ->
     if layer==null
       return
     layer.setVisibility $(this).is(":checked")
+    if areAllLayersActivated $(this).parents(".tier2_content")
+      setChecked $(this), ".tier2", ".wms-toggler", true, false
     if areAllLayersDeactivated $(this).parents(".tier2_content")
-      $(this).parents(".tier2").find(".wms-toggler").attr "checked", false
+      setChecked $(this), ".tier2", ".wms-toggler", false, false
 
 
   $("#app_layers .wms-toggler").change ->
     if $(this).is(":checked")
-      $(this).parents(".tier2").find(".layer-toggler").each (index, layerToggler) ->
-        $(layerToggler).attr "checked", true
-        $(layerToggler).change()
+      setChecked $(this), ".tier2", ".layer-toggler", true, true
     else if areAllLayersActivated $(this).parents(".tier2").children(".tier2_content")
-      $(this).parents(".tier2").find(".layer-toggler").each (index, layerToggler) ->
-        $(layerToggler).attr "checked", false
-        $(layerToggler).change()
+      setChecked $(this), ".tier2", ".layer-toggler", false, true
+    if areAllWmsActivated $(this).parents(".tier1_content")
+      setChecked $(this), ".tier1", ".source-toggler", true, false
     if areAllWmsDeactivated $(this).parents(".tier1_content")
-      $(this).parents(".tier1").find(".source-toggler").attr "checked", false
+      setChecked $(this), ".tier1", ".source-toggler", false, false
 
 
   $("#app_layers .source-toggler").change ->
     if $(this).is(":checked")
-      $(this).parents(".tier1").find(".wms-toggler").each (index, wmsToggler) ->
-        $(wmsToggler).attr "checked", true
-        $(wmsToggler).change()
+      setChecked $(this), ".tier1", ".wms-toggler", true, true
     else if areAllWmsActivated $(this).parents(".tier1").children(".tier1_content")
-      $(this).parents(".tier1").find(".wms-toggler").each (index, wmsToggler) ->
-        $(wmsToggler).attr "checked", false
-        $(wmsToggler).change()
+      setChecked $(this), ".tier1", ".wms-toggler", false, true
 
 
 
@@ -167,9 +152,3 @@ finish = ->
     configurationSettings.mapInitialZ
   )
   do sortLayers
-
-
-tests = ->
-#  $(".level1 h3, .level1 i").click ->
-#    $(this).parent().siblings(".level1_content").toggle()
-#    $(this).parent().children("i").toggleClass("icon-plus").toggleClass("icon-minus")
