@@ -1,5 +1,6 @@
 window.prepareMap = ->
   do createProjections
+  do createEventListeners
   do createMap
   do createLayersSwitcher
   do createControllers
@@ -15,9 +16,22 @@ createProjections = ->
 
 
 
+createEventListeners = ->
+  window.zoomIn = new OpenLayers.Control.ZoomBox {active: false}
+  window.zoomOut = new OpenLayers.Control.ZoomBox {active: false, out: true}
+  window.mapEventListeners = {
+    zoomend: (event) ->
+      zoomIn.deactivate()
+      zoomOut.deactivate()
+      $("#open_layers_button_zoom_in, #open_layers_button_zoom_out").removeClass "active"
+  }
+
+
+
 createMap = ->
   window.map = new OpenLayers.Map "open_layers_map", {
     controls: [],
+    eventListeners: window.mapEventListeners
     allOverlays: true,
     units: "m",
     projection: window.epsg2180,

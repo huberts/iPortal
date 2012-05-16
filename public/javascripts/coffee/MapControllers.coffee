@@ -45,9 +45,9 @@ window.createControllers = ->
       (lonLat) -> this.prefix + lonLat.lat.toFixed(parseInt this.numDigits) + this.separator + lonLat.lon.toFixed(parseInt this.numDigits)
   }
 
-  window.map.addControl new OpenLayers.Control.PanZoomBar {
-    zoomWorldIcon: true
-  }
+
+  window.map.addControl new OpenLayers.Control.PanZoomBar
+
 
   window.map.addControl new OpenLayers.Control.Navigation {
     zoomBoxEnabled:
@@ -56,3 +56,26 @@ window.createControllers = ->
       true
   }
 
+
+  window.map.addControls [window.zoomIn, window.zoomOut]
+
+  $("#open_layers_button_extent").click ->
+    window.map.zoomToMaxExtent()
+
+  $("#open_layers_button_zoom_in").click ->
+    $(this).toggleClass "active"
+    if $(this).hasClass "active"
+      $("#open_layers_button_zoom_out").removeClass "active"
+      window.zoomOut.deactivate()
+      window.zoomIn.activate()
+    else
+      window.zoomIn.deactivate()
+
+  $("#open_layers_button_zoom_out").click ->
+    $(this).toggleClass "active"
+    if $(this).hasClass "active"
+      $("#open_layers_button_zoom_in").removeClass "active"
+      window.zoomIn.deactivate()
+      window.zoomOut.activate()
+    else
+      window.zoomOut.deactivate()
