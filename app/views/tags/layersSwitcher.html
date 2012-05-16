@@ -1,38 +1,44 @@
 #{list _sources, as:'source'}
 #{if models.MapSourceCollection.getInstance().canBeUsed(source)}
-<div class="well tier1">
-  <section>
+<div class="tier1">
+
+  <div class="tier1_header">
     <i class="icon-plus icon-white"></i>
     <input id="toggler-${source.id}" type="checkbox" class="source-toggler" />
-    <label><h3>${source.displayName}</h3></label>
-  </section>
-  <div id="source_${source.name}" class="tier2">
+    <h3>${source.displayName}</h3>
+  </div>
 
+  <div class="tier1_content well">
   #{list source.webMapServices, as:'wms'}
   #{if models.MapWMSCollection.getInstance().canBeUsed(wms)}
-    <div>
-      <section>
+
+    <div class="tier2">
+
+      <div class="tier2_header">
         <i class="icon-plus icon-white"></i>
         <input id="toggler-${source.id}-${wms.id}" type="checkbox" class="wms-toggler" />
-        <label><h4>${wms.displayName}</h4></label>
-      </section>
-      <div id="wms_${source.name}_${wms.name}" class="tier3">
+        <h4>${wms.displayName}</h4>
+      </div>
 
+      <div class="tier2_content">
       #{list wms.layers, as: 'layer'}
       #{if layer.canBeUsed}
-        <section>
-          <input id="toggler-${source.id}-${wms.id}-${layer.id}" type="checkbox" class="layer-toggler" />
-          <label for="toggler-${source.id}-${wms.id}-${layer.id}"><h5>${layer.displayName}</h5></label>
-        </section>
+        <div class="tier3">
+          <div class="tier3_content">
+            <input id="toggler-${source.id}-${wms.id}-${layer.id}" type="checkbox" class="layer-toggler" />
+            <label for="toggler-${source.id}-${wms.id}-${layer.id}"><h5>${layer.displayName}</h5></label>
+          </div>
+         </div>
       #{/if}
       #{/list}
-
       </div>
+
     </div>
+
   #{/if}
   #{/list}
-
   </div>
+
 </div>
 #{/if}
 #{/list}

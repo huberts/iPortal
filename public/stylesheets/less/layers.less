@@ -1,20 +1,33 @@
+@import "utils/_colors.less";
+
 #app_layers {
-  .tier2 {
-    margin-left: 30px;
-    display: none;
+  .tier1 {
+    margin-bottom: 12px;
   }
+
+  .tier1_header {
+    padding-left: 6px;
+    background-color: @buttonPrimaryColor;
+  }
+
   .tier3 {
-    margin-left: 30px;
-    display:none;
+    margin-left: 36px;
   }
-  input {
-    margin-right: 5px;
-  }
+
   label, h3, h4, h5 {
     display: inline;
     cursor: pointer;
   }
+
   i {
     cursor: pointer;
+  }
+
+  input {
+    margin-right: 6px;
+  }
+
+  .tier1_content, .tier2_content {
+    display: none;
   }
 }
