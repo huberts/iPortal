@@ -108,7 +108,10 @@ activateLayersSelection = ->
 
 
 activateLayersSort = ->
-  $("#app_layers, .tier2, .tier3").sortable {stop: (event, ui) -> sortLayers()}
+  $("#app_layers, .tier2, .tier3").sortable {
+    cursor: "move",
+    stop: (event, ui) -> sortLayers()
+  }
 
 
 
