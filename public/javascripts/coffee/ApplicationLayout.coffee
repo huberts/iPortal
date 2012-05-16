@@ -10,7 +10,7 @@ window.setTopLevelLayout = ->
     togglerTip_open: "zamknij"
     togglerTip_closed: "otwórz"
     minSize: 200
-    size: 350
+    size: 450
     maxSize: 600
     spacing_open: 5
     spacing_closed: 5
