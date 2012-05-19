@@ -1,50 +1,50 @@
-window.prepareMap = ->
+PORTAL.prepareMap = ->
   do createProjections
   do createEventListeners
   do createMap
   do createLayersSwitcher
-  do createControllers
+  do PORTAL.createControllers
   do finish
 
 
 createProjections = ->
   Proj4js.defs["EPSG:2177"] = '+proj=tmerc +lat_0=0 +lon_0=18 +k=0.999923 +x_0=6500000 +y_0=0 +ellps=GRS80 +units=m +no_defs';
   Proj4js.defs['EPSG:2180'] = '+proj=tmerc +lat_0=0 +lon_0=19 +k=0.9993 +x_0=500000 +y_0=-5300000 +ellps=GRS80 +units=m +no_defs';
-  window.epsg2177 = new OpenLayers.Projection('EPSG:2177');
-  window.epsg2180 = new OpenLayers.Projection('EPSG:2180');
-  window.epsg4326 = new OpenLayers.Projection('EPSG:4326');
+  PORTAL.epsg2177 = new OpenLayers.Projection('EPSG:2177');
+  PORTAL.epsg2180 = new OpenLayers.Projection('EPSG:2180');
+  PORTAL.epsg4326 = new OpenLayers.Projection('EPSG:4326');
 
 
 
 createEventListeners = ->
-  window.zoomIn = new OpenLayers.Control.ZoomBox {active: false}
-  window.zoomOut = new OpenLayers.Control.ZoomBox {active: false, out: true}
-  window.mapEventListeners = {
+  PORTAL.zoomIn = new OpenLayers.Control.ZoomBox {active: false}
+  PORTAL.zoomOut = new OpenLayers.Control.ZoomBox {active: false, out: true}
+  PORTAL.mapEventListeners = {
     zoomend: (event) ->
-      zoomIn.deactivate()
-      zoomOut.deactivate()
+      PORTAL.zoomIn.deactivate()
+      PORTAL.zoomOut.deactivate()
       $("#open_layers_button_zoom_in, #open_layers_button_zoom_out").removeClass "active"
   }
 
 
 
 createMap = ->
-  window.map = new OpenLayers.Map "open_layers_map", {
+  PORTAL.map = new OpenLayers.Map "open_layers_map", {
     controls: [],
-    eventListeners: window.mapEventListeners
+    eventListeners: PORTAL.mapEventListeners
     allOverlays: true,
     units: "m",
-    projection: window.epsg2180,
-    displayProjection: window.epsg4326,
+    projection: PORTAL.epsg2180,
+    displayProjection: PORTAL.epsg4326,
     maxExtent: new OpenLayers.Bounds(
-      window.configurationSettings.mapBoundingLeft,
-      window.configurationSettings.mapBoundingBottom,
-      window.configurationSettings.mapBoundingRight,
-      window.configurationSettings.mapBoundingTop
+      PORTAL.configurationSettings.mapBoundingLeft,
+      PORTAL.configurationSettings.mapBoundingBottom,
+      PORTAL.configurationSettings.mapBoundingRight,
+      PORTAL.configurationSettings.mapBoundingTop
     ),
-    minScale: window.configurationSettings.mapMinScale,
-    maxScale: window.configurationSettings.mapMaxScale,
-    numZoomLevels: window.configurationSettings.mapNumZoomLevels
+    minScale: PORTAL.configurationSettings.mapMinScale,
+    maxScale: PORTAL.configurationSettings.mapMaxScale,
+    numZoomLevels: PORTAL.configurationSettings.mapNumZoomLevels
   }
 
 
@@ -54,7 +54,7 @@ createLayersSwitcher = ->
   do activateTreeComponent
   do activateLayersSelection
   do activateLayersSort
-  addLayer layer for layer in window.layers
+  addLayer layer for layer in PORTAL.layers
 
 
 
@@ -132,7 +132,7 @@ addLayer = (layer) ->
     {visibility: false, singleTile: true, ratio: 1.0, buffer: 1, transitionEffect: "resize"}
   )
   olLayer.id = "layer-" + layer.index;
-  window.map.addLayer olLayer
+  PORTAL.map.addLayer olLayer
   if layer.defaultVisible==true
     $("#" + buildIdWithPrefix olLayer.id, "toggler").click()
 
@@ -140,12 +140,12 @@ addLayer = (layer) ->
 
 sortLayers = ->
   $("#app_layers .tier3 input").each (i, e) ->
-    window.map.setLayerIndex findLayer(buildIdWithPrefix($(this).attr("id"), "layer"), i)
+    PORTAL.map.setLayerIndex findLayer(buildIdWithPrefix($(this).attr("id"), "layer"), i)
 
 
 
 findLayer = (id) ->
-  layers = (layer for layer in window.map.layers when layer.id==id)
+  layers = (layer for layer in PORTAL.map.layers when layer.id==id)
   if layers.empty
     return null
   else
@@ -161,8 +161,8 @@ buildIdWithPrefix = (id, prefix) ->
 
 
 finish = ->
-  window.map.setCenter(
-    new OpenLayers.LonLat(configurationSettings.mapInitialX, configurationSettings.mapInitialY),
-    configurationSettings.mapInitialZ
+  PORTAL.map.setCenter(
+    new OpenLayers.LonLat(PORTAL.configurationSettings.mapInitialX, PORTAL.configurationSettings.mapInitialY),
+    PORTAL.configurationSettings.mapInitialZ
   )
   do sortLayers

@@ -1,11 +1,13 @@
-window.configurationSettings = new Object();
-window.configurationSettings.mapBoundingLeft = ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxLeft};
-window.configurationSettings.mapBoundingBottom = ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxBottom};
-window.configurationSettings.mapBoundingRight = ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxRight};
-window.configurationSettings.mapBoundingTop = ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxTop};
-window.configurationSettings.mapMinScale = ${play.mvc.Scope.RenderArgs.current().mapMinScale};
-window.configurationSettings.mapMaxScale = ${play.mvc.Scope.RenderArgs.current().mapMaxScale};
-window.configurationSettings.mapNumZoomLevels = ${play.mvc.Scope.RenderArgs.current().mapNumZoomLevels};
-window.configurationSettings.mapInitialX = ${play.mvc.Scope.RenderArgs.current().mapInitialX};
-window.configurationSettings.mapInitialY = ${play.mvc.Scope.RenderArgs.current().mapInitialY};
-window.configurationSettings.mapInitialZ = ${play.mvc.Scope.RenderArgs.current().mapInitialZ};
+var PORTAL = {}
+PORTAL.configurationSettings = {
+  mapBoundingLeft: ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxLeft},
+  mapBoundingBottom: ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxBottom},
+  mapBoundingRight: ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxRight},
+  mapBoundingTop: ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxTop},
+  mapMinScale: ${play.mvc.Scope.RenderArgs.current().mapMinScale},
+  mapMaxScale: ${play.mvc.Scope.RenderArgs.current().mapMaxScale},
+  mapNumZoomLevels: ${play.mvc.Scope.RenderArgs.current().mapNumZoomLevels},
+  mapInitialX: ${play.mvc.Scope.RenderArgs.current().mapInitialX},
+  mapInitialY: ${play.mvc.Scope.RenderArgs.current().mapInitialY},
+  mapInitialZ: ${play.mvc.Scope.RenderArgs.current().mapInitialZ}
+}

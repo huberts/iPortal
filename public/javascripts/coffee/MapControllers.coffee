@@ -1,6 +1,6 @@
-window.createControllers = ->
+PORTAL.createControllers = ->
 
-  window.map.addControl new OpenLayers.Control.Scale "open_layers_status_scale", {
+  PORTAL.map.addControl new OpenLayers.Control.Scale "open_layers_status_scale", {
     div:
       OpenLayers.Util.getElement "open_layers_status_scale"
     updateScale:
@@ -8,7 +8,7 @@ window.createControllers = ->
   }
 
 
-  window.map.addControl new OpenLayers.Control.ScaleLine {
+  PORTAL.map.addControl new OpenLayers.Control.ScaleLine {
     div:
       OpenLayers.Util.getElement "open_layers_status_scaleline"
     bottomInUnits:
@@ -18,7 +18,7 @@ window.createControllers = ->
   }
 
 
-  window.map.addControl new OpenLayers.Control.MousePosition {
+  PORTAL.map.addControl new OpenLayers.Control.MousePosition {
     div:
       OpenLayers.Util.getElement "open_layers_status_coords_map"
     emptyString:
@@ -28,7 +28,7 @@ window.createControllers = ->
   }
 
 
-  window.map.addControl new OpenLayers.Control.MousePosition {
+  PORTAL.map.addControl new OpenLayers.Control.MousePosition {
     div:
       OpenLayers.Util.getElement "open_layers_status_coords_lonlat"
     emptyString:
@@ -38,7 +38,7 @@ window.createControllers = ->
     separator:
       " Y: "
     displayProjection:
-      window.map.projection
+      PORTAL.map.projection
     numDigits:
       2
     formatOutput:
@@ -46,10 +46,10 @@ window.createControllers = ->
   }
 
 
-  window.map.addControl new OpenLayers.Control.PanZoomBar
+  PORTAL.map.addControl new OpenLayers.Control.PanZoomBar
 
 
-  window.map.addControl new OpenLayers.Control.Navigation {
+  PORTAL.map.addControl new OpenLayers.Control.Navigation {
     zoomBoxEnabled:
       true
     zoomWheelEnabled:
@@ -57,25 +57,25 @@ window.createControllers = ->
   }
 
 
-  window.map.addControls [window.zoomIn, window.zoomOut]
+  PORTAL.map.addControls [PORTAL.zoomIn, PORTAL.zoomOut]
 
   $("#open_layers_button_extent").click ->
-    window.map.zoomToMaxExtent()
+    PORTAL.map.zoomToMaxExtent()
 
   $("#open_layers_button_zoom_in").click ->
     $(this).toggleClass "active"
     if $(this).hasClass "active"
       $("#open_layers_button_zoom_out").removeClass "active"
-      window.zoomOut.deactivate()
-      window.zoomIn.activate()
+      PORTAL.zoomOut.deactivate()
+      PORTAL.zoomIn.activate()
     else
-      window.zoomIn.deactivate()
+      PORTAL.zoomIn.deactivate()
 
   $("#open_layers_button_zoom_out").click ->
     $(this).toggleClass "active"
     if $(this).hasClass "active"
       $("#open_layers_button_zoom_in").removeClass "active"
-      window.zoomIn.deactivate()
-      window.zoomOut.activate()
+      PORTAL.zoomIn.deactivate()
+      PORTAL.zoomOut.activate()
     else
-      window.zoomOut.deactivate()
+      PORTAL.zoomOut.deactivate()

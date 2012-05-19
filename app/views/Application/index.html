@@ -5,7 +5,7 @@
 
 <script type="text/javascript">
 
-    window.layers = new Array();
+    PORTAL.layers = [];
 
 #{list sources, as:'source'}
  #{if models.MapSourceCollection.getInstance().canBeUsed(source)}
@@ -14,17 +14,17 @@
     #{list wms.layers, as: 'layer'}
      #{if layer.canBeUsed}
 
-    var newLayer = new Object();
-    newLayer.index = "${source.id}-${wms.id}-${layer.id}";
-    newLayer.sourceName = "${source.name}";
-    newLayer.sourceDisplayName = "${source.displayName}";
-    newLayer.serviceName = "${wms.name}";
-    newLayer.serviceDisplayName = "${wms.displayName}";
-    newLayer.serviceUrl = "${wms.url}";
-    newLayer.name = "${layer.name}";
-    newLayer.displayName = "${layer.displayName}";
-    newLayer.defaultVisible = ${layer.defaultVisible};
-    window.layers.push(newLayer);
+    PORTAL.layers.push({
+      index: "${source.id}-${wms.id}-${layer.id}",
+      sourceName: "${source.name}",
+      sourceDisplayName: "${source.displayName}",
+      serviceName: "${wms.name}",
+      serviceDisplayName: "${wms.displayName}",
+      serviceUrl: "${wms.url}",
+      name: "${layer.name}",
+      displayName: "${layer.displayName}",
+      defaultVisible: ${layer.defaultVisible}
+    });
 
      #{/if}
     #{/list}

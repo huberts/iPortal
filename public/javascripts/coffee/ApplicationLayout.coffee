@@ -1,4 +1,4 @@
-window.setTopLevelLayout = ->
+PORTAL.setTopLevelLayout = ->
   lite =
     resizable: false
     slidable: false

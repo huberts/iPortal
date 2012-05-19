@@ -1,6 +1,6 @@
 $ ->
-  do window.setTopLevelLayout
-  do window.prepareMap
+  do PORTAL.setTopLevelLayout
+  do PORTAL.prepareMap
 
 
 
