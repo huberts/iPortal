@@ -54,7 +54,7 @@ createLayersSwitcher = ->
   do activateTreeComponent
   do activateLayersSelection
   do activateLayersSort
-  addLayer layer for layer in PORTAL.layers
+  PORTAL.addLayer layer for layer in PORTAL.layers
 
 
 
@@ -63,10 +63,11 @@ disableTextSelection = ->
 
 
 
-activateTreeComponent = ->
-  $("#app_layers h3, #app_layers h4, #app_layers i").click ->
-    $(this).parent().siblings().toggle()
-    $(this).parent().children("i").toggleClass("icon-plus").toggleClass("icon-minus")
+activateTreeComponent = -> $("#app_layers h3, #app_layers h4, #app_layers i").click -> PORTAL.handleTreeClick $(this)
+
+PORTAL.handleTreeClick = (element) ->
+  element.parent().siblings().toggle()
+  element.parent().children("i.icon-plus, i.icon-minus").toggleClass("icon-plus").toggleClass("icon-minus")
 
 
 
@@ -122,11 +123,12 @@ activateLayersSelection = ->
 
 
 activateLayersSort = ->
-  $("#app_layers, .tier1_content, .tier2_content").sortable {cursor: "move", stop: (event, ui) -> sortLayers()}
+  $("#app_layers, .tier1_content, .tier2_content").sortable {cursor: "move", stop: (event, ui) -> PORTAL.sortLayers()}
+  $(".tier1_content").sortable "option", "items", ".tier2"
 
 
 
-addLayer = (layer) ->
+PORTAL.addLayer = (layer) ->
   olLayer = new OpenLayers.Layer.WMS(layer.displayName, layer.serviceUrl,
     {layers: layer.name, transparent: true},
     {visibility: false, singleTile: true, ratio: 1.0, buffer: 1, transitionEffect: "resize"}
@@ -138,7 +140,7 @@ addLayer = (layer) ->
 
 
 
-sortLayers = ->
+PORTAL.sortLayers = ->
   $("#app_layers .tier3 input").each (i, e) ->
     PORTAL.map.setLayerIndex findLayer(buildIdWithPrefix($(this).attr("id"), "layer"), i)
 
@@ -165,4 +167,4 @@ finish = ->
     new OpenLayers.LonLat(PORTAL.configurationSettings.mapInitialX, PORTAL.configurationSettings.mapInitialY),
     PORTAL.configurationSettings.mapInitialZ
   )
-  do sortLayers
+  do PORTAL.sortLayers

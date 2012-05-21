@@ -1,3 +1,14 @@
+<div class="tier1">
+  <div class="tier1_header">
+    <i class="icon-plus icon-white"></i>
+    <input id="toggler-0" type="checkbox" class="source-toggler" />
+    <h3>&{"app.ownWms.sourceName"}</h3>
+  </div>
+  <div class="tier1_content well">
+    <button id="addWmsButton" class="btn" type="button" data-toggle="modal" data-target="#addWmsModal">&{"app.ownWms.addButton"}</button>
+  </div>
+</div>
+
 #{list _sources, as:'source'}
 #{if models.MapSourceCollection.getInstance().canBeUsed(source)}
 <div class="tier1">
@@ -26,7 +37,7 @@
         <div class="tier3">
           <div class="tier3_content">
             <input id="toggler-${source.id}-${wms.id}-${layer.id}" type="checkbox" class="layer-toggler" />
-            <label for="toggler-${source.id}-${wms.id}-${layer.id}"><h5>${layer.displayName}</h5></label>
+            <label for="toggler-${source.id}-${wms.id}-${layer.id}">${layer.displayName}</label>
           </div>
          </div>
       #{/if}

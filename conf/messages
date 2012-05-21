@@ -1,2 +1,9 @@
 app.owner=Systherm Info
 app.name=Geo-Info 6 GiPortal
+
+app.ownWms.sourceName=Własne usługi WMS
+app.ownWms.addButton=Dodaj nową usługę WMS
+app.ownWms.modalHeader=Definicja usługi
+app.ownWms.modalConfirm=OK
+
+
