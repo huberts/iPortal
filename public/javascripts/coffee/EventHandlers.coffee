@@ -40,11 +40,14 @@ PORTAL.Handlers.sourceToggled = (element) ->
 
 
 PORTAL.Handlers.removeWms = (removeIcon) ->
+  source = removeIcon.parents(".tier1").find(".source-toggler")
   olIndicies = []
   removeIcon.parents(".tier2").children(".tier2_content").find("input").each (i, layer) ->
     olIndicies.push PORTAL.Utils.buildIdWithPrefix( layer.id, "layer" )
   PORTAL.Utils.removeLayer index for index in olIndicies
   removeIcon.parents(".tier2").remove()
+  if priv.areAllWmsDeactivated source.parents(".tier1").children(".tier1_content")
+    source.attr "checked", false
 
 
 priv = {}
