@@ -79,3 +79,17 @@ PORTAL.createControllers = ->
       PORTAL.zoomOut.activate()
     else
       PORTAL.zoomOut.deactivate()
+
+
+  $("#open_layers_button_extent").tooltip {
+    title: PORTAL.messages.zoomToExtent,
+    placement: "bottom"
+  }
+  $("#open_layers_button_zoom_in").tooltip {
+    title: PORTAL.messages.zoomIn,
+    placement: "bottom"
+  }
+  $("#open_layers_button_zoom_out").tooltip {
+    title: PORTAL.messages.zoomOut,
+    placement: "bottom"
+  }

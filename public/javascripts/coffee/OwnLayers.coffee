@@ -5,7 +5,7 @@ PORTAL.activateOwnLayers = ->
 
 addAdditionalLayer = ->
   div = $("<div/>")
-  input = $("<input/>", {class: "own-layer-name", type: "text", placeholder: "Nazwa warstwy"})
+  input = $("<input/>", {class: "own-layer-name", type: "text", placeholder: PORTAL.messages.layerName})
   i = $("<i/>", {class: "icon-remove icon-white", click: -> $(this).parent().remove()})
   $("#addWmsLayerNames").append div.append(input).append(i)
 
