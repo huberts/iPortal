@@ -24,8 +24,18 @@ PORTAL.Utils.findLayer = (layerId) ->
 
 
 PORTAL.Utils.sortLayers = ->
+  listOfLayers = []
+  layersCount = $("#app_layers .tier3 input").length
   $("#app_layers .tier3 input").each (i, e) ->
-    PORTAL.map.setLayerIndex PORTAL.Utils.findLayer(PORTAL.Utils.buildIdWithPrefix($(this).attr("id"), "layer"), i)
+    layer = PORTAL.Utils.findLayer PORTAL.Utils.buildIdWithPrefix($(this).attr("id"), "layer")
+    listOfLayers.push {
+    layer: layer
+    oldVisibility: layer.getVisibility(),
+    newZIndex: layersCount - i - 1
+    }
+    layer.setVisibility false
+  PORTAL.map.setLayerIndex layer.layer, layer.newZIndex for layer in listOfLayers
+  layer.layer.setVisibility true for layer in listOfLayers when layer.oldVisibility==true
 
 
 PORTAL.Utils.buildIdWithPrefix = (oldPrefixedId, newPrefix) ->
