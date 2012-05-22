@@ -4,7 +4,7 @@ PORTAL.Utils = {}
 PORTAL.Utils.addLayer = (layer) ->
   olLayer = new OpenLayers.Layer.WMS(layer.displayName, layer.serviceUrl,
     {layers: layer.name, transparent: true},
-    {visibility: false, singleTile: true, ratio: 1.0, buffer: 1, transitionEffect: "resize"}
+    {visibility: false, singleTile: true, ratio: 1.0, buffer: 1, transitionEffect: "resize", opacityPercentage: 100}
   )
   olLayer.id = "layer-" + layer.index;
   PORTAL.map.addLayer olLayer

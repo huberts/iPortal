@@ -1,9 +1,5 @@
 @import "utils/_colors.less";
 
-.complexGradient {
-  background-color: @buttonPrimaryColor;
-}
-
 #app_layers {
   .tier1 {
     margin-bottom: 12px;
@@ -15,6 +11,7 @@
 
   .tier3 {
     margin-left: 36px;
+    margin-top: 6px;
   }
 
   label, h3, h4, h5 {
@@ -33,6 +30,18 @@
   input[type="checkbox"] {
     background-color: @textColor;
     margin-right: 6px;
+  }
+
+  span.btn {
+    margin-right: 6px;
+  }
+
+  .layer-details {
+    display: none;
+    margin-left: 6px;
+    span {
+      padding: 0 5px;
+    }
   }
 
   .tier1_content, .tier2_content {

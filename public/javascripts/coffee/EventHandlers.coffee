@@ -6,6 +6,24 @@ PORTAL.Handlers.treeClick = (element) ->
   element.parent().children("i.icon-plus, i.icon-minus").toggleClass("icon-plus").toggleClass("icon-minus")
 
 
+PORTAL.Handlers.layerDetails = (element) ->
+  element.siblings(".layer-details").toggle()
+
+
+PORTAL.Handlers.changeLayerOpacity = (element) ->
+  togglerId = element.parents(".tier3_content").children("input.layer-toggler").first().attr "id"
+  layerId = PORTAL.Utils.buildIdWithPrefix togglerId, "layer"
+  layer = PORTAL.Utils.findLayer layerId
+  if layer==null
+    return
+  if (element.hasClass "icon-minus-sign") && (layer.opacityPercentage>0)
+    layer.opacityPercentage -= 10
+  if (element.hasClass "icon-plus-sign") && (layer.opacityPercentage<100)
+    layer.opacityPercentage += 10
+  layer.setOpacity layer.opacityPercentage/100
+  element.siblings("span").text "" + layer.opacityPercentage + "%"
+
+
 PORTAL.Handlers.sort = (element) ->
   element.sortable { stop: PORTAL.Utils.sortLayers  }
 

@@ -37,7 +37,13 @@
         <div class="tier3">
           <div class="tier3_content">
             <input id="toggler-${source.id}-${wms.id}-${layer.id}" type="checkbox" class="layer-toggler" />
+            <span class="btn btn-mini" data-toggle="button">&middot; &middot; &middot;</span>
             <label for="toggler-${source.id}-${wms.id}-${layer.id}">${layer.displayName}</label>
+            <div class="layer-details">
+              <i class="icon-minus-sign"></i>
+              <span>100%</span>
+              <i class="icon-plus-sign"></i>
+            </div>
           </div>
          </div>
       #{/if}
