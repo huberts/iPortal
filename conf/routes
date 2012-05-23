@@ -3,6 +3,7 @@
 # ~~~~
 
 # Home page
+GET     /x/{x}/y/{y}/z/{z}                      Application.index
 GET     /                                       Application.index
 
 # Ignore favicon requests

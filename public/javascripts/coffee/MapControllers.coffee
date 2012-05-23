@@ -40,7 +40,7 @@ PORTAL.createControllers = ->
     displayProjection:
       PORTAL.map.projection
     numDigits:
-      2
+      0
     formatOutput:
       (lonLat) -> this.prefix + lonLat.lat.toFixed(parseInt this.numDigits) + this.separator + lonLat.lon.toFixed(parseInt this.numDigits)
   }
