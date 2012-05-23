@@ -81,6 +81,17 @@ PORTAL.createControllers = ->
       PORTAL.zoomOut.deactivate()
 
 
+  $("#open_layers_button_save_url").click ->
+    $("#getUrlModal input").val(
+      "http://" + location.host +
+      "/x/" + PORTAL.map.getCenter().lat.toFixed(0) +
+      "/y/" + PORTAL.map.getCenter().lon.toFixed(0) +
+      "/z/" + PORTAL.map.getZoom()
+    ).select()
+
+  $("#getUrlModal a").click -> $("#getUrlModal").modal "hide"
+
+
   $("#open_layers_button_extent").tooltip {
     title: PORTAL.messages.zoomToExtent,
     placement: "bottom"
@@ -93,3 +104,8 @@ PORTAL.createControllers = ->
     title: PORTAL.messages.zoomOut,
     placement: "bottom"
   }
+  $("#open_layers_button_save_url").tooltip {
+  title: PORTAL.messages.saveUrl,
+  placement: "bottom"
+  }
+
