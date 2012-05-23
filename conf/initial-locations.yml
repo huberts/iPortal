@@ -1,0 +1,7 @@
+MapLocationType(Tier1):
+  name: tier1
+MapLocationType(Tier2):
+  name: tier2
+MapLocationType(Tier3):
+  name: tier3
+

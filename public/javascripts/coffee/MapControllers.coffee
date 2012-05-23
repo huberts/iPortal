@@ -105,7 +105,10 @@ PORTAL.createControllers = ->
     placement: "bottom"
   }
   $("#open_layers_button_save_url").tooltip {
-  title: PORTAL.messages.saveUrl,
-  placement: "bottom"
+    title: PORTAL.messages.saveUrl,
+    placement: "bottom"
   }
-
+  $("#open_layers_button_go_to_location").tooltip {
+    title: PORTAL.messages.goToLocation,
+    placement: "bottom"
+  }
