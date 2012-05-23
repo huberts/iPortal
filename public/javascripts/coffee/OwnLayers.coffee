@@ -34,7 +34,7 @@ addWmsView = ->
   tier2Header = $("<div/>", {class: "tier2_header"})
   plus = $("<i/>", {class: "icon-plus icon-white", click: -> PORTAL.Handlers.treeClick $(this)})
   input = $("<input/>", {id: "toggler-0-"+priv.wmsNumber, type: "checkbox", class: "wms-toggler", change: -> PORTAL.Handlers.wmsToggled $(this)})
-  h4 = $("<h4/>", {text: wmsVisibleName, click: -> PORTAL.Handlers.treeClick $(this)})
+  h4 = $("<h4/>", {html: wmsVisibleName, click: -> PORTAL.Handlers.treeClick $(this)})
   remove = $("<i/>", {class: "icon-remove icon-white", click: -> PORTAL.Handlers.removeWms $(this)})
   tier2Content = $("<div/>", {class: "tier2_content"})
   PORTAL.Handlers.sort tier2Content
@@ -71,8 +71,14 @@ createLayerView = (layerName, layerNumber) ->
   tier3 = $("<div/>", {class: "tier3"})
   tier3Content = $("<div/>", {class: "tier3_content"})
   input = $("<input/>", {id: "toggler-0-"+priv.wmsNumber+"-"+layerNumber, type: "checkbox", class: "layer-toggler", change: -> PORTAL.Handlers.layerToggled $(this)})
+  button = $("<span/>", {class: "btn btn-mini", "data-toggle": "button", html: "&middot; &middot; &middot;", click: -> PORTAL.Handlers.layerDetails $(this)})
   label = $("<label/>", {for: "toggler-0-"+priv.wmsNumber+"-"+layerNumber, text: layerName})
-  tier3.append tier3Content.append(input).append(label)
+  details = $("<div/>", {class: "layer-details"})
+  minus = $("<i/>", {class: "icon-minus-sign", click: -> PORTAL.Handlers.changeLayerOpacity $(this)})
+  span = $("<span/>", {html: "100%"})
+  plus = $("<i/>", {class: "icon-plus-sign", click: -> PORTAL.Handlers.changeLayerOpacity $(this)})
+  details.append(minus).append(span).append(plus)
+  tier3.append tier3Content.append(input).append(button).append(label).append(details)
 
 cleanUpModal = ->
   $("#addWmsModal i.icon-remove").parent().remove()

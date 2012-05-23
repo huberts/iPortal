@@ -16,10 +16,12 @@ PORTAL.Handlers.changeLayerOpacity = (element) ->
   layer = PORTAL.Utils.findLayer layerId
   if layer==null
     return
+  increment = 0
   if (element.hasClass "icon-minus-sign") && (layer.opacityPercentage>0)
-    layer.opacityPercentage -= 10
+    increment = -25
   if (element.hasClass "icon-plus-sign") && (layer.opacityPercentage<100)
-    layer.opacityPercentage += 10
+    increment = 25
+  layer.opacityPercentage += increment
   layer.setOpacity layer.opacityPercentage/100
   element.siblings("span").text "" + layer.opacityPercentage + "%"
 
