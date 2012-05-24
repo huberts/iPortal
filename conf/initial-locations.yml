@@ -1,7 +1,134 @@
-MapLocationType(Tier1):
-  name: tier1
-MapLocationType(Tier2):
-  name: tier2
-MapLocationType(Tier3):
-  name: tier3
+MapLocation(Polska):
+  name: polska
+  displayName: cała Polska
+  xCoordinate: 449564
+  yCoordinate: 554904
+  zoomLevel: 0
 
+MapLocation(Dolnoslaskie):
+  name: dolnoslaskie
+  displayName: województwo dolnośląskie
+  xCoordinate: 353578
+  yCoordinate: 316831
+  zoomLevel: 3
+  parent: Polska
+
+MapLocation(KujawskoPomorskie):
+  name: kujawsko_pomorskie
+  displayName: województwo kujawsko-pomorskie
+  xCoordinate: 581162
+  yCoordinate: 474333
+  zoomLevel: 3
+  parent: Polska
+
+MapLocation(Lubelskie):
+  name: lubelskie
+  displayName: województwo lubelskie
+  xCoordinate: 382500
+  yCoordinate: 778143
+  zoomLevel: 3
+  parent: Polska
+
+MapLocation(Lubuskie):
+  name: lubuskie
+  displayName: województwo lubuskie
+  xCoordinate: 500517
+  yCoordinate: 251654
+  zoomLevel: 3
+  parent: Polska
+
+MapLocation(Lodzkie):
+  name: lodzkie
+  displayName: województwo łódzkie
+  xCoordinate: 414382
+  yCoordinate: 541442
+  zoomLevel: 3
+  parent: Polska
+
+MapLocation(Malopolskie):
+  name: malopolskie
+  displayName: województwo małopolskie
+  xCoordinate: 214402
+  yCoordinate: 593190
+  zoomLevel: 3
+  parent: Polska
+
+MapLocation(Mazowieckie):
+  name: mazowieckie
+  displayName: województwo mazowieckie
+  xCoordinate: 483157
+  yCoordinate: 660963
+  zoomLevel: 3
+  parent: Polska
+
+MapLocation(Opolskie):
+  name: opolskie
+  displayName: województwo opolskie
+  xCoordinate: 298534
+  yCoordinate: 419584
+  zoomLevel: 3
+  parent: Polska
+
+MapLocation(Podkarpackie):
+  name: podkarpackie
+  displayName: województwo podkarpackie
+  xCoordinate: 227422
+  yCoordinate: 742090
+  zoomLevel: 3
+  parent: Polska
+
+MapLocation(Podlaskie):
+  name: podlaskie
+  displayName: województwo podlaskie
+  xCoordinate: 615364
+  yCoordinate: 799180
+  zoomLevel: 3
+  parent: Polska
+
+MapLocation(Pomorskie):
+  name: pomorskie
+  displayName: województwo pomorskie
+  xCoordinate: 684806
+  yCoordinate: 435609
+  zoomLevel: 3
+  parent: Polska
+
+MapLocation(Slaskie):
+  name: slaskie
+  displayName: województwo śląskie
+  xCoordinate: 269822
+  yCoordinate: 483685
+  zoomLevel: 3
+  parent: Polska
+
+MapLocation(Swietokrzyskie):
+  name: swietokrzyskie
+  displayName: województwo świętokrzyskie
+  xCoordinate: 318899
+  yCoordinate: 625240
+  zoomLevel: 3
+  parent: Polska
+
+MapLocation(WarminskoMazurskie):
+  name: warminsko_mazurskie
+  displayName: województwo warmińsko-mazurskie
+  xCoordinate: 661039
+  yCoordinate: 673967
+  zoomLevel: 3
+  parent: Polska
+
+MapLocation(Wielkopolskie):
+  name: wielkopolskie
+  displayName: województwo wielkopolskie
+  xCoordinate: 499516
+  yCoordinate: 371509
+  zoomLevel: 3
+  parent: Polska
+
+MapLocation(Zachodniopomorskie):
+  name: zachodniopomorskie
+  displayName: województwo zachodniopomorskie
+  xCoordinate: 638734
+  yCoordinate: 250653
+  zoomLevel: 3
+  parent: Polska

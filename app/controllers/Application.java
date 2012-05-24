@@ -27,7 +27,8 @@ public class Application extends Controller {
     public static void index(Long x, Long y, Long z) {
         Application.sendArgumentsToMap(x, y, z);
         List<MapSource> sources = MapSourceCollection.getInstance().allSortedBy("id");
-        render(sources);
+        List<MapLocation> locations = MapLocationCollection.getInstance().topLevel();
+        render(sources, locations);
     }
 
     private static void sendArgumentsToMap(Long cartographerXCoordinate, Long cartographerYCoordinate, Long zoomLevel) {

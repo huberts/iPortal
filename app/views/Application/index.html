@@ -5,7 +5,7 @@
 
 <script type="text/javascript">
 
-    PORTAL.layers = [];
+  PORTAL.layers = [];
 
 #{list sources, as:'source'}
  #{if models.MapSourceCollection.getInstance().canBeUsed(source)}
@@ -32,4 +32,26 @@
   #{/list}
  #{/if}
 #{/list}
+
+  PORTAL.locations = [];
+
+#{list locations, as:'country'}
+  PORTAL.locations.push({
+    displayName: "${country.displayName}",
+    coordinateX: ${country.xCoordinate},
+    coordinateY: ${country.yCoordinate},
+    zoomLevel: ${country.zoomLevel},
+    cssClass: "country"
+  });
+  #{list country.children(), as:'voivodeship'}
+    PORTAL.locations.push({
+      displayName: "${voivodeship.displayName}",
+      coordinateX: ${voivodeship.xCoordinate},
+      coordinateY: ${voivodeship.yCoordinate},
+      zoomLevel: ${voivodeship.zoomLevel},
+      cssClass: "voivodeship"
+  });
+  #{/list}
+#{/list}
+
 </script>
