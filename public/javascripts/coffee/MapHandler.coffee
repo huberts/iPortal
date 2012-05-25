@@ -14,11 +14,11 @@ PORTAL.finishMap = ->
 ###########################################################
 
 createProjections = ->
-  Proj4js.defs["EPSG:2177"] = '+proj=tmerc +lat_0=0 +lon_0=18 +k=0.999923 +x_0=6500000 +y_0=0 +ellps=GRS80 +units=m +no_defs';
-  Proj4js.defs['EPSG:2180'] = '+proj=tmerc +lat_0=0 +lon_0=19 +k=0.9993 +x_0=500000 +y_0=-5300000 +ellps=GRS80 +units=m +no_defs';
-  PORTAL.epsg2177 = new OpenLayers.Projection('EPSG:2177');
-  PORTAL.epsg2180 = new OpenLayers.Projection('EPSG:2180');
-  PORTAL.epsg4326 = new OpenLayers.Projection('EPSG:4326');
+  Proj4js.defs["EPSG:2177"] = "+proj=tmerc +lat_0=0 +lon_0=18 +k=0.999923 +x_0=6500000 +y_0=0 +ellps=GRS80 +units=m +no_defs"
+  Proj4js.defs['EPSG:2180'] = "+proj=tmerc +lat_0=0 +lon_0=19 +k=0.9993 +x_0=500000 +y_0=-5300000 +ellps=GRS80 +units=m +no_defs"
+  PORTAL.epsg2177 = new OpenLayers.Projection("EPSG:2177");
+  PORTAL.epsg2180 = new OpenLayers.Projection("EPSG:2180");
+  PORTAL.epsg4326 = new OpenLayers.Projection("EPSG:4326");
 
 ###########################################################
 
@@ -48,10 +48,22 @@ createMap = ->
       PORTAL.configurationSettings.mapBoundingRight,
       PORTAL.configurationSettings.mapBoundingTop
     ),
-    minScale: PORTAL.configurationSettings.mapMinScale,
-    maxScale: PORTAL.configurationSettings.mapMaxScale,
+    maxResolution: 200,
+#    minScale: PORTAL.configurationSettings.mapMinScale,
+#    maxScale: PORTAL.configurationSettings.mapMaxScale,
     numZoomLevels: PORTAL.configurationSettings.mapNumZoomLevels
   }
+
+  arsbdo = new OpenLayers.Layer.ArsGeoportal "BDO", "http://ars.geoportal.gov.pl/ARS/getTile.aspx?service=BDO&cs=EPSG2180&fileIDX=L${z}X${x}Y${y}.png", {
+    zoomOffset: 3,
+    visibility: true,
+    transitionEffect: 'resize',
+    maxExtent: new OpenLayers.Bounds(0, 0, 1228800, 819200),
+    resolutions: [3200,1600,800,400,200,100,50,25]
+  }
+
+
+  PORTAL.map.addLayer arsbdo
 
 ###########################################################
 
