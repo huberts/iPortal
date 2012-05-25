@@ -71,8 +71,6 @@ OpenLayers.Layer.ArsGeoportal = OpenLayers.Class(OpenLayers.Layer.XYZ, {
         var res = this.map.getResolution();
         var x = Math.round((bounds.left - this.maxExtent.left) /
             (res * this.tileSize.w));
-        var y = Math.round((this.maxExtent.top - bounds.top) /
-            (res * this.tileSize.h));
         var y = Math.round((bounds.top - this.maxExtent.bottom) /
             (res * this.tileSize.h)) - 1;
         var z = this.serverResolutions != null ?

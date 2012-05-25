@@ -284,7 +284,7 @@ MapLayer(Systherm_Police_Gminy):
   name: gminy
   displayName: Gminy
   mapWMS: Systherm_Police
-  defaultVisible: true
+  defaultVisible: false
 MapLayer(Systherm_Police_Obreby):
   name: obreby
   displayName: Obręby
