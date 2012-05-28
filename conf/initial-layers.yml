@@ -1,435 +1,453 @@
-﻿MapSource(Systherm):
+﻿MapServiceType(WMS):
+  name: WMS
+MapServiceType(ARS):
+  name: ARS
+
+
+
+MapSource(Systherm):
   name: Systherm-Info
   displayName: Systherm-Info
 
-MapWMS(Systherm_Bierun):
+MapService(Systherm_Bierun):
   name: Bierun
   displayName: Bieruń
   url: http://212.244.173.51/cgi-bin/bierun
+  serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Bierun_Gminy):
   name: GMINY
   displayName: Gminy
-  mapWMS: Systherm_Bierun
+  mapService: Systherm_Bierun
   defaultVisible: false
 MapLayer(Systherm_Bierun_Obreby):
   name: OBREBY
   displayName: Obręby
-  mapWMS: Systherm_Bierun
+  mapService: Systherm_Bierun
 MapLayer(Systherm_Bierun_Dzialki):
   name: DZIALKI
   displayName: Działki
-  mapWMS: Systherm_Bierun
+  mapService: Systherm_Bierun
 MapLayer(Systherm_Bierun_NumeryDzialek):
   name: NUMERY DZIALEK
   displayName: Numery działek
-  mapWMS: Systherm_Bierun
+  mapService: Systherm_Bierun
 MapLayer(Systherm_Bierun_Klasouzytki):
   name: KLASOUZYTKI
   displayName: Klasoużytki
-  mapWMS: Systherm_Bierun
+  mapService: Systherm_Bierun
 MapLayer(Systherm_Bierun_budynki):
   name: FUNKCJE BUDYNKOW
   displayName: Budynki
-  mapWMS: Systherm_Bierun
+  mapService: Systherm_Bierun
 MapLayer(Systherm_Bierun_NazwyUlic):
   name: ULICE
   displayName: Nazwy ulic
-  mapWMS: Systherm_Bierun
+  mapService: Systherm_Bierun
 MapLayer(Systherm_Bierun_PunktyAdresowe):
   name: PUNKTYADR
   displayName: Punkty adresowe
-  mapWMS: Systherm_Bierun
+  mapService: Systherm_Bierun
 
-MapWMS(Systherm_Choszczno):
+MapService(Systherm_Choszczno):
   name: Choszczno
   displayName: Choszczno
   url: http://79.190.167.51/cgi-bin/choszczno
+  serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Choszczno_Gminy):
   name: gminy
   displayName: Gminy
-  mapWMS: Systherm_Choszczno
+  mapService: Systherm_Choszczno
   defaultVisible: false
 MapLayer(Systherm_Choszczno_Obreby):
   name: obreby
   displayName: Obręby
-  mapWMS: Systherm_Choszczno
+  mapService: Systherm_Choszczno
 MapLayer(Systherm_Choszczno_Dzialki):
   name: dzialki
   displayName: Działki
-  mapWMS: Systherm_Choszczno
+  mapService: Systherm_Choszczno
 MapLayer(Systherm_Choszczno_NumeryDzialek):
   name: numery_dzialek
   displayName: Numery działek
-  mapWMS: Systherm_Choszczno
+  mapService: Systherm_Choszczno
 MapLayer(Systherm_Choszczno_Klasouzytki):
   name: klasouzytki
   displayName: Klasoużytki
-  mapWMS: Systherm_Choszczno
+  mapService: Systherm_Choszczno
 MapLayer(Systherm_Choszczno_budynki):
   name: budynki
   displayName: Budynki
-  mapWMS: Systherm_Choszczno
+  mapService: Systherm_Choszczno
 MapLayer(Systherm_Choszczno_NazwyUlic):
   name: nazwy_ulic
   displayName: Nazwy ulic
-  mapWMS: Systherm_Choszczno
+  mapService: Systherm_Choszczno
 MapLayer(Systherm_Choszczno_PunktyAdresowe):
   name: punkty_adresowe
   displayName: Punkty adresowe
-  mapWMS: Systherm_Choszczno
+  mapService: Systherm_Choszczno
 
-MapWMS(Systherm_Gryfice):
+MapService(Systherm_Gryfice):
   name: Gryfice
   displayName: Gryfice
   url: http://83.0.172.114/cgi-bin/gryfice
+  serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Gryfice_Gminy):
   name: gminy
   displayName: Gminy
-  mapWMS: Systherm_Gryfice
+  mapService: Systherm_Gryfice
   defaultVisible: true
 MapLayer(Systherm_Gryfice_Obreby):
   name: obreby
   displayName: Obręby
-  mapWMS: Systherm_Gryfice
+  mapService: Systherm_Gryfice
 MapLayer(Systherm_Gryfice_Dzialki):
   name: dzialki
   displayName: Działki
-  mapWMS: Systherm_Gryfice
+  mapService: Systherm_Gryfice
 MapLayer(Systherm_Gryfice_NumeryDzialek):
   name: numery_dzialek
   displayName: Numery działek
-  mapWMS: Systherm_Gryfice
+  mapService: Systherm_Gryfice
 MapLayer(Systherm_Gryfice_Klasouzytki):
   name: klasouzytki
   displayName: Klasoużytki
-  mapWMS: Systherm_Gryfice
+  mapService: Systherm_Gryfice
 MapLayer(Systherm_Gryfice_budynki):
   name: budynki
   displayName: Budynki
-  mapWMS: Systherm_Gryfice
+  mapService: Systherm_Gryfice
 MapLayer(Systherm_Gryfice_NazwyUlic):
   name: nazwy_ulic
   displayName: Nazwy ulic
-  mapWMS: Systherm_Gryfice
+  mapService: Systherm_Gryfice
 MapLayer(Systherm_Gryfice_PunktyAdresowe):
   name: punkty_adresowe
   displayName: Punkty adresowe
-  mapWMS: Systherm_Gryfice
+  mapService: Systherm_Gryfice
 
-MapWMS(Systherm_KamienPomorski):
+MapService(Systherm_KamienPomorski):
   name: KamienPomorski
   displayName: Kamień Pomorski
   url: http://83.168.84.21/cgi-bin/kamien
+  serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_KamienPomorski_Gminy):
   name: gminy
   displayName: Gminy
-  mapWMS: Systherm_KamienPomorski
+  mapService: Systherm_KamienPomorski
   defaultVisible: true
 MapLayer(Systherm_KamienPomorski_Obreby):
   name: obreby
   displayName: Obręby
-  mapWMS: Systherm_KamienPomorski
+  mapService: Systherm_KamienPomorski
 MapLayer(Systherm_KamienPomorski_Dzialki):
   name: dzialki
   displayName: Działki
-  mapWMS: Systherm_KamienPomorski
+  mapService: Systherm_KamienPomorski
 MapLayer(Systherm_KamienPomorski_NumeryDzialek):
   name: numery_dzialek
   displayName: Numery działek
-  mapWMS: Systherm_KamienPomorski
+  mapService: Systherm_KamienPomorski
 MapLayer(Systherm_KamienPomorski_Klasouzytki):
   name: klasouzytki
   displayName: Klasoużytki
-  mapWMS: Systherm_KamienPomorski
+  mapService: Systherm_KamienPomorski
 MapLayer(Systherm_KamienPomorski_budynki):
   name: budynki
   displayName: Budynki
-  mapWMS: Systherm_KamienPomorski
+  mapService: Systherm_KamienPomorski
 MapLayer(Systherm_KamienPomorski_NazwyUlic):
   name: nazwy_ulic
   displayName: Nazwy ulic
-  mapWMS: Systherm_KamienPomorski
+  mapService: Systherm_KamienPomorski
 MapLayer(Systherm_KamienPomorski_PunktyAdresowe):
   name: punkty_adresowe
   displayName: Punkty adresowe
-  mapWMS: Systherm_KamienPomorski
+  mapService: Systherm_KamienPomorski
 
-MapWMS(Systherm_Koscian):
+MapService(Systherm_Koscian):
   name: Koscian
   displayName: Kościan
   url: http://88.199.154.173/cgi-bin/koscian
+  serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Koscian_Gminy):
   name: gminy
   displayName: Gminy
-  mapWMS: Systherm_Koscian
+  mapService: Systherm_Koscian
   defaultVisible: true
 MapLayer(Systherm_Koscian_Obreby):
   name: obreby
   displayName: Obręby
-  mapWMS: Systherm_Koscian
+  mapService: Systherm_Koscian
 MapLayer(Systherm_Koscian_Dzialki):
   name: dzialki
   displayName: Działki
-  mapWMS: Systherm_Koscian
+  mapService: Systherm_Koscian
 MapLayer(Systherm_Koscian_NumeryDzialek):
   name: numery_dzialek
   displayName: Numery działek
-  mapWMS: Systherm_Koscian
+  mapService: Systherm_Koscian
 MapLayer(Systherm_Koscian_Klasouzytki):
   name: klasouzytki
   displayName: Klasoużytki
-  mapWMS: Systherm_Koscian
+  mapService: Systherm_Koscian
 MapLayer(Systherm_Koscian_budynki):
   name: budynki
   displayName: Budynki
-  mapWMS: Systherm_Koscian
+  mapService: Systherm_Koscian
 MapLayer(Systherm_Koscian_NazwyUlic):
   name: nazwy_ulic
   displayName: Nazwy ulic
-  mapWMS: Systherm_Koscian
+  mapService: Systherm_Koscian
 MapLayer(Systherm_Koscian_PunktyAdresowe):
   name: punkty_adresowe
   displayName: Punkty adresowe
-  mapWMS: Systherm_Koscian
+  mapService: Systherm_Koscian
 
-MapWMS(Systherm_Lobez):
+MapService(Systherm_Lobez):
   name: Lobez
   displayName: Łobez
   url: http://80.52.227.211/cgi-bin/lobez
+  serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Lobez_Gminy):
   name: gminy
   displayName: Gminy
-  mapWMS: Systherm_Lobez
+  mapService: Systherm_Lobez
   defaultVisible: true
 MapLayer(Systherm_Lobez_Obreby):
   name: obreby
   displayName: Obręby
-  mapWMS: Systherm_Lobez
+  mapService: Systherm_Lobez
 MapLayer(Systherm_Lobez_Dzialki):
   name: dzialki
   displayName: Działki
-  mapWMS: Systherm_Lobez
+  mapService: Systherm_Lobez
 MapLayer(Systherm_Lobez_NumeryDzialek):
   name: numery_dzialek
   displayName: Numery działek
-  mapWMS: Systherm_Lobez
+  mapService: Systherm_Lobez
 MapLayer(Systherm_Lobez_Klasouzytki):
   name: klasouzytki
   displayName: Klasoużytki
-  mapWMS: Systherm_Lobez
+  mapService: Systherm_Lobez
 MapLayer(Systherm_Lobez_budynki):
   name: budynki
   displayName: Budynki
-  mapWMS: Systherm_Lobez
+  mapService: Systherm_Lobez
 MapLayer(Systherm_Lobez_NazwyUlic):
   name: nazwy_ulic
   displayName: Nazwy ulic
-  mapWMS: Systherm_Lobez
+  mapService: Systherm_Lobez
 MapLayer(Systherm_Lobez_PunktyAdresowe):
   name: punkty_adresowe
   displayName: Punkty adresowe
-  mapWMS: Systherm_Lobez
+  mapService: Systherm_Lobez
 
-MapWMS(Systherm_Mysliborz):
+MapService(Systherm_Mysliborz):
   name: Mysliborz
   displayName: Myślibórz
   url: http://83.3.190.54/cgi-bin/mysliborz
+  serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Mysliborz_Gminy):
   name: gminy
   displayName: Gminy
-  mapWMS: Systherm_Mysliborz
+  mapService: Systherm_Mysliborz
   defaultVisible: true
 MapLayer(Systherm_Mysliborz_Obreby):
   name: obreby
   displayName: Obręby
-  mapWMS: Systherm_Mysliborz
+  mapService: Systherm_Mysliborz
 MapLayer(Systherm_Mysliborz_Dzialki):
   name: dzialki
   displayName: Działki
-  mapWMS: Systherm_Mysliborz
+  mapService: Systherm_Mysliborz
 MapLayer(Systherm_Mysliborz_NumeryDzialek):
   name: numery_dzialek
   displayName: Numery działek
-  mapWMS: Systherm_Mysliborz
+  mapService: Systherm_Mysliborz
 MapLayer(Systherm_Mysliborz_Klasouzytki):
   name: klasouzytki
   displayName: Klasoużytki
-  mapWMS: Systherm_Mysliborz
+  mapService: Systherm_Mysliborz
 MapLayer(Systherm_Mysliborz_budynki):
   name: budynki
   displayName: Budynki
-  mapWMS: Systherm_Mysliborz
+  mapService: Systherm_Mysliborz
 MapLayer(Systherm_Mysliborz_NazwyUlic):
   name: nazwy_ulic
   displayName: Nazwy ulic
-  mapWMS: Systherm_Mysliborz
+  mapService: Systherm_Mysliborz
 MapLayer(Systherm_Mysliborz_PunktyAdresowe):
   name: punkty_adresowe
   displayName: Punkty adresowe
-  mapWMS: Systherm_Mysliborz
+  mapService: Systherm_Mysliborz
 
-MapWMS(Systherm_Police):
+MapService(Systherm_Police):
   name: Police
   displayName: Police
   url: http://46.170.65.211/cgi-bin/police
+  serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Police_Gminy):
   name: gminy
   displayName: Gminy
-  mapWMS: Systherm_Police
+  mapService: Systherm_Police
   defaultVisible: false
 MapLayer(Systherm_Police_Obreby):
   name: obreby
   displayName: Obręby
-  mapWMS: Systherm_Police
+  mapService: Systherm_Police
 MapLayer(Systherm_Police_Dzialki):
   name: dzialki
   displayName: Działki
-  mapWMS: Systherm_Police
+  mapService: Systherm_Police
 MapLayer(Systherm_Police_NumeryDzialek):
   name: numery_dzialek
   displayName: Numery działek
-  mapWMS: Systherm_Police
+  mapService: Systherm_Police
 MapLayer(Systherm_Police_Klasouzytki):
   name: klasouzytki
   displayName: Klasoużytki
-  mapWMS: Systherm_Police
+  mapService: Systherm_Police
 MapLayer(Systherm_Police_budynki):
   name: budynki
   displayName: Budynki
-  mapWMS: Systherm_Police
+  mapService: Systherm_Police
 MapLayer(Systherm_Police_NazwyUlic):
   name: nazwy_ulic
   displayName: Nazwy ulic
-  mapWMS: Systherm_Police
+  mapService: Systherm_Police
 MapLayer(Systherm_Police_PunktyAdresowe):
   name: punkty_adresowe
   displayName: Punkty adresowe
-  mapWMS: Systherm_Police
+  mapService: Systherm_Police
 
-MapWMS(Systherm_Pyrzyce):
+MapService(Systherm_Pyrzyce):
   name: Pyrzyce
   displayName: Pyrzyce
   url: http://78.159.69.27/cgi-bin/pyrzyce
+  serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Pyrzyce_Gminy):
   name: gminy
   displayName: Gminy
-  mapWMS: Systherm_Pyrzyce
+  mapService: Systherm_Pyrzyce
   defaultVisible: true
 MapLayer(Systherm_Pyrzyce_Obreby):
   name: obreby
   displayName: Obręby
-  mapWMS: Systherm_Pyrzyce
+  mapService: Systherm_Pyrzyce
 MapLayer(Systherm_Pyrzyce_Dzialki):
   name: dzialki
   displayName: Działki
-  mapWMS: Systherm_Pyrzyce
+  mapService: Systherm_Pyrzyce
 MapLayer(Systherm_Pyrzyce_NumeryDzialek):
   name: numery_dzialek
   displayName: Numery działek
-  mapWMS: Systherm_Pyrzyce
+  mapService: Systherm_Pyrzyce
 MapLayer(Systherm_Pyrzyce_Klasouzytki):
   name: klasouzytki
   displayName: Klasoużytki
-  mapWMS: Systherm_Pyrzyce
+  mapService: Systherm_Pyrzyce
 MapLayer(Systherm_Pyrzyce_budynki):
   name: budynki
   displayName: Budynki
-  mapWMS: Systherm_Pyrzyce
+  mapService: Systherm_Pyrzyce
 MapLayer(Systherm_Pyrzyce_NazwyUlic):
   name: nazwy_ulic
   displayName: Nazwy ulic
-  mapWMS: Systherm_Pyrzyce
+  mapService: Systherm_Pyrzyce
 MapLayer(Systherm_Pyrzyce_PunktyAdresowe):
   name: punkty_adresowe
   displayName: Punkty adresowe
-  mapWMS: Systherm_Pyrzyce
+  mapService: Systherm_Pyrzyce
 
-MapWMS(Systherm_Stargard):
+MapService(Systherm_Stargard):
   name: Stargard
   displayName: Stargard
   url: http://mapserv.podgik.stargard.pl/mapserv/mapserv?MAP=/usr/local/wms/htdocs/stargard.map
+  serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Stargard_Gminy):
   name: gminy
   displayName: Gminy
-  mapWMS: Systherm_Stargard
+  mapService: Systherm_Stargard
   defaultVisible: true
 MapLayer(Systherm_Stargard_Obreby):
   name: obreby
   displayName: Obręby
-  mapWMS: Systherm_Stargard
+  mapService: Systherm_Stargard
 MapLayer(Systherm_Stargard_Dzialki):
   name: dzialki
   displayName: Działki
-  mapWMS: Systherm_Stargard
+  mapService: Systherm_Stargard
 MapLayer(Systherm_Stargard_NumeryDzialek):
   name: numery_dzialek
   displayName: Numery działek
-  mapWMS: Systherm_Stargard
+  mapService: Systherm_Stargard
 MapLayer(Systherm_Stargard_Klasouzytki):
   name: klasouzytki
   displayName: Klasoużytki
-  mapWMS: Systherm_Stargard
+  mapService: Systherm_Stargard
 MapLayer(Systherm_Stargard_budynki):
   name: budynki
   displayName: Budynki
-  mapWMS: Systherm_Stargard
+  mapService: Systherm_Stargard
 MapLayer(Systherm_Stargard_NazwyUlic):
   name: nazwy_ulic
   displayName: Nazwy ulic
-  mapWMS: Systherm_Stargard
+  mapService: Systherm_Stargard
 MapLayer(Systherm_Stargard_PunktyAdresowe):
   name: punkty_adresowe
   displayName: Punkty adresowe
-  mapWMS: Systherm_Stargard
+  mapService: Systherm_Stargard
 
-MapWMS(Systherm_Swinoujscie):
+MapService(Systherm_Swinoujscie):
   name: Swinoujscie
   displayName: Świnoujście
   url: http://80.54.123.217/cgi-bin/swinoujscie
+  serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Swinoujscie_Gminy):
   name: gminy
   displayName: Gminy
-  mapWMS: Systherm_Swinoujscie
+  mapService: Systherm_Swinoujscie
   defaultVisible: true
 MapLayer(Systherm_Swinoujscie_Obreby):
   name: obreby
   displayName: Obręby
-  mapWMS: Systherm_Swinoujscie
+  mapService: Systherm_Swinoujscie
 MapLayer(Systherm_Swinoujscie_Dzialki):
   name: dzialki
   displayName: Działki
-  mapWMS: Systherm_Swinoujscie
+  mapService: Systherm_Swinoujscie
 MapLayer(Systherm_Swinoujscie_NumeryDzialek):
   name: numery_dzialek
   displayName: Numery działek
-  mapWMS: Systherm_Swinoujscie
+  mapService: Systherm_Swinoujscie
 MapLayer(Systherm_Swinoujscie_Klasouzytki):
   name: klasouzytki
   displayName: Klasoużytki
-  mapWMS: Systherm_Swinoujscie
+  mapService: Systherm_Swinoujscie
 MapLayer(Systherm_Swinoujscie_budynki):
   name: budynki
   displayName: Budynki
-  mapWMS: Systherm_Swinoujscie
+  mapService: Systherm_Swinoujscie
 MapLayer(Systherm_Swinoujscie_NazwyUlic):
   name: nazwy_ulic
   displayName: Nazwy ulic
-  mapWMS: Systherm_Swinoujscie
+  mapService: Systherm_Swinoujscie
 MapLayer(Systherm_Swinoujscie_PunktyAdresowe):
   name: punkty_adresowe
   displayName: Punkty adresowe
-  mapWMS: Systherm_Swinoujscie
+  mapService: Systherm_Swinoujscie
 
 
 
@@ -437,105 +455,121 @@ MapSource(Geoportal):
   name: Geoportal
   displayName: Geoportal
 
-MapWMS(Geoportal_PRG):
+MapService(Geoportal_PRG):
   name: PRG
   displayName: PRG
   url: http://sdi.geoportal.gov.pl/wms_prg/wmservice.aspx
+  serviceType: WMS
   mapSource: Geoportal
 MapLayer(Geoportal_PRG_Wojewodztwa):
   name: Wojewodztwa
   displayName: Województwa
-  mapWMS: Geoportal_PRG
+  mapService: Geoportal_PRG
 MapLayer(Geoportal_PRG_Powiaty):
   name: Powiaty
   displayName: Powiaty
-  mapWMS: Geoportal_PRG
+  mapService: Geoportal_PRG
 MapLayer(Geoportal_PRG_Gminy):
   name: Gminy
   displayName: Gminy
-  mapWMS: Geoportal_PRG
+  mapService: Geoportal_PRG
 MapLayer(Geoportal_PRG_NazwyWojewodztw):
   name: Nazwa_wojewodztwa
   displayName: Nazwy województw
-  mapWMS: Geoportal_PRG
+  mapService: Geoportal_PRG
 MapLayer(Geoportal_PRG_NazwyPowiatow):
   name: Nazwa_powiatu
   displayName: Nazwy powiatów
-  mapWMS: Geoportal_PRG
+  mapService: Geoportal_PRG
 MapLayer(Geoportal_PRG_NazwyGmin):
   name: Nazwa_gminy
   displayName: Nazwy gmin
-  mapWMS: Geoportal_PRG
+  mapService: Geoportal_PRG
 
-MapWMS(Geoportal_DaneKatastralne):
+MapService(Geoportal_ARS):
+  name: ARS
+  displayName: ARS (Advanced Raster Service)
+  url: http://ars.geoportal.gov.pl/ARS/getTile.aspx?
+  serviceType: ARS
+  mapSource: Geoportal
+MapLayer(BDO):
+  name: BDO
+  displayName: BDO
+  mapService: Geoportal_ARS
+  defaultVisible: true
+
+MapService(Geoportal_DaneKatastralne):
   name: DaneKatastralne
   displayName: Dane katastralne
   url: http://sdi.geoportal.gov.pl/wms_dzkat/wmservice.aspx
+  serviceType: WMS
   mapSource: Geoportal
 MapLayer(Geoportal_DaneKatastralne_Dzialki):
   name: Dzialki
   displayName: Działki
-  mapWMS: Geoportal_DaneKatastralne
+  mapService: Geoportal_DaneKatastralne
 MapLayer(Geoportal_DaneKatastralne_NumeryDzialek):
   name: Numery_dzialek
   displayName: Numery działek
-  mapWMS: Geoportal_DaneKatastralne
+  mapService: Geoportal_DaneKatastralne
 
-MapWMS(Geoportal_Ortofotomapa):
+MapService(Geoportal_Ortofotomapa):
   name: Ortofotomapa
   displayName: Ortofotomapa
   url: http://sdi.geoportal.gov.pl/wms_orto/wmservice.aspx
+  serviceType: WMS
   mapSource: Geoportal
 MapLayer(Geoportal_Ortofotomapa_Ortofoto):
   name: ORTOFOTO
   displayName: Ortofoto
-  mapWMS: Geoportal_Ortofotomapa
+  mapService: Geoportal_Ortofotomapa
 MapLayer(Geoportal_Ortofotomapa_ScenySatelitarne):
   name: SCENY_SATELITARNE
   displayName: Sceny satelitarne
-  mapWMS: Geoportal_Ortofotomapa
+  mapService: Geoportal_Ortofotomapa
 
-MapWMS(Geoportal_Topo):
+MapService(Geoportal_Topo):
   name: Topograficzna
   displayName: Mapy topograficzne
   url: http://sdi.geoportal.gov.pl/wms_topo/wmservice.aspx
+  serviceType: WMS
   mapSource: Geoportal
 MapLayer(Geoportal_Topo_50WGS84):
   name: TOPO_50_WGS84
   displayName: 50 (WGS84)
-  mapWMS: Geoportal_Topo
+  mapService: Geoportal_Topo
 MapLayer(Geoportal_Topo_5092):
   name: TOPO_50_92
   displayName: 50 (1992)
-  mapWMS: Geoportal_Topo
+  mapService: Geoportal_Topo
 MapLayer(Geoportal_Topo_5065):
   name: TOPO_50_65
   displayName: 50 (1965)
-  mapWMS: Geoportal_Topo
+  mapService: Geoportal_Topo
 MapLayer(Geoportal_Topo_5042):
   name: TOPO_50_42
   displayName: 50 (1942)
-  mapWMS: Geoportal_Topo
+  mapService: Geoportal_Topo
 MapLayer(Geoportal_Topo_2565):
   name: TOPO_25_65
   displayName: 25 (1965)
-  mapWMS: Geoportal_Topo
+  mapService: Geoportal_Topo
 MapLayer(Geoportal_Topo_10080):
   name: TOPO_100_80
   displayName: 100 (1980)
-  mapWMS: Geoportal_Topo
+  mapService: Geoportal_Topo
 MapLayer(Geoportal_Topo_1092):
   name: TOPO_10_92
   displayName: 10 (1992)
-  mapWMS: Geoportal_Topo
+  mapService: Geoportal_Topo
 MapLayer(Geoportal_Topo_1065):
   name: TOPO_10_65
   displayName: 10 (1965)
-  mapWMS: Geoportal_Topo
+  mapService: Geoportal_Topo
 MapLayer(Geoportal_Topo_1042):
   name: TOPO_10_42
   displayName: 10 (1942)
-  mapWMS: Geoportal_Topo
+  mapService: Geoportal_Topo
 
 
 
@@ -543,37 +577,38 @@ MapSource(GDOS):
   name: GDOS
   displayName: Generalna Dyrekcja Ochrony Środowiska
 
-MapWMS(GDOS_WMS):
+MapService(GDOS_WMS):
   name: WMS
   displayName: WMS
   url: http://wms.gdos.gov.pl/geoserver/wms
+  serviceType: WMS
   mapSource: GDOS
 MapLayer(GDOS_WMS_OCK):
   name: gdos_int:ObszaryChronionegoKrajobrazu
   displayName: Obszary chronionego krajobrazu
-  mapWMS: GDOS_WMS
+  mapService: GDOS_WMS
 MapLayer(GDOS_WMS_OSO):
   name: gdos_int:ObszarySpecjalnejOchrony
   displayName: Obszary specjalnej ochrony
-  mapWMS: GDOS_WMS
+  mapService: GDOS_WMS
 MapLayer(GDOS_WMS_ParkiKrajobrazowe):
   name: gdos_int:ParkiKrajobrazowe
   displayName: Parki krajobrazowe
-  mapWMS: GDOS_WMS
+  mapService: GDOS_WMS
 MapLayer(GDOS_WMS_ParkiNarodowe):
   name: gdos_int:ParkiNarodowe
   displayName: Parki narodowe
-  mapWMS: GDOS_WMS
+  mapService: GDOS_WMS
 MapLayer(GDOS_WMS_Rezerwaty):
   name: gdos_int:Rezerwaty
   displayName: Rezerwaty
-  mapWMS: GDOS_WMS
+  mapService: GDOS_WMS
 MapLayer(GDOS_WMS_SOO):
   name: gdos_int:SpecjalneObszaryOchrony
   displayName: Specjalne obszary ochrony
-  mapWMS: GDOS_WMS
+  mapService: GDOS_WMS
 MapLayer(GDOS_WMS_ZPK):
   name: gdos_int:ZespolyPrzyrodniczoKrajobrazowe
   displayName: Zespoły Przyrodniczo-Krajobrazowe
-  mapWMS: GDOS_WMS
+  mapService: GDOS_WMS
 

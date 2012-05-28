@@ -1,12 +1,12 @@
 package models;
 
-public class MapWMSCollection {
+public class MapServiceCollection {
 
-    public static MapWMSCollection getInstance() {
-        return new MapWMSCollection();
+    public static MapServiceCollection getInstance() {
+        return new MapServiceCollection();
     }
 
-    public Boolean canBeUsed(MapWMS service) {
+    public Boolean canBeUsed(MapService service) {
         for (MapLayer layer : service.layers) {
             if (layer.canBeUsed) {
                 return true;

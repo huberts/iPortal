@@ -48,18 +48,10 @@ createMap = ->
       PORTAL.configurationSettings.mapBoundingRight,
       PORTAL.configurationSettings.mapBoundingTop
     ),
-    maxResolution: PORTAL.configurationSettings.mapMaxResolution,
-    numZoomLevels: PORTAL.configurationSettings.mapNumZoomLevels
-    resolutions: [1600,800,400,200,100,50,25]
+    resolutions: PORTAL.configurationSettings.mapResolutions
+    #FIXME: PARAMETRIZE
+#    resolutions: [1600,800,400,200,100,50,25,13,6,3,2,1,0.5,0.25]
   }
-
-  #FIXME: Parametrize!
-  arsbdo = new OpenLayers.Layer.ArsGeoportal "BDO", "http://ars.geoportal.gov.pl/ARS/getTile.aspx?service=BDO&cs=EPSG2180&fileIDX=L${z}X${x}Y${y}.png", {
-    visibility: true,
-    transitionEffect: 'resize',
-    maxExtent: new OpenLayers.Bounds(0, 0, 1228800, 819200),
-  }
-  PORTAL.map.addLayer arsbdo
 
 ###########################################################
 

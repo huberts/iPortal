@@ -16,8 +16,7 @@ public class Application extends Controller {
         renderArgs.put("mapBoundingBoxBottom", Play.configuration.getProperty("map.bounding_box.bottom"));
         renderArgs.put("mapBoundingBoxRight", Play.configuration.getProperty("map.bounding_box.right"));
         renderArgs.put("mapBoundingBoxTop", Play.configuration.getProperty("map.bounding_box.top"));
-        renderArgs.put("mapMaxResolution", Play.configuration.getProperty("map.max_resolution"));
-        renderArgs.put("mapNumZoomLevels", Play.configuration.getProperty("map.num_zoom_levels"));
+        renderArgs.put("mapResolutions", Play.configuration.getProperty("map.resolutions"));
         renderArgs.put("mapInitialX", Play.configuration.getProperty("map.initial.cartographer_y_coordinate"));
         renderArgs.put("mapInitialY", Play.configuration.getProperty("map.initial.cartographer_x_coordinate"));
         renderArgs.put("mapInitialZ", Play.configuration.getProperty("map.initial.z"));

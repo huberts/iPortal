@@ -9,18 +9,19 @@
 
 #{list sources, as:'source'}
  #{if models.MapSourceCollection.getInstance().canBeUsed(source)}
-  #{list source.webMapServices, as:'wms'}
-   #{if models.MapWMSCollection.getInstance().canBeUsed(wms)}
-    #{list wms.layers, as: 'layer'}
+  #{list source.webMapServices, as:'service'}
+   #{if models.MapServiceCollection.getInstance().canBeUsed(service)}
+    #{list service.layers, as: 'layer'}
      #{if layer.canBeUsed}
 
     PORTAL.layers.push({
-      index: "${source.id}-${wms.id}-${layer.id}",
+      index: "${source.id}-${service.id}-${layer.id}",
       sourceName: "${source.name}",
       sourceDisplayName: "${source.displayName}",
-      serviceName: "${wms.name}",
-      serviceDisplayName: "${wms.displayName}",
-      serviceUrl: "${wms.url}",
+      serviceName: "${service.name}",
+      serviceDisplayName: "${service.displayName}",
+      serviceUrl: "${service.url}",
+      serviceType: "${service.serviceType.name}",
       name: "${layer.name}",
       displayName: "${layer.displayName}",
       defaultVisible: ${layer.defaultVisible}

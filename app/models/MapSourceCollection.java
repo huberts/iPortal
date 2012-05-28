@@ -13,8 +13,8 @@ public class MapSourceCollection {
     }
 
     public Boolean canBeUsed(MapSource source) {
-        for (MapWMS service : source.webMapServices) {
-            if (MapWMSCollection.getInstance().canBeUsed(service)) {
+        for (MapService service : source.webMapServices) {
+            if (MapServiceCollection.getInstance().canBeUsed(service)) {
                 return true;
             }
         }
