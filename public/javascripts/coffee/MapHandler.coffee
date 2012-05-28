@@ -49,8 +49,6 @@ createMap = ->
       PORTAL.configurationSettings.mapBoundingTop
     ),
     resolutions: PORTAL.configurationSettings.mapResolutions
-    #FIXME: PARAMETRIZE
-#    resolutions: [1600,800,400,200,100,50,25,13,6,3,2,1,0.5,0.25]
   }
 
 ###########################################################

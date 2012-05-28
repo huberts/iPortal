@@ -57,9 +57,10 @@ priv.addWMSLayer = (layer) ->
   )
 
 priv.addARSLayer = (layer) ->
+  layerOptions = priv.createARSLayerOptions layer
   new OpenLayers.Layer.ArsGeoportal(
     layer.displayName,
-    "http://ars.geoportal.gov.pl/ARS/getTile.aspx?service=BDO&cs=EPSG2180&fileIDX=L${z}X${x}Y${y}.png",#PARAM
+    layer.serviceUrl + layerOptions.urlParams,
     priv.createARSLayerOptions layer
   )
 
@@ -75,9 +76,8 @@ priv.createWMSLayerOptions = ->
 
 priv.createARSLayerOptions = (layer) ->
   options = priv.createCommonLayerOptions()
-  options.zoomOffset = 0 #PARAM
-  options.maxExtent = new OpenLayers.Bounds(0, 0, 1228800, 819200) #PARAM
-  options.resolutions = [1600,800,400,200,100,50,25]#PARAM
+  additionalOptions = (keyValue.split ":=" for keyValue in layer.additionalOptions.split "|")
+  priv.addARSLayerOption options, additionalOption for additionalOption in additionalOptions
   return options
 
 priv.createCommonLayerOptions = ->
@@ -86,3 +86,25 @@ priv.createCommonLayerOptions = ->
   transitionEffect: "resize",
   opacityPercentage: 100
   }
+
+priv.addARSLayerOption = (options, additionalOption) ->
+  key = additionalOption[0]
+
+  if key=="zoomOffset"
+    options.zoomOffset = parseInt additionalOption[1]
+
+  if key=="maxExtent"
+    bounds = additionalOption[1].split(",")
+    options.maxExtent = new OpenLayers.Bounds(
+      parseInt(bounds[0]),
+      parseInt(bounds[1]),
+      parseInt(bounds[2]),
+      parseInt(bounds[3])
+    )
+
+  if key=="resolutions"
+    resolutions = additionalOption[1].split(",")
+    options.resolutions = additionalOption[1].split(",")
+
+  if key=="urlParams"
+    options.urlParams = additionalOption[1].replace(/,/g, "&")

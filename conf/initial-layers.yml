@@ -497,6 +497,7 @@ MapLayer(BDO):
   displayName: BDO
   mapService: Geoportal_ARS
   defaultVisible: true
+  additionalOptions: zoomOffset:=0|maxExtent:=0,0,1228800,819200|resolutions:=1600,800,400,200,100,50,25|urlParams:=service=BDO,cs=EPSG2180,fileIDX=L\$\{z\}X\$\{x\}Y\$\{y\}.png
 
 MapService(Geoportal_DaneKatastralne):
   name: DaneKatastralne
