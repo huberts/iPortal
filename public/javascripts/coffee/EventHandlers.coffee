@@ -34,8 +34,6 @@ PORTAL.Handlers.sort = (element) ->
 
 PORTAL.Handlers.layerToggled = (layerCheckbox) ->
 
-  priv.setOpenLayersLayerVisibility layerCheckbox
-
   layerCheckboxesOnMyLevel = layerCheckbox.parents(".tier2_content")
   myWmsCheckbox =            layerCheckbox.parents(".tier2").find(".wms-toggler")
 
@@ -45,6 +43,8 @@ PORTAL.Handlers.layerToggled = (layerCheckbox) ->
     priv.setCheckboxState myWmsCheckbox, priv.STATE_OFF
   else
     priv.setCheckboxState myWmsCheckbox, priv.STATE_MIDDLE
+
+  priv.setOpenLayersLayerVisibility layerCheckbox
 
 
 
@@ -92,7 +92,7 @@ PORTAL.Handlers.removeWms = (removeIcon) ->
   PORTAL.Utils.removeLayer index for index in olIndicies
   removeIcon.parents(".tier2").remove()
   if priv.areAllWmsDeactivated source.parents(".tier1").children(".tier1_content")
-    source.attr "checked", false
+    priv.setCheckboxState source, priv.STATE_OFF
 
 
 
