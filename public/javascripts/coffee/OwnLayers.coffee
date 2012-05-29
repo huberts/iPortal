@@ -53,6 +53,7 @@ sortLayers = -> PORTAL.Utils.sortLayers()
 
 buildLayerObject = (layerName, index) ->
   {
+    serviceType: "WMS",
     name: layerName,
     displayName: layerName,
     serviceUrl: $("#addWmsModalUrl").val(),
