@@ -2,7 +2,7 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
+GET     /getCapabilities/{url}                  CapabilitiesGetter.getCapabilities
 GET     /x/{x}/y/{y}/z/{z}                      Application.index
 GET     /                                       Application.index
 

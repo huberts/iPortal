@@ -9,6 +9,8 @@ addAdditionalLayer = ->
   i = $("<i/>", {class: "icon-remove icon-white", click: -> $(this).parent().remove()})
   $("#addWmsLayerNames").append div.append(input).append(i)
 
+  testFunction()
+
 
 addNewWms = ->
   if canAddWms()
@@ -84,3 +86,20 @@ createLayerView = (layerName, layerNumber) ->
 cleanUpModal = ->
   $("#addWmsModal i.icon-remove").parent().remove()
   $("#addWmsModal input").val ""
+
+
+testFunction = ->
+  request = OpenLayers.Request.GET(
+    {
+      url: location.href + "getCapabilities/url",#    "http://212.244.173.51/cgi-bin/bierun?service=WMS&request=getCapabilities",
+      success: (response) ->
+#        alert ( (new XMLSerializer()).serializeToString(response.responseXML) )
+
+
+        xmlFormat = new OpenLayers.Format.XML()
+        capFormat = new OpenLayers.Format.WMSCapabilities()
+#        xml = xmlFormat.read((new XMLSerializer()).serializeToString(response.responseXML))
+        layersList = capFormat.read((new XMLSerializer()).serializeToString(response.responseXML))
+        layersList = capFormat.read((new XMLSerializer()).serializeToString(response.responseXML))
+    }
+  )
