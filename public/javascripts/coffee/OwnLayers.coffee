@@ -91,15 +91,19 @@ cleanUpModal = ->
 testFunction = ->
   request = OpenLayers.Request.GET(
     {
-      url: location.href + "getCapabilities/url",#    "http://212.244.173.51/cgi-bin/bierun?service=WMS&request=getCapabilities",
+      url: location.href + "getCapabilities/url",#    "http://212.244.173.51/cgi-bin/bierun",
       success: (response) ->
-#        alert ( (new XMLSerializer()).serializeToString(response.responseXML) )
-
-
-        xmlFormat = new OpenLayers.Format.XML()
-        capFormat = new OpenLayers.Format.WMSCapabilities()
-#        xml = xmlFormat.read((new XMLSerializer()).serializeToString(response.responseXML))
-        layersList = capFormat.read((new XMLSerializer()).serializeToString(response.responseXML))
-        layersList = capFormat.read((new XMLSerializer()).serializeToString(response.responseXML))
+        $xml = $ $.parseXML((new XMLSerializer()).serializeToString(response.responseXML))
+        $xml.find("WMS_Capabilities Capability Layer").each (i,layer) ->
+          if $(layer).attr("queryable")
+            properlySetCrs = false
+            $(layer).children("CRS").each (i,crs) ->
+              alert $(crs).text()
+              if $(crs).text()=="EPSG:2177"
+                properlySetCrs = true
+            if properlySetCrs==true
+              name = $(layer).children("Name").text()
+              displayName = $(layer).children("Title").text()
+              alert name + " " + displayName
     }
   )
