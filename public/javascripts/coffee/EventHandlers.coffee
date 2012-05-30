@@ -2,7 +2,7 @@ PORTAL.Handlers = {}
 
 
 PORTAL.Handlers.treeClick = (element) ->
-  element.parent().siblings().toggle()
+  element.parent().siblings().toggle("fast")
   element.parent().children("i.icon-plus, i.icon-minus").toggleClass("icon-plus").toggleClass("icon-minus")
 
 
