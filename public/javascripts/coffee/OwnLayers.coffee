@@ -1,6 +1,9 @@
 PORTAL.activateOwnLayers = ->
+  $("#addWmsLayerFailure").hide()
   $("#addWmsModalLoadLayers").click -> loadLayers()
   $("#addWmsModal .modal-footer a").click -> addNewWms()
+  $("#addWmsModal").on "hidden", ->
+    $("#addWmsLayerFailure").hide()
 
 
 loadLayers = ->
@@ -94,7 +97,7 @@ cleanUpModal = ->
 priv = {}
 
 priv.clearLayersSection = ->
-  $("#addWmsLayerFailure").css "display", "none"
+  $("#addWmsLayerFailure").hide "fast"
   $("#addWmsLayerNames").empty()
 
 priv.getGetCapabilitiesUrl = ->
@@ -132,4 +135,4 @@ priv.addLayer = (layer) ->
 
 priv.layersLoadingFailure = ->
   $("#addWmsModalLoadLayers").attr "disabled", false
-  $("#addWmsLayerFailure").css "display", "block"
+  $("#addWmsLayerFailure").show "fast"
