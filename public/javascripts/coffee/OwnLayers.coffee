@@ -4,6 +4,7 @@ PORTAL.activateOwnLayers = ->
 
 
 loadLayers = ->
+  $("#addWmsModalLoadLayers").attr "disabled", true
   priv.clearLayersSection()
   OpenLayers.Request.GET {
     url: priv.getGetCapabilitiesUrl()
@@ -100,6 +101,7 @@ priv.getGetCapabilitiesUrl = ->
   "http://" + location.host + "/getCapabilities/" + encodeURIComponent( $("#addWmsModalUrl").val() )
 
 priv.layersLoaded = (response) ->
+  $("#addWmsModalLoadLayers").attr "disabled", false
   $xml = $($.parseXML((new XMLSerializer()).serializeToString(response.responseXML)))
   if priv.hasMapProjection $xml
     priv.addLayers $xml
@@ -129,4 +131,5 @@ priv.addLayer = (layer) ->
   $("#addWmsLayerNames").append(div.append(span, button.append(icon)))
 
 priv.layersLoadingFailure = ->
+  $("#addWmsModalLoadLayers").attr "disabled", false
   $("#addWmsLayerFailure").css "display", "block"
