@@ -93,13 +93,20 @@ testFunction = ->
     {
       url: location.href + "getCapabilities/url",#    "http://212.244.173.51/cgi-bin/bierun?service=WMS&request=getCapabilities",
       success: (response) ->
-#        alert ( (new XMLSerializer()).serializeToString(response.responseXML) )
-
-
-        xmlFormat = new OpenLayers.Format.XML()
-        capFormat = new OpenLayers.Format.WMSCapabilities()
-#        xml = xmlFormat.read((new XMLSerializer()).serializeToString(response.responseXML))
-        layersList = capFormat.read((new XMLSerializer()).serializeToString(response.responseXML))
-        layersList = capFormat.read((new XMLSerializer()).serializeToString(response.responseXML))
+        #TODO: sprawdzić znak zapytania na końcu linku; sprawdzić, czy Layers pisze się wielką czy małą; tak samo inne tagi; jak to przedstawić?; lagi w komunikacji?
+        #        alert ( (new XMLSerializer()).serializeToString(response.responseXML) )
+        $xml = $( $.parseXML( (new XMLSerializer()).serializeToString(response.responseXML) ) )
+        $xml.find("WMS_Capabilities Capability Layer").each (i,layer) ->
+          name = $(layer).children("Name").text()
+          displayName = $(layer).children("Title").text()
+          crs = $(layer).children("CRS")
+          crsIsOk = false
+          crs.each (i,crs) ->
+            if $(crs).text()=="EPSG:2177"
+              crsIsOk = true
+          if crsIsOk && $(layer).attr("queryable")=="1"
+            alert name
+          else
+            alert "warstwa błedna"
     }
   )
