@@ -4,14 +4,29 @@ import play.Logger;
 import play.libs.WS;
 import play.mvc.Controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 public class CapabilitiesGetter extends Controller{
 
     public static void getCapabilities(String serviceUrl) {
-        serviceUrl = "http://212.244.173.51/cgi-bin/bierun";
-        serviceUrl +="?service=WMS&request=getCapabilities";
-        WS.HttpResponse xml = WS.url(serviceUrl).get();
-        String frame = xml.getString();
-        renderXml(frame);
-        Logger.info(frame);
+        renderXml(WS.url(buildQueryString(serviceUrl)).get().getString());
+    }
+
+    private static String buildQueryString(String serviceUrl) {
+        String queryUrl = tryToDecode(serviceUrl);
+        if (queryUrl.endsWith("?")) {
+            queryUrl = queryUrl.substring(0, queryUrl.length()-1);
+        }
+        return queryUrl + "?service=WMS&request=getCapabilities";
+    }
+
+    private static String tryToDecode(String utf8Encoded) {
+        try {
+            utf8Encoded = URLDecoder.decode(utf8Encoded, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return utf8Encoded;
     }
 }
