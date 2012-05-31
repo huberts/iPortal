@@ -10,6 +10,10 @@ PORTAL.Handlers.layerDetails = (element) ->
   element.siblings(".layer-details").toggle()
 
 
+PORTAL.Handlers.checkLayerToAdd = (addWmsLayerButton) ->
+  addWmsLayerButton.children("i").toggleClass("icon-remove").toggleClass("icon-ok")
+
+
 PORTAL.Handlers.changeLayerOpacity = (element) ->
   togglerId = element.parents(".tier3_content").children("input.layer-toggler").first().attr "id"
   layerId = PORTAL.Utils.buildIdWithPrefix togglerId, "layer"
