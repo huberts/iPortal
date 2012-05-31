@@ -86,9 +86,8 @@ createLayerView = (layerTitle, layerNumber) ->
   tier3.append tier3Content.append(input).append(button).append(label).append(details)
 
 cleanUpModal = ->
-  $("#addWmsModal i.icon-remove").parent().remove()
   $("#addWmsModal input").val ""
-
+  priv.clearLayersSection()
 
 
 priv = {}

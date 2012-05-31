@@ -10,9 +10,6 @@ app.ownWms.serviceAddress=Adres WMS
 app.ownWms.serviceURL=URL usługi
 app.ownWms.loadLayers=Wczytaj warstwy
 app.ownWms.loadLayersFailure=Wystąpił błąd podczas wczytywania warstw
-app.ownWms.layers=Warstwy
-app.ownWms.layerName=Nazwa warstwy
-app.ownWms.nextLayer=Następna warstwa
 app.ownWms.modalConfirm=Dodaj
 
 app.controller.zoomToExtent=pokaż całość
