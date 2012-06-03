@@ -10,23 +10,21 @@ import java.net.URLDecoder;
 public class CapabilitiesGetter extends Controller{
 
     public static void getCapabilities(String serviceUrl) {
-        renderXml(WS.url(buildQueryString(serviceUrl)).get().getString());
+        try {
+            renderXml(WS.url(buildQueryString(decode(serviceUrl))).get().getString());
+        } catch (UnsupportedEncodingException e) {
+            Logger.info("CapabilitiesGetter::getCapabilities: Badly encoded URL:" + serviceUrl);
+        }
     }
 
     private static String buildQueryString(String serviceUrl) {
-        String queryUrl = tryToDecode(serviceUrl);
-        if (queryUrl.endsWith("?")) {
-            queryUrl = queryUrl.substring(0, queryUrl.length()-1);
+        if (serviceUrl.endsWith("?")) {
+            serviceUrl = serviceUrl.substring(0, serviceUrl.length()-1);
         }
-        return queryUrl + "?service=WMS&request=getCapabilities";
+        return serviceUrl + "?service=WMS&request=getCapabilities";
     }
 
-    private static String tryToDecode(String utf8Encoded) {
-        try {
-            utf8Encoded = URLDecoder.decode(utf8Encoded, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return utf8Encoded;
+    private static String decode(String utf8Encoded) throws UnsupportedEncodingException {
+        return URLDecoder.decode(utf8Encoded, "UTF-8");
     }
 }
