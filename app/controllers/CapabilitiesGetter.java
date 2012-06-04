@@ -12,7 +12,7 @@ public class CapabilitiesGetter extends Controller{
 
     public static void getCapabilities(String serviceUrl) {
         try {
-            renderXml(WS.url(buildQueryString(decode(serviceUrl))).get().getString());
+            renderXml(WS.url(buildQueryString(decode(serviceUrl))).timeout("5s").get().getString());
         } catch (UnsupportedEncodingException e) {
             Logger.info("CapabilitiesGetter::getCapabilities: Badly encoded URL:" + serviceUrl);
         }

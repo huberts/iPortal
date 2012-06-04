@@ -26,14 +26,12 @@ map.bounding_box.left = 130000 // granice zakresu mapy w  układzie PL 1992
 map.bounding_box.bottom = 120000
 map.bounding_box.right = 980000
 map.bounding_box.top = 780000
-map.min_scale = 100 // minimalna skala
-map.max_scale = 3500000 // maksymalna skala
-map.num_zoom_levels = 25 // liczba poziomów przybliżenia
-map.initial.x = 245000 // początkowe położenie mapy
-map.initial.y = 620000
+map.resolutions = [1600,800,400,200,100,50,25,13,6,3,2,1,0.5,0.25] // dostępne rozdzielczości
+map.initial.cartographer_x_coordinate = 620000 // początkowe położenie mapy
+map.initial.cartographer_y_coordinate = 245000
 map.initial.z = 4 // początkowe przybliżenie mapy
+url.slash_replacement = -.. // wyrażenie zastępujące slash w transmisji URL podczas żądania getCapabilities
 
 Pozdrowienia,
 
 HubertS
-
