@@ -25,7 +25,6 @@ public class Application extends Controller {
     }
 
     public static void index(Long x, Long y, Long z) {
-        Logger.info("SENDING ROOT");
         Application.sendArgumentsToMap(x, y, z);
         List<MapSource> sources = MapSourceCollection.getInstance().allSortedBy("id");
         List<MapLocation> locations = MapLocationCollection.getInstance().topLevel();

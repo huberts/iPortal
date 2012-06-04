@@ -14,11 +14,17 @@ public class CapabilitiesGetter extends Controller{
         try {
             renderXml(WS.url(buildQueryString(decode(serviceUrl))).timeout("5s").get().getString());
         } catch (UnsupportedEncodingException e) {
-            Logger.info("CapabilitiesGetter::getCapabilities: Badly encoded URL:" + serviceUrl);
+            Logger.info("CapabilitiesGetter::getCapabilities: Badly encoded URL: " + serviceUrl);
+        } catch(RuntimeException e) {
+            Logger.info("CapabilitiesGetter::getCapabilities: Illegal URL: " + serviceUrl);
         }
+
     }
 
     private static String buildQueryString(String serviceUrl) {
+        if (!serviceUrl.startsWith("http://")) {
+            serviceUrl = "http://" + serviceUrl;
+        }
         if (serviceUrl.endsWith("?")) {
             serviceUrl = serviceUrl.substring(0, serviceUrl.length()-1);
         }
