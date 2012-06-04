@@ -20,6 +20,7 @@ public class Application extends Controller {
         renderArgs.put("mapInitialX", Play.configuration.getProperty("map.initial.cartographer_y_coordinate"));
         renderArgs.put("mapInitialY", Play.configuration.getProperty("map.initial.cartographer_x_coordinate"));
         renderArgs.put("mapInitialZ", Play.configuration.getProperty("map.initial.z"));
+        renderArgs.put("urlSlashReplacement", Play.configuration.getProperty("url.slash_replacement"));
     }
 
     public static void index(Long x, Long y, Long z) {

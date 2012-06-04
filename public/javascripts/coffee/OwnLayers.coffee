@@ -101,7 +101,8 @@ priv.clearLayersSection = ->
   $("#addWmsLayerNames").empty()
 
 priv.getGetCapabilitiesUrl = ->
-  "http://" + location.host + "/getCapabilities/" + encodeURIComponent( $("#addWmsModalUrl").val() )
+  uriComponent = $("#addWmsModalUrl").val().replace /\//g, PORTAL.configurationSettings.urlSlashReplacement
+  "http://" + location.host + "/getCapabilities/" + encodeURIComponent uriComponent
 
 priv.layersLoaded = (response) ->
   $("#addWmsModalLoadLayers").attr "disabled", false

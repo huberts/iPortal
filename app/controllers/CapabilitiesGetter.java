@@ -1,6 +1,7 @@
 package controllers;
 
 import play.Logger;
+import play.Play;
 import play.libs.WS;
 import play.mvc.Controller;
 
@@ -25,6 +26,10 @@ public class CapabilitiesGetter extends Controller{
     }
 
     private static String decode(String utf8Encoded) throws UnsupportedEncodingException {
-        return URLDecoder.decode(utf8Encoded, "UTF-8");
+        return URLDecoder.decode(utf8Encoded, "UTF-8").replace(slashReplacement(), "/");
+    }
+
+    private static String slashReplacement() {
+        return Play.configuration.getProperty("url.slash_replacement");
     }
 }
