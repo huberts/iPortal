@@ -105,9 +105,13 @@ priv.getGetCapabilitiesUrl = ->
 
 priv.layersLoaded = (response) ->
   $("#addWmsModalLoadLayers").attr "disabled", false
-  $xml = $($.parseXML response.responseText)
-  if priv.hasMapProjection $xml
+  try
+    $xml = $($.parseXML response.responseText)
+    if !priv.hasMapProjection $xml
+      throw "Invalid projection"
     priv.addLayers $xml
+  catch  e
+    priv.layersLoadingFailure()
 
 priv.hasMapProjection = (xml) ->
   hasProjection = false
