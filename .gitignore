@@ -1,3 +1,5 @@
-iPortal.iml
-iPortal.ipr
-iPortal.iws
+*.iml
+*.ipr
+*.iws
+tmp/
+modules/
