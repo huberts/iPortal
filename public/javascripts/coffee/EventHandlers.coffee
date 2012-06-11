@@ -2,12 +2,16 @@ PORTAL.Handlers = {}
 
 
 PORTAL.Handlers.treeClick = (element) ->
-  element.parent().siblings().toggle()
+  element.parent().siblings().toggle("fast")
   element.parent().children("i.icon-plus, i.icon-minus").toggleClass("icon-plus").toggleClass("icon-minus")
 
 
 PORTAL.Handlers.layerDetails = (element) ->
   element.siblings(".layer-details").toggle()
+
+
+PORTAL.Handlers.checkLayerToAdd = (addWmsLayerButton) ->
+  addWmsLayerButton.children("i").toggleClass("icon-remove").toggleClass("icon-ok")
 
 
 PORTAL.Handlers.changeLayerOpacity = (element) ->
@@ -30,33 +34,58 @@ PORTAL.Handlers.sort = (element) ->
   element.sortable { stop: PORTAL.Utils.sortLayers  }
 
 
-PORTAL.Handlers.layerToggled = (element) ->
-  if priv.areAllLayersActivated element.parents(".tier2_content")
-    priv.setChecked element, ".tier2", ".wms-toggler", true
-  if priv.areAllLayersDeactivated element.parents(".tier2_content")
-    priv.setChecked element, ".tier2", ".wms-toggler", false
-  layer = PORTAL.Utils.findLayer PORTAL.Utils.buildIdWithPrefix element.attr("id"), "layer"
-  if layer==null
-    return
-  layer.setVisibility element.is(":checked")
 
 
-PORTAL.Handlers.wmsToggled = (element) ->
-  if element.is(":checked")
-    priv.setChecked element, ".tier2", ".layer-toggler", true
-  else if priv.areAllLayersActivated element.parents(".tier2").children(".tier2_content")
-    priv.setChecked element, ".tier2", ".layer-toggler", false
-  if priv.areAllWmsActivated element.parents(".tier1_content")
-    priv.setChecked element, ".tier1", ".source-toggler", true
-  if priv.areAllWmsDeactivated element.parents(".tier1_content")
-    priv.setChecked element, ".tier1", ".source-toggler", false
+PORTAL.Handlers.layerToggled = (layerCheckbox) ->
+
+  layerCheckboxesOnMyLevel = layerCheckbox.parents(".tier2_content")
+  myWmsCheckbox =            layerCheckbox.parents(".tier2").find(".wms-toggler")
+
+  if priv.areAllLayersActivated layerCheckboxesOnMyLevel
+    priv.setCheckboxState myWmsCheckbox, priv.STATE_ON
+  else if priv.areAllLayersDeactivated layerCheckboxesOnMyLevel
+    priv.setCheckboxState myWmsCheckbox, priv.STATE_OFF
+  else
+    priv.setCheckboxState myWmsCheckbox, priv.STATE_MIDDLE
+
+  priv.setOpenLayersLayerVisibility layerCheckbox
 
 
-PORTAL.Handlers.sourceToggled = (element) ->
-  if element.is(":checked")
-    priv.setChecked element, ".tier1", ".wms-toggler", true
-  else if priv.areAllWmsActivated element.parents(".tier1").children(".tier1_content")
-    priv.setChecked element, ".tier1", ".wms-toggler", false
+
+
+PORTAL.Handlers.wmsToggled = (wmsCheckbox) ->
+
+  myChildrenLayerCheckboxesBag = wmsCheckbox.parents(".tier2").children(".tier2_content")
+  myChildrenLayerCheckboxes =    wmsCheckbox.parents(".tier2").find(".layer-toggler")
+  wmsCheckboxesOnMyLevel =       wmsCheckbox.parents(".tier1_content")
+  mySourceCheckbox =             wmsCheckbox.parents(".tier1").find(".source-toggler")
+
+  if priv.getCheckboxState(wmsCheckbox)==priv.STATE_ON
+    priv.setCheckboxState myChildrenLayerCheckboxes, priv.STATE_ON
+  else if priv.getCheckboxState(wmsCheckbox)==priv.STATE_OFF && priv.areAllLayersActivated myChildrenLayerCheckboxesBag
+      priv.setCheckboxState myChildrenLayerCheckboxes, priv.STATE_OFF
+
+  if priv.areAllWmsActivated wmsCheckboxesOnMyLevel
+    priv.setCheckboxState mySourceCheckbox, priv.STATE_ON
+  else if priv.areAllWmsDeactivated wmsCheckboxesOnMyLevel
+    priv.setCheckboxState mySourceCheckbox, priv.STATE_OFF
+  else
+    priv.setCheckboxState mySourceCheckbox, priv.STATE_MIDDLE
+
+
+
+
+PORTAL.Handlers.sourceToggled = (sourceCheckbox) ->
+
+  myChildrenWmsCheckboxesBag = sourceCheckbox.parents(".tier1").children(".tier1_content")
+  myChildrenWmsCheckboxes =    sourceCheckbox.parents(".tier1").find(".wms-toggler")
+
+  if priv.getCheckboxState(sourceCheckbox)==priv.STATE_ON
+    priv.setCheckboxState myChildrenWmsCheckboxes, priv.STATE_ON
+  else if priv.getCheckboxState(sourceCheckbox)==priv.STATE_OFF && priv.areAllWmsActivated myChildrenWmsCheckboxesBag
+    priv.setCheckboxState myChildrenWmsCheckboxes, priv.STATE_OFF
+
+
 
 
 PORTAL.Handlers.removeWms = (removeIcon) ->
@@ -67,26 +96,54 @@ PORTAL.Handlers.removeWms = (removeIcon) ->
   PORTAL.Utils.removeLayer index for index in olIndicies
   removeIcon.parents(".tier2").remove()
   if priv.areAllWmsDeactivated source.parents(".tier1").children(".tier1_content")
-    source.attr "checked", false
+    priv.setCheckboxState source, priv.STATE_OFF
+
+
 
 
 priv = {}
+priv.STATE_OFF = 0
+priv.STATE_MIDDLE = 0.5
+priv.STATE_ON = 1
 
-priv.setChecked = (element, tier, togglers, haveToBeChecked) ->
-  $(element).parents(tier).find(togglers).each (i, toggler) ->
-    oldState = $(toggler).is(":checked")
-    $(toggler).attr "checked", haveToBeChecked
-    if oldState!=$(toggler).is(":checked")
-      $(toggler).change()
 
-priv.areAllWmsActivated = (tier1Content) -> priv.areAllChecked tier1Content, ".wms-toggler", true
-priv.areAllWmsDeactivated = (tier1Content) -> priv.areAllChecked tier1Content, ".wms-toggler", false
-priv.areAllLayersActivated = (tier2Content) -> priv.areAllChecked tier2Content, ".layer-toggler", true
-priv.areAllLayersDeactivated = (tier2Content) -> priv.areAllChecked tier2Content, ".layer-toggler", false
+priv.setOpenLayersLayerVisibility = (layerCheckbox) ->
+  layer = PORTAL.Utils.findLayer PORTAL.Utils.buildIdWithPrefix layerCheckbox.attr("id"), "layer"
+  if layer!=null
+    layer.setVisibility layerCheckbox.is(":checked")
 
-priv.areAllChecked = (tierContent, togglers, haveToBeChecked) ->
+
+priv.setCheckboxState = (checkbox, state) ->
+  checkbox.each (i,e) ->
+    oldState = priv.getCheckboxState $(e)
+    if state==priv.STATE_ON
+      $(e).removeClass "state-middle"
+      $(e).attr "checked", true
+    if state==priv.STATE_MIDDLE
+      $(e).addClass "state-middle"
+      $(e).attr "checked", false
+    if state==priv.STATE_OFF
+      $(e).removeClass "state-middle"
+      $(e).attr "checked", false
+    if oldState!=priv.getCheckboxState $(e)
+      $(e).change()
+
+priv.getCheckboxState = (checkbox) ->
+  if $(checkbox).is ":checked"
+    return priv.STATE_ON
+  if $(checkbox).hasClass "state-middle"
+    return priv.STATE_MIDDLE
+  return priv.STATE_OFF
+
+
+priv.areAllWmsActivated = (tier1Content) -> priv.areAllInTheSameState tier1Content, ".wms-toggler", priv.STATE_ON
+priv.areAllWmsDeactivated = (tier1Content) -> priv.areAllInTheSameState tier1Content, ".wms-toggler", priv.STATE_OFF
+priv.areAllLayersActivated = (tier2Content) -> priv.areAllInTheSameState tier2Content, ".layer-toggler", priv.STATE_ON
+priv.areAllLayersDeactivated = (tier2Content) -> priv.areAllInTheSameState tier2Content, ".layer-toggler", priv.STATE_OFF
+
+priv.areAllInTheSameState = (tierContent, togglers, state) ->
   result = true
-  $(tierContent).find(togglers).each (i, e) ->
-    if $(e).is(":checked")!=haveToBeChecked
+  $(tierContent).find(togglers).each (i,e) ->
+    if priv.getCheckboxState(e)!=state
       result = false
   result

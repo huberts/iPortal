@@ -3,7 +3,6 @@ package models;
 import play.db.jpa.Model;
 import play.data.validation.Required;
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 public class MapLayer extends Model {
@@ -20,7 +19,9 @@ public class MapLayer extends Model {
     @Required
     public Boolean canBeUsed = true;
 
+    public String additionalOptions;
+
     @ManyToOne
-    public MapWMS mapWMS;
+    public MapService mapService;
 
 }

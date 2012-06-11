@@ -4,16 +4,14 @@ PORTAL.configurationSettings = {
   mapBoundingBottom: ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxBottom},
   mapBoundingRight: ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxRight},
   mapBoundingTop: ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxTop},
-  mapMinScale: ${play.mvc.Scope.RenderArgs.current().mapMinScale},
-  mapMaxScale: ${play.mvc.Scope.RenderArgs.current().mapMaxScale},
-  mapNumZoomLevels: ${play.mvc.Scope.RenderArgs.current().mapNumZoomLevels},
+  mapResolutions: ${play.mvc.Scope.RenderArgs.current().mapResolutions},
   mapInitialX: ${play.mvc.Scope.RenderArgs.current().mapInitialX},
   mapInitialY: ${play.mvc.Scope.RenderArgs.current().mapInitialY},
   mapInitialZ: ${play.mvc.Scope.RenderArgs.current().mapInitialZ},
+  urlSlashReplacement: "${play.mvc.Scope.RenderArgs.current().urlSlashReplacement}",
 }
 
 PORTAL.messages = {
-  layerName: "&{"app.ownWms.layerName"}",
   zoomToExtent: "&{"app.controller.zoomToExtent"}",
   zoomIn: "&{"app.controller.zoomIn"}",
   zoomOut: "&{"app.controller.zoomOut"}",

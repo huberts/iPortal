@@ -9,11 +9,9 @@
       <input id="addWmsModalVisibleName" type="text" placeholder="&{"app.ownWms.visibleName"}" />
       <label>&{"app.ownWms.serviceAddress"}</label>
       <input id="addWmsModalUrl" type="text" placeholder="&{"app.ownWms.serviceURL"}" />
-      <label>&{"app.ownWms.layers"}</label>
-      <section id="addWmsLayerNames">
-        <div><input class="own-layer-name" type="text" placeholder="&{"app.ownWms.layerName"}" /></div>
-      </section>
-      <div><button class="btn" type="button">&{"app.ownWms.nextLayer"}</button></div>
+      <div><button id="addWmsModalLoadLayers" class="btn" type="button">&{"app.ownWms.loadLayers"}</button></div>
+      <section id="addWmsLayerNames"></section>
+      <div id="addWmsLayerFailure" class="alert alert-error">&{"app.ownWms.loadLayersFailure"}</div>
     </form>
   </div>
   <div class="modal-footer">

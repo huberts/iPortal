@@ -14,11 +14,11 @@ PORTAL.finishMap = ->
 ###########################################################
 
 createProjections = ->
-  Proj4js.defs["EPSG:2177"] = '+proj=tmerc +lat_0=0 +lon_0=18 +k=0.999923 +x_0=6500000 +y_0=0 +ellps=GRS80 +units=m +no_defs';
-  Proj4js.defs['EPSG:2180'] = '+proj=tmerc +lat_0=0 +lon_0=19 +k=0.9993 +x_0=500000 +y_0=-5300000 +ellps=GRS80 +units=m +no_defs';
-  PORTAL.epsg2177 = new OpenLayers.Projection('EPSG:2177');
-  PORTAL.epsg2180 = new OpenLayers.Projection('EPSG:2180');
-  PORTAL.epsg4326 = new OpenLayers.Projection('EPSG:4326');
+  Proj4js.defs["EPSG:2177"] = "+proj=tmerc +lat_0=0 +lon_0=18 +k=0.999923 +x_0=6500000 +y_0=0 +ellps=GRS80 +units=m +no_defs"
+  Proj4js.defs['EPSG:2180'] = "+proj=tmerc +lat_0=0 +lon_0=19 +k=0.9993 +x_0=500000 +y_0=-5300000 +ellps=GRS80 +units=m +no_defs"
+  PORTAL.epsg2177 = new OpenLayers.Projection("EPSG:2177");
+  PORTAL.epsg2180 = new OpenLayers.Projection("EPSG:2180");
+  PORTAL.epsg4326 = new OpenLayers.Projection("EPSG:4326");
 
 ###########################################################
 
@@ -48,9 +48,7 @@ createMap = ->
       PORTAL.configurationSettings.mapBoundingRight,
       PORTAL.configurationSettings.mapBoundingTop
     ),
-    minScale: PORTAL.configurationSettings.mapMinScale,
-    maxScale: PORTAL.configurationSettings.mapMaxScale,
-    numZoomLevels: PORTAL.configurationSettings.mapNumZoomLevels
+    resolutions: PORTAL.configurationSettings.mapResolutions
   }
 
 ###########################################################

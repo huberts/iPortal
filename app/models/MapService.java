@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class MapWMS extends Model {
+public class MapService extends Model {
 
     @Required
     public String name;
@@ -17,10 +17,14 @@ public class MapWMS extends Model {
     @Required
     public String url;
 
+    @Required
+    @OneToOne
+    public MapServiceType serviceType;
+
     @ManyToOne
     public MapSource mapSource;
 
-    @OneToMany( cascade=CascadeType.ALL, mappedBy="mapWMS" )
+    @OneToMany( cascade=CascadeType.ALL, mappedBy="mapService" )
     @OrderBy( "id" )
     public Set<MapLayer> layers;
 
