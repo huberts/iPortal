@@ -1,0 +1,1 @@
+coffee -c --output tmp/coffee/ public/javascripts/coffee/ public/javascripts/tests/
