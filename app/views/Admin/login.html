@@ -1,0 +1,12 @@
+#{extends 'layout.html' /}
+
+<script type="text/javascript">
+    $('#adminLogin').modal({backdrop: true, keyboard: false});
+    $('#adminLogin input#adminLoginUsername').focus();
+    $('#adminLogin').bind('hide', function () {
+        return false;
+    });
+</script>
+
+<div id="admin_content" class="ui-layout-center">
+</div>

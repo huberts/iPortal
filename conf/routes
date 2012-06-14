@@ -2,6 +2,13 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+# Administration
+GET     /admin/login                            Admin.login
+GET     /admin/logout                           Admin.logout
+POST    /admin/?                                Admin.authenticate
+GET     /admin/?                                Admin.index
+
+# Main
 GET     /getCapabilities/{serviceUrl}           CapabilitiesGetter.getCapabilities
 GET     /x/{x}/y/{y}/z/{z}                      Application.index
 GET     /                                       Application.index

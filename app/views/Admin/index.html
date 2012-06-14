@@ -1,0 +1,66 @@
+#{extends 'layout.html' /}
+
+<div id="admin_content" class="ui-layout-center">
+    Welcome ${user}!
+</div>
+<div id="app_layers" class="ui-layout-west">
+<div>
+    <button id="addWmsButton" class="btn" type="button" data-toggle="modal" data-target="#addWmsModal">&{"app.ownWms.addButton"}</button>
+</div>
+#{list sources, as:'source'}
+#{if models.MapSourceCollection.getInstance().canBeUsed(source)}
+<div class="tier1">
+
+    <div class="tier1_header">
+        <i class="icon-plus icon-white"></i>
+        <input id="toggler-${source.id}" type="checkbox" class="source-toggler" />
+        <h3>${source.displayName}</h3>
+        <span class="btn btn-mini pull-right">
+            <i class="icon-trash icon-white"></i>
+        </span>
+    </div>
+
+    <div class="tier1_content">
+        <div class="tier2">
+            <button id="addWmsButton2" class="btn" type="button" data-toggle="modal" data-target="#addWmsModal">&{"app.ownWms.addButton"}</button>
+        </div>
+        #{list source.webMapServices, as:'service'}
+        #{if models.MapServiceCollection.getInstance().canBeUsed(service)}
+
+        <div class="tier2">
+
+            <div class="tier2_header">
+                <i class="icon-plus icon-white"></i>
+                <input id="toggler-${source.id}-${service.id}" type="checkbox" class="wms-toggler" />
+                <h4>${service.displayName}</h4>
+                <span class="btn btn-mini pull-right">
+                    <i class="icon-trash icon-white"></i>
+                </span>
+            </div>
+
+            <div class="tier2_content">
+                #{list service.layers, as: 'layer'}
+                #{if layer.canBeUsed}
+                <div class="tier3">
+                    <div class="tier3_content">
+                        <input id="toggler-${source.id}-${service.id}-${layer.id}" type="checkbox" class="layer-toggler" />
+                        <label for="toggler-${source.id}-${service.id}-${layer.id}">${layer.displayName}</label>
+                        <span class="btn btn-mini pull-right">
+                            <i class="icon-trash icon-white"></i>
+                        </span>
+                    </div>
+                </div>
+                #{/if}
+                #{/list}
+            </div>
+
+        </div>
+
+        #{/if}
+        #{/list}
+    </div>
+
+</div>
+#{/if}
+#{/list}
+</div>
