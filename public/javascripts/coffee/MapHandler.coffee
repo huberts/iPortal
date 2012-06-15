@@ -5,10 +5,11 @@ PORTAL.prepareMap = ->
   do createLayersSwitcher
 
 PORTAL.finishMap = ->
-  PORTAL.map.setCenter(
-    new OpenLayers.LonLat(PORTAL.configurationSettings.mapInitialX, PORTAL.configurationSettings.mapInitialY),
-    PORTAL.configurationSettings.mapInitialZ
-  )
+  if $('#open_layers_map').length #when there is no map DOM object we can't do OpenLayers.LonLat
+    PORTAL.map.setCenter(
+      new OpenLayers.LonLat(PORTAL.configurationSettings.mapInitialX, PORTAL.configurationSettings.mapInitialY),
+      PORTAL.configurationSettings.mapInitialZ
+    )
   PORTAL.Utils.sortLayers()
 
 ###########################################################
