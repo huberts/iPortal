@@ -5,8 +5,6 @@
 
 <script type="text/javascript">
 
-  PORTAL.layers = [];
-
 #{list sources, as:'source'}
  #{if models.MapSourceCollection.getInstance().canBeUsed(source)}
   #{list source.webMapServices, as:'service'}
@@ -34,8 +32,6 @@
   #{/list}
  #{/if}
 #{/list}
-
-  PORTAL.locations = [];
 
 #{list locations, as:'country'}
   PORTAL.locations.push({
