@@ -22,7 +22,6 @@ public class Admin extends Controller {
     // Every call is checked for authentication, except those listed below
     @Before(unless={"login", "authenticate", "logout"})
     static void checkAccess() throws Throwable {
-        // Is authenticated?
         if(!session.contains("username")) {
             login();
         }
@@ -36,7 +35,6 @@ public class Admin extends Controller {
     }
 
     public static void login() {
-        //Check if we are already logged in
         if(!session.contains("username")) {
             render();
         }
@@ -46,20 +44,23 @@ public class Admin extends Controller {
     }
 
     public static void logout() throws Throwable {
-        //Clear session data
         session.clear();
         Application.index(null, null, null);
     }
 
     public static void authenticate(@Required String username, String password) {
-        //Check username & password
-        if (username.equalsIgnoreCase(Play.configuration.getProperty("admin.user", "admin"))
-            && password.equals(Play.configuration.getProperty("admin.password", "1234"))) {
+        if (checkUserPass(username, password)) {
             session.put("username", username);
             index();
         }
-        //Opss... something is wrong
-        flash.put("admin.error", Messages.get("app.admin.error"));
-        login();
+        else {
+            flash.put("admin.error", Messages.get("app.admin.error"));
+            login();
+        }
+    }
+
+    private static boolean checkUserPass(@Required String username, String password) {
+        return username.equalsIgnoreCase(Play.configuration.getProperty("admin.user", "admin"))
+                && password.equals(Play.configuration.getProperty("admin.password", "1234"));
     }
 }
