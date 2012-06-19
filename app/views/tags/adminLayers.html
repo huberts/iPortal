@@ -1,0 +1,64 @@
+<div>
+    <button id="addWmsButton" class="btn" type="button" data-toggle="modal" data-target="#adminAddGroup">&{"app.admin.addGroup"}</button>
+</div>
+#{list _sources, as:'source'}
+#{if models.MapSourceCollection.getInstance().canBeUsed(source)}
+<div class="tier1">
+
+    <div class="tier1_header">
+        <i class="icon-plus icon-white"></i>
+        <h3>${source.displayName}</h3>
+    <span class="btn btn-mini pull-right">
+        <i class="icon-trash icon-white"></i>
+    </span>
+    </div>
+
+    <div class="tier1_content well">
+        <div class="tier2">
+            <button id="addWmsButton2" class="btn" type="button" data-toggle="modal" data-target="#addWmsModal">&{"app.admin.addWMS"}</button>
+        </div>
+        #{list source.webMapServices, as:'service'}
+        #{if models.MapServiceCollection.getInstance().canBeUsed(service)}
+
+        <div class="tier2">
+
+            <div class="tier2_header ">
+                <i class="icon-plus icon-white"></i>
+                <h4>${service.displayName}</h4>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-mini">
+                        <i class="icon-pencil icon-white"></i>
+                    </a>
+                    <a href="#" class="btn btn-mini">
+                        <i class="icon-trash icon-white"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="tier2_content">
+                #{list service.layers, as: 'layer'}
+                <div class="tier3">
+                    <div class="tier3_content">
+                        <h5>${layer.displayName}</h5>
+                        <div class="btn-group">
+                            <a href="#" id="edit-${source.id}-${service.id}-${layer.id}" class="btn btn-mini layer-edit">
+                                <i class="icon-pencil icon-white"></i>
+                            </a>
+                            <a href="#" id="remove-${source.id}-${service.id}-${layer.id}" class="btn btn-mini layer-remove">
+                                <i class="icon-trash icon-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                #{/list}
+            </div>
+
+        </div>
+
+        #{/if}
+        #{/list}
+    </div>
+
+</div>
+#{/if}
+#{/list}

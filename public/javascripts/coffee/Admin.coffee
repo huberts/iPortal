@@ -1,0 +1,2 @@
+$ ->
+  do PORTAL.setTopLevelLayout

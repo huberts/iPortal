@@ -37,3 +37,7 @@ app.admin.groupName=Nazwa grupy
 app.admin.addGroup=Dodaj nową grupę
 app.admin.addGroupButton=Dodaj
 app.admin.addWMS=Dodaj nową usługę WMS
+
+app.admin.layers=Warstwy
+app.admin.locations=Położenia
+app.admin.owner=Właściciel

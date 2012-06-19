@@ -1,4 +1,6 @@
 #{set 'moreScripts'}
+    #{script 'coffee/Admin.coffee' /}
+    #{script 'coffee/ApplicationLayout.coffee' /}
     #{script 'coffee/EventHandlers.coffee' /}
     #{script 'coffee/MapUtils.coffee' /}
 #{/set}
@@ -8,67 +10,22 @@
 
 #{extends 'layout.html' /}
 
-<div id="admin_content" class="ui-layout-center">
-    Welcome ${user}!
-</div>
-<div id="app_layers" class="ui-layout-west">
-<div>
-    <button id="addWmsButton" class="btn" type="button" data-toggle="modal" data-target="#addWmsModal">&{"app.ownWms.addButton"}</button>
-</div>
-#{list sources, as:'source'}
-#{if models.MapSourceCollection.getInstance().canBeUsed(source)}
-<div class="tier1">
-
-    <div class="tier1_header">
-        <i class="icon-plus icon-white"></i>
-        <input id="toggler-${source.id}" type="checkbox" class="source-toggler" />
-        <h3>${source.displayName}</h3>
-        <span class="btn btn-mini pull-right">
-            <i class="icon-trash icon-white"></i>
-        </span>
-    </div>
-
-    <div class="tier1_content">
-        <div class="tier2">
-            <button id="addWmsButton2" class="btn" type="button" data-toggle="modal" data-target="#addWmsModal">&{"app.ownWms.addButton"}</button>
+<div class="ui-layout-center">
+    <a href="@{Admin.logout}" class="btn btn-primary pull-right">&{'app.admin.logoutButton'}</a>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#layers" data-toggle="tab">&{'app.admin.layers'}</a></li>
+        <li><a href="#locations" data-toggle="tab">&{'app.admin.locations'}</a></li>
+        <li><a href="#owner" data-toggle="tab">&{'app.admin.owner'}</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="layers">
+            #{adminLayers sources:sources /}
         </div>
-        #{list source.webMapServices, as:'service'}
-        #{if models.MapServiceCollection.getInstance().canBeUsed(service)}
-
-        <div class="tier2">
-
-            <div class="tier2_header">
-                <i class="icon-plus icon-white"></i>
-                <input id="toggler-${source.id}-${service.id}" type="checkbox" class="wms-toggler" />
-                <h4>${service.displayName}</h4>
-                <span class="btn btn-mini pull-right">
-                    <i class="icon-trash icon-white"></i>
-                </span>
-            </div>
-
-            <div class="tier2_content">
-                #{list service.layers, as: 'layer'}
-                #{if layer.canBeUsed}
-                <div class="tier3">
-                    <div class="tier3_content">
-                        <input id="toggler-${source.id}-${service.id}-${layer.id}" type="checkbox" class="layer-toggler" />
-                        <label for="toggler-${source.id}-${service.id}-${layer.id}">${layer.displayName}</label>
-                        <span class="btn btn-mini pull-right">
-                            <i class="icon-trash icon-white"></i>
-                        </span>
-                    </div>
-                </div>
-                #{/if}
-                #{/list}
-            </div>
-
+        <div class="tab-pane" id="locations">
+            #{adminLocations /}
         </div>
-
-        #{/if}
-        #{/list}
+        <div class="tab-pane" id="owner">
+            #{adminOwner /}
+        </div>
     </div>
-
-</div>
-#{/if}
-#{/list}
 </div>
