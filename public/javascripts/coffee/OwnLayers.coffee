@@ -22,50 +22,50 @@ addNewWms = ->
     setTimeout doAddNewWms, 600
 
 doAddNewWms = ->
-  addWmsView()
-  addOLLayers()
+  id = $("#addWmsModal").data('modal').options.id
+  wmsNumber = $('#toggler-' + id).parent().parent().children(".tier1_content").children(".tier2").length + 1
+  addWmsView(id, wmsNumber)
+  addOLLayers(id, wmsNumber)
   sortLayers()
   cleanUpModal()
 
 
 priv = {}
 
-priv.wmsNumber = 0
-
 canAddWms = -> $("#addWmsModalVisibleName").val().length && $("#addWmsModalUrl").val().length && getLayerNames().length
 
-addWmsView = ->
-  priv.wmsNumber += 1
+addWmsView = (id, wmsNumber) ->
   wmsVisibleName = $("#addWmsModalVisibleName").val()
 
   tier2 = $("<div/>", {class: "tier2"})
-  tier2Header = $("<div/>", {class: "tier2_header"})
+  tier2Header = $("<div/>", {class: "tier2_header clearfix"})
   plus = $("<i/>", {class: "icon-plus icon-white", click: -> PORTAL.Handlers.treeClick $(this)})
-  input = $("<input/>", {id: "toggler-0-"+priv.wmsNumber, type: "checkbox", class: "wms-toggler", change: -> PORTAL.Handlers.wmsToggled $(this)})
+  input = $("<input/>", {id: "toggler-"+id+"-"+wmsNumber, type: "checkbox", class: "wms-toggler", change: -> PORTAL.Handlers.wmsToggled $(this)})
   h4 = $("<h4/>", {html: wmsVisibleName, click: -> PORTAL.Handlers.treeClick $(this)})
+  pull_right = $("<div/>", {class: "pull-right"})
   remove = $("<i/>", {class: "icon-remove icon-white", click: -> PORTAL.Handlers.removeWms $(this)})
   tier2Content = $("<div/>", {class: "tier2_content"})
   PORTAL.Handlers.sort tier2Content
-  layers = (createLayerView layer.title, i for layer, i in getLayerNames())
+  layers = (createLayerView id, wmsNumber, layer.title, i for layer, i in getLayerNames())
 
   tier2Content.append layer for layer in layers
-  tier2Header.append(plus).append(input).append(h4).append(remove)
+  tier2Header.append(plus).append(" ").append(input).append(" ").append(h4).append(pull_right.append(remove))
   tier2.append(tier2Header).append(tier2Content)
-  $("#addWmsButton").parent().prepend tier2
+  $('#toggler-' + id).parent().parent().children(".tier1_content").append tier2
 
 hideModal = -> $("#addWmsModal").modal "hide"
 
-addOLLayers = -> PORTAL.Utils.addLayer buildLayerObject(layer,i) for layer,i in getLayerNames()
+addOLLayers = (id, wmsNumber)-> PORTAL.Utils.addLayer buildLayerObject(id, wmsNumber, layer,i) for layer,i in getLayerNames()
 
 sortLayers = -> PORTAL.Utils.sortLayers()
 
-buildLayerObject = (layer, index) ->
+buildLayerObject = (id, wmsNumber, layer, index) ->
   {
     serviceType: "WMS",
     name: layer.name,
     displayName: layer.title,
     serviceUrl: $("#addWmsModalUrl").val(),
-    index: "0-"+priv.wmsNumber+"-"+index,
+    index: id+"-"+wmsNumber+"-"+index,
     defaultVisible: true
   }
 
@@ -76,12 +76,12 @@ getLayerNames = ->
       layerNames.push { name: $(this).val(), title: $(this).siblings("span").text() }
   return layerNames
 
-createLayerView = (layerTitle, layerNumber) ->
+createLayerView = (id, wmsNumber, layerTitle, layerNumber) ->
   tier3 = $("<div/>", {class: "tier3"})
   tier3Content = $("<div/>", {class: "tier3_content"})
-  input = $("<input/>", {id: "toggler-0-"+priv.wmsNumber+"-"+layerNumber, type: "checkbox", class: "layer-toggler", change: -> PORTAL.Handlers.layerToggled $(this)})
+  input = $("<input/>", {id: "toggler-"+id+"-"+wmsNumber+"-"+layerNumber, type: "checkbox", class: "layer-toggler", change: -> PORTAL.Handlers.layerToggled $(this)})
   button = $("<span/>", {class: "btn btn-mini", "data-toggle": "button", html: "&middot; &middot; &middot;", click: -> PORTAL.Handlers.layerDetails $(this)})
-  label = $("<label/>", {for: "toggler-0-"+priv.wmsNumber+"-"+layerNumber, text: layerTitle})
+  label = $("<label/>", {for: "toggler-"+id+"-"+wmsNumber+"-"+layerNumber, text: layerTitle})
   details = $("<div/>", {class: "layer-details"})
   minus = $("<i/>", {class: "icon-minus-sign", click: -> PORTAL.Handlers.changeLayerOpacity $(this)})
   span = $("<span/>", {html: "100%"})
