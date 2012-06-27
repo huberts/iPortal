@@ -18,4 +18,9 @@ public class MapSource extends Model {
     @OrderBy( "id" )
     public Set<MapService> webMapServices;
 
+    public MapSource(String name, String displayName) {
+        this.name = name;
+        this.displayName = displayName;
+        this.save();
+    }
 }

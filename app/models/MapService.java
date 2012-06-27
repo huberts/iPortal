@@ -28,4 +28,12 @@ public class MapService extends Model {
     @OrderBy( "id" )
     public Set<MapLayer> layers;
 
+    public MapService(String name, String displayName, String url, MapServiceType serviceType, MapSource mapSource) {
+        this.name = name;
+        this.displayName = displayName;
+        this.url = url;
+        this.serviceType = serviceType;
+        this.mapSource = mapSource;
+        this.save();
+    }
 }
