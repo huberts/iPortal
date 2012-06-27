@@ -3,3 +3,4 @@
 *.iws
 tmp/
 modules/
+db/
