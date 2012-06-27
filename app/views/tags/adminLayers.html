@@ -1,52 +1,45 @@
-<div>
-    <button id="addWmsButton" class="btn" type="button" data-toggle="modal" data-target="#adminAddGroup">&{"app.admin.addGroup"}</button>
-</div>
+<button id="adminAddSourceButton" class="btn" type="button" data-toggle="modal" data-target="#adminAddSourceModal">&{"app.admin.addSource"}</button>
+
 #{list _sources, as:'source'}
-#{if models.MapSourceCollection.getInstance().canBeUsed(source)}
 <div class="tier1">
 
-    <div class="tier1_header">
+    <div class="tier1_header clearfix">
         <i class="icon-plus icon-white"></i>
+        <input id="toggler-${source.id}" type="checkbox" class="source-toggler" />
         <h3>${source.displayName}</h3>
-    <span class="btn btn-mini pull-right">
-        <i class="icon-trash icon-white"></i>
-    </span>
+        <div class="pull-right">
+            <i id="remove-${source.id}" class="source-remove icon-white icon-remove"></i>
+        </div>
     </div>
 
     <div class="tier1_content well">
-        <div class="tier2">
-            <button id="addWmsButton2" class="btn" type="button" data-toggle="modal" data-target="#addWmsModal">&{"app.admin.addWMS"}</button>
-        </div>
+        <button id="adminAddWmsButton" class="btn" type="button" class="wms-addbutton" data-toggle="modal" data-target="#addWmsModal" data-id="${source.id}">&{"app.admin.addWMS"}</button>
         #{list source.webMapServices, as:'service'}
-        #{if models.MapServiceCollection.getInstance().canBeUsed(service)}
 
         <div class="tier2">
-
-            <div class="tier2_header ">
+            <div class="tier2_header clearfix">
                 <i class="icon-plus icon-white"></i>
+                <input id="toggler-${source.id}-${service.id}" type="checkbox" class="wms-toggler" />
                 <h4>${service.displayName}</h4>
-                <div class="btn-group">
-                    <a href="#" class="btn btn-mini">
-                        <i class="icon-pencil icon-white"></i>
-                    </a>
-                    <a href="#" class="btn btn-mini">
-                        <i class="icon-trash icon-white"></i>
-                    </a>
+                <div class="pull-right">
+                    <i id="remove-${source.id}-${service.id}" class="service-remove icon-white icon-remove"></i>
                 </div>
             </div>
 
             <div class="tier2_content">
                 #{list service.layers, as: 'layer'}
                 <div class="tier3">
-                    <div class="tier3_content">
-                        <h5>${layer.displayName}</h5>
-                        <div class="btn-group">
-                            <a href="#" id="edit-${source.id}-${service.id}-${layer.id}" class="btn btn-mini layer-edit">
-                                <i class="icon-pencil icon-white"></i>
-                            </a>
-                            <a href="#" id="remove-${source.id}-${service.id}-${layer.id}" class="btn btn-mini layer-remove">
-                                <i class="icon-trash icon-white"></i>
-                            </a>
+                    <div class="tier3_content clearfix">
+                        <input id="toggler-${source.id}-${service.id}-${layer.id}" type="checkbox" class="layer-toggler" />
+                        <span class="btn btn-mini" data-toggle="button">&middot; &middot; &middot;</span>
+                        <label for="toggler-${source.id}-${service.id}-${layer.id}">${layer.displayName}</label>
+                        <div class="pull-right">
+                            <i id="remove-${source.id}-${service.id}-${layer.id}" class="layer-remove icon-white icon-remove"></i>
+                        </div>
+                        <div class="layer-details">
+                            <i class="icon-minus-sign"></i>
+                            <span>100%</span>
+                            <i class="icon-plus-sign"></i>
                         </div>
                     </div>
                 </div>
@@ -55,10 +48,8 @@
 
         </div>
 
-        #{/if}
         #{/list}
     </div>
 
 </div>
-#{/if}
 #{/list}

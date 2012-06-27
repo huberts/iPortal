@@ -1,8 +1,21 @@
 #{set 'moreScripts'}
+    #{script 'OpenLayers-2.11/OpenLayers.js' /}
+    #{script 'OpenLayers-2.11/proj4js-combined.js' /}
+    #{script 'OpenLayers-2.11/lib/OpenLayers/Lang/pl.js' /}
+    #{script 'OpenLayers-2.11/modules/AppUtils.js' /}
+    #{script 'OpenLayers-2.11/lib/OpenLayers/Layer/ArsGeoportal.js' /}
     #{script 'coffee/Admin.coffee' /}
-    #{script 'coffee/ApplicationLayout.coffee' /}
     #{script 'coffee/EventHandlers.coffee' /}
     #{script 'coffee/MapUtils.coffee' /}
+    #{script 'coffee/MapHandler.coffee' /}
+    #{script 'coffee/MapControllers.coffee' /}
+    #{script 'coffee/ApplicationLayout.coffee' /}
+    #{script 'coffee/AdminLayers.coffee' /}
+    #{script 'coffee/MapLocations.coffee' /}
+#{/set}
+#{set 'moreStyles'}
+    #{stylesheet 'less/map.less' /}
+    #{stylesheet 'less/layers.less' /}
 #{/set}
 #{set 'moreModals'}
     #{adminModals /}
@@ -10,22 +23,81 @@
 
 #{extends 'layout.html' /}
 
-<div class="ui-layout-center">
-    <a href="@{Admin.logout}" class="btn btn-primary pull-right">&{'app.admin.logoutButton'}</a>
-    <ul class="nav nav-tabs">
+<div id="app_content" class="ui-layout-center">#{openLayersMap /}</div>
+<div class="ui-layout-west">
+    <ul id="tab-bar" class="nav nav-tabs">
         <li class="active"><a href="#layers" data-toggle="tab">&{'app.admin.layers'}</a></li>
         <li><a href="#locations" data-toggle="tab">&{'app.admin.locations'}</a></li>
         <li><a href="#owner" data-toggle="tab">&{'app.admin.owner'}</a></li>
+        <li class="pull-right"><a class="btn-primary" href="@{Admin.logout()}">&{'app.admin.logoutButton'}</a></li>
     </ul>
+
     <div class="tab-content">
         <div class="tab-pane active" id="layers">
-            #{adminLayers sources:sources /}
+            <div id="app_layers">
+                #{adminLayers sources:sources /}
+            </div>
         </div>
         <div class="tab-pane" id="locations">
-            #{adminLocations /}
+            #{adminLocations locations:locations /}
         </div>
         <div class="tab-pane" id="owner">
             #{adminOwner /}
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+
+    PORTAL.layers = [];
+
+#{list sources, as:'source'}
+ #{if models.MapSourceCollection.getInstance().canBeUsed(source)}
+  #{list source.webMapServices, as:'service'}
+   #{if models.MapServiceCollection.getInstance().canBeUsed(service)}
+    #{list service.layers, as: 'layer'}
+     #{if layer.canBeUsed}
+
+    PORTAL.layers.push({
+      index: "${source.id}-${service.id}-${layer.id}",
+      sourceName: "${source.name}",
+      sourceDisplayName: "${source.displayName}",
+      serviceName: "${service.name}",
+      serviceDisplayName: "${service.displayName}",
+      serviceUrl: "${service.url}",
+      serviceType: "${service.serviceType.name}",
+      name: "${layer.name}",
+      displayName: "${layer.displayName}",
+      defaultVisible: ${layer.defaultVisible},
+      additionalOptions: "${layer.additionalOptions}"
+    });
+
+     #{/if}
+    #{/list}
+   #{/if}
+  #{/list}
+ #{/if}
+#{/list}
+
+    PORTAL.locations = [];
+
+#{list locations, as:'country'}
+  PORTAL.locations.push({
+    displayName: "${country.displayName}",
+    coordinateX: ${country.xCoordinate},
+    coordinateY: ${country.yCoordinate},
+    zoomLevel: ${country.zoomLevel},
+    cssClass: "country"
+  });
+  #{list country.children(), as:'voivodeship'}
+    PORTAL.locations.push({
+      displayName: "${voivodeship.displayName}",
+      coordinateX: ${voivodeship.xCoordinate},
+      coordinateY: ${voivodeship.yCoordinate},
+      zoomLevel: ${voivodeship.zoomLevel},
+      cssClass: "voivodeship"
+    });
+  #{/list}
+#{/list}
+
+</script>

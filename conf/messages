@@ -33,9 +33,9 @@ app.admin.remember=Zapamiętaj
 app.admin.error=Niepoprawny użytkownik lub hasło
 app.admin.logout=Zostałeś wylogowany
 
-app.admin.groupName=Nazwa grupy
-app.admin.addGroup=Dodaj nową grupę
-app.admin.addGroupButton=Dodaj
+app.admin.sourceName=Nazwa grupy
+app.admin.addSource=Dodaj nową grupę
+app.admin.addSourceButton=Dodaj
 app.admin.addWMS=Dodaj nową usługę WMS
 
 app.admin.layers=Warstwy
