@@ -8,11 +8,22 @@ $ ->
   do PORTAL.admin
 
 PORTAL.admin = ->
-  $("#adminAddSourceModal .modal-footer a").click -> adminAddSource()
-  $(".source-remove").click -> adminDeleteSource $(this)
+  $("#adminAddSourceModal .modal-footer a").click -> addSource()
+  $("#adminAddSourceModal").on "show", ->
+    cleanUpModal()
+    $("#adminAddSourceModal .modal-footer a").attr "disabled", !canAddSource()
+  $("#adminAddSourceModalName").on "input", ->
+    $("#adminAddSourceModal .modal-footer a").attr "disabled", !canAddSource()
+  $(".source-remove").click -> deleteSource $(this)
 
-adminAddSource = ->
-    adminAddSourceModalHide()
+addSource = ->
+    if canAddSource()
+      doAddSource()
+
+canAddSource = -> $("#adminAddSourceModalName").val().length
+
+doAddSource = ->
+    $("#adminAddSourceModal .modal-footer a").attr "disabled", true
     sourceName = $("#adminAddSourceModalName").val()
 
     $.ajax {
@@ -37,12 +48,16 @@ adminAddSource = ->
         tier1.append(tier1Header).append(tier1Content)
 
         $("#adminAddSourceButton").parent().append tier1
+        hideModal()
     }
 
-adminAddSourceModalHide = ->
+hideModal = ->
     $("#adminAddSourceModal").modal "hide"
 
-adminDeleteSource = (element)->
+cleanUpModal = ->
+  $("#adminAddSourceModal input").val ""
+
+deleteSource = (element)->
     parts = element.attr("id")?.split "-"
     sourceId =  parts[1]
     $.ajax {

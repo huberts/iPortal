@@ -5,7 +5,7 @@ PORTAL.activateLayers = ->
   $("#addWmsLayerFailure").hide()
   $("#addWmsModalLoadLayers").click -> loadLayers()
   $("#addWmsModal .modal-footer a").click -> addNewWms()
-  $("#addWmsModal").on "shown", ->
+  $("#addWmsModal").on "show", ->
     $("#addWmsModal .modal-footer a").attr "disabled", true
   $("#addWmsModal").on "hidden", ->
     $("#addWmsLayerFailure").hide()
@@ -105,12 +105,12 @@ priv.getGetCapabilitiesUrl = ->
 
 priv.layersLoaded = (response) ->
   $("#addWmsModalLoadLayers").attr "disabled", false
-  $("#addWmsModal .modal-footer a").attr "disabled", false
   try
     $xml = $($.parseXML response.responseText)
     if !priv.hasMapProjection $xml
       throw "Invalid projection"
     priv.addLayers $xml
+    $("#addWmsModal .modal-footer a").attr "disabled", false
   catch  e
     priv.layersLoadingFailure()
 
