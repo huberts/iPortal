@@ -2,7 +2,7 @@ PORTAL.Layers.registerWms = (srcId) ->
   $.ajax {
     type: "POST",
     url: "admin/addService",
-    data: {name: $("#addWmsModalVisibleName").val(), url: $("#addWmsModalUrl").val(), typeId: 1, sourceId: srcId},
+    data: {name: $("#addWmsModalVisibleName").val(), url: $("#addWmsModalUrl").val(), type: 'WMS', sourceId: srcId},
     success: (data) ->
       if data.id
         PORTAL.Layers.doAddNewWms srcId, data.id

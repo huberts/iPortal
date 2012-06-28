@@ -84,16 +84,16 @@ public class Admin extends Controller {
         renderTemplate("@id", id);
     }
 
-    public static void addService(@Required String name, @Required String url, @Required Long typeId, @Required Long sourceId)
+    public static void addService(@Required String name, @Required String url, @Required String type, @Required Long sourceId)
     {
         MapSource source = MapSource.findById(sourceId);
         if (source == null)
             error(418, "Source not found");
-        MapServiceType type = MapServiceType.findById(typeId);
+        MapServiceType serviceType = MapServiceType.find("byName", type).first();
         if (type == null)
             error(418, "Type not found");
 
-        MapService service = new MapService(name, name, url, type, source);
+        MapService service = new MapService(name, name, url, serviceType, source);
         request.format = "json";
         Long id = service.id;
         renderTemplate("@id", id);
