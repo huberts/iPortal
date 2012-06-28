@@ -10,6 +10,7 @@
     #{script 'coffee/MapHandler.coffee' /}
     #{script 'coffee/MapControllers.coffee' /}
     #{script 'coffee/ApplicationLayout.coffee' /}
+    #{script 'coffee/CommonLayers.coffee' /}
     #{script 'coffee/AdminLayers.coffee' /}
     #{script 'coffee/MapLocations.coffee' /}
 #{/set}
@@ -49,8 +50,6 @@
 
 <script type="text/javascript">
 
-    PORTAL.layers = [];
-
 #{list sources, as:'source'}
  #{if models.MapSourceCollection.getInstance().canBeUsed(source)}
   #{list source.webMapServices, as:'service'}
@@ -58,7 +57,7 @@
     #{list service.layers, as: 'layer'}
      #{if layer.canBeUsed}
 
-    PORTAL.layers.push({
+    PORTAL.Layers.list.push({
       index: "${source.id}-${service.id}-${layer.id}",
       sourceName: "${source.name}",
       sourceDisplayName: "${source.displayName}",

@@ -79,4 +79,4 @@ activateLayersDetails = ->
   $(".layer-details i").click -> PORTAL.Handlers.changeLayerOpacity $(this)
 
 addLayersToMap = ->
-  PORTAL.Utils.addLayer layer for layer in PORTAL.layers
+  PORTAL.Utils.addLayer layer for layer in PORTAL.Layers.list
