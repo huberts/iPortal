@@ -79,7 +79,6 @@ public class Admin extends Controller {
         if (source == null)
             error(418, "Source not found");
 
-        System.out.println("test");
         source.delete();
         request.format = "json";
         renderTemplate("@id", id);
