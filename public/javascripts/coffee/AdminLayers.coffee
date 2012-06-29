@@ -6,6 +6,7 @@ PORTAL.Layers.registerWms = (srcId) ->
     success: (data) ->
       if data.id
         PORTAL.Layers.doAddNewWms srcId, data.id
+        $("#toggler-"+srcId+"-"+data.id).parents(".tier2_header").find(".pull-right > i").on "click", -> PORTAL.Admin.deleteService $(this)
   }
 
 PORTAL.Layers.addOLLayers = (srcId, wmsId) ->
@@ -15,5 +16,7 @@ PORTAL.Layers.addOLLayers = (srcId, wmsId) ->
     type: "POST",
     url: "admin/addLayers",
     data: {'layer': layers},
-    success: (result) -> PORTAL.Layers.doAddLayersView srcId, wmsId, result
+    success: (result) ->
+      PORTAL.Layers.doAddLayersView srcId, wmsId, result
+      $("#toggler-"+srcId+"-"+wmsId+"-"+layer.id).parents(".tier3_content").find(".pull-right > i").on("click", -> PORTAL.Admin.deleteLayer $(this)) for layer in result
   }

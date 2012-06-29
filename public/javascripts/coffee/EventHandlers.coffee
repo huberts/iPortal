@@ -59,16 +59,17 @@ PORTAL.Handlers.wmsToggled = (wmsCheckbox) ->
   myChildrenLayerCheckboxes =    wmsCheckbox.parents(".tier2").find(".layer-toggler")
   wmsCheckboxesOnMyLevel =       wmsCheckbox.parents(".tier1_content")
   mySourceCheckbox =             wmsCheckbox.parents(".tier1").find(".source-toggler")
+  wmsCount =                     wmsCheckboxesOnMyLevel.children(".tier2")
 
   if priv.getCheckboxState(wmsCheckbox)==priv.STATE_ON
     priv.setCheckboxState myChildrenLayerCheckboxes, priv.STATE_ON
   else if priv.getCheckboxState(wmsCheckbox)==priv.STATE_OFF && priv.areAllLayersActivated myChildrenLayerCheckboxesBag
       priv.setCheckboxState myChildrenLayerCheckboxes, priv.STATE_OFF
 
-  if priv.areAllWmsActivated wmsCheckboxesOnMyLevel
-    priv.setCheckboxState mySourceCheckbox, priv.STATE_ON
-  else if priv.areAllWmsDeactivated wmsCheckboxesOnMyLevel
+  if wmsCount == 0 || priv.areAllWmsDeactivated wmsCheckboxesOnMyLevel
     priv.setCheckboxState mySourceCheckbox, priv.STATE_OFF
+  else if priv.areAllWmsActivated wmsCheckboxesOnMyLevel
+    priv.setCheckboxState mySourceCheckbox, priv.STATE_ON
   else
     priv.setCheckboxState mySourceCheckbox, priv.STATE_MIDDLE
 
@@ -87,18 +88,46 @@ PORTAL.Handlers.sourceToggled = (sourceCheckbox) ->
 
 
 
-
-PORTAL.Handlers.removeWms = (removeIcon) ->
-  source = removeIcon.parents(".tier1").find(".source-toggler")
-  olIndicies = []
-  removeIcon.parents(".tier2").children(".tier2_content").find("input").each (i, layer) ->
-    olIndicies.push PORTAL.Utils.buildIdWithPrefix( layer.id, "layer" )
-  PORTAL.Utils.removeLayer index for index in olIndicies
-  removeIcon.parents(".tier2").remove()
-  if priv.areAllWmsDeactivated source.parents(".tier1").children(".tier1_content")
-    priv.setCheckboxState source, priv.STATE_OFF
+PORTAL.Handlers.removeSource = (source) ->
+  source.parents(".tier1").find(".wms-toggler").each (i, wms) ->
+    PORTAL.Handlers.removeWms $(wms)
+  tier = source.parents ".tier1"
+  tier.hide "fast", -> $(this).remove()
 
 
+PORTAL.Handlers.removeWms = (wms) ->
+  wms.parents(".tier2").children(".tier2_content").find("input").each (i, layer) ->
+    PORTAL.Handlers.removeLayer $(layer)
+  tier = wms.parents ".tier2"
+  tier.hide "fast", ->
+    wmsCheckboxesOnMyLevel =  $(this).parents(".tier1_content")
+    sourceCheckbox         =  $(this).parents(".tier1").find(".source-toggler")
+    $(this).remove()
+
+    wmsCount = wmsCheckboxesOnMyLevel.children(".tier2")
+    if wmsCount == 0 || priv.areAllWmsDeactivated wmsCheckboxesOnMyLevel
+      priv.setCheckboxState sourceCheckbox, priv.STATE_OFF
+    else if priv.areAllWmsActivated wmsCheckboxesOnMyLevel
+      priv.setCheckboxState sourceCheckbox, priv.STATE_ON
+    else
+      priv.setCheckboxState sourceCheckbox, priv.STATE_MIDDLE
+
+
+PORTAL.Handlers.removeLayer = (layer) ->
+  layer.parents(".tier3").children(".tier3_content").find("input").each (i, elem) ->
+    PORTAL.Utils.removeLayer PORTAL.Utils.buildIdWithPrefix $(elem).attr("id"), "layer"
+  tier = layer.parents ".tier3"
+  tier.hide "fast", ->
+    layerCheckboxesOnMyLevel = $(this).parents(".tier2_content")
+    wmsCheckbox              = $(this).parents(".tier2").find(".wms-toggler")
+    $(this).remove()
+
+    if priv.areAllLayersActivated layerCheckboxesOnMyLevel
+      priv.setCheckboxState wmsCheckbox, priv.STATE_ON
+    else if priv.areAllLayersDeactivated layerCheckboxesOnMyLevel
+      priv.setCheckboxState wmsCheckbox, priv.STATE_OFF
+    else
+      priv.setCheckboxState wmsCheckbox, priv.STATE_MIDDLE
 
 
 priv = {}

@@ -1,3 +1,5 @@
+PORTAL.Admin = {}
+
 $ ->
   do PORTAL.setTopLevelLayout
   do PORTAL.prepareMap
@@ -14,9 +16,9 @@ PORTAL.admin = ->
     $("#adminAddSourceModal .modal-footer a").attr "disabled", !canAddSource()
   $("#adminAddSourceModalName").on "input", ->
     $("#adminAddSourceModal .modal-footer a").attr "disabled", !canAddSource()
-  $(".layer-remove").click -> deleteLayer $(this)
-  $(".source-remove").click -> deleteSource $(this)
-  $(".service-remove").click -> deleteService $(this)
+  $(".layer-remove").click -> PORTAL.Admin.deleteLayer $(this)
+  $(".source-remove").click -> PORTAL.Admin.deleteSource $(this)
+  $(".service-remove").click -> PORTAL.Admin.deleteService $(this)
 
 addSource = ->
   if canAddSource()
@@ -39,7 +41,7 @@ doAddSource = ->
       input = $("<input/>", {id: "toggler-" + source.id, type: "checkbox", class: "source-toggler"})
       h3 = $("<h3/>", {html: sourceName, click: -> PORTAL.Handlers.treeClick $(this)})
       pull_right = $("<div/>", {class: "pull-right"})
-      remove = $("<i/>", {id: "remove-" + source.id, class: "source-remove icon-white icon-remove", click: -> adminDeleteSource $(this)})
+      remove = $("<i/>", {id: "remove-" + source.id, class: "source-remove icon-white icon-remove", click: -> PORTAL.Admin.deleteSource $(this)})
 
       tier1Content = $("<div/>", {class: "tier1_content well"})
       button = $("<button/>", {html: "Dodaj nową usługę WMS", id: "adminAddWmsButton-" + source.id, class: "btn", type: "button", "data-target": "#addWmsModal", "data-toggle": "modal", "data-id": source.id})
@@ -59,7 +61,7 @@ hideModal = ->
 cleanUpModal = ->
   $("#adminAddSourceModal input").val ""
 
-deleteSource = (element)->
+PORTAL.Admin.deleteSource = (element)->
   parts = element.attr("id")?.split "-"
   srcId =  parts[1]
   $.ajax {
@@ -67,10 +69,10 @@ deleteSource = (element)->
     url: "admin/deleteSource",
     data: "id="+srcId,
     success: (data) ->
-      element.parent().parent().parent().hide("fast", -> $(this).remove())
+      PORTAL.Handlers.removeSource element
   }
 
-deleteService = (element)->
+PORTAL.Admin.deleteService = (element)->
   parts = element.attr("id")?.split "-"
   wmsId =  parts[2]
   $.ajax {
@@ -78,10 +80,10 @@ deleteService = (element)->
     url: "admin/deleteService",
     data: "id="+wmsId,
     success: (data) ->
-      element.parent().parent().parent().hide("fast", -> $(this).remove())
+      PORTAL.Handlers.removeWms element
   }
 
-deleteLayer = (element)->
+PORTAL.Admin.deleteLayer = (element)->
   parts = element.attr("id")?.split "-"
   layerId =  parts[3]
   $.ajax {
@@ -89,5 +91,5 @@ deleteLayer = (element)->
     url: "admin/deleteLayer",
     data: "id="+layerId,
     success: (data) ->
-      element.parent().parent().parent().hide("fast", -> $(this).remove())
+      PORTAL.Handlers.removeLayer element
   }
