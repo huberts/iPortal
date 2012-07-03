@@ -73,6 +73,17 @@ public class Admin extends Controller {
         renderTemplate("@id", id);
     }
 
+    public static void editSource(@Required Long id, @Required String name)
+    {
+        MapSource source = MapSource.findById(id);
+        if (source == null)
+            error(418, "Source not found");
+        source.displayName = name;
+        source.save();
+        request.format = "json";
+        renderTemplate("@id", id);
+    }
+
     public static void deleteSource(@Required Long id)
     {
         MapSource source = MapSource.findById(id);
@@ -99,6 +110,18 @@ public class Admin extends Controller {
         renderTemplate("@id", id);
     }
 
+    public static void editService(@Required Long id, @Required String name)
+    {
+        MapService service = MapService.findById(id);
+        if (service == null)
+            error(418, "Service not found");
+
+        service.displayName = name;
+        service.save();
+        request.format = "json";
+        renderTemplate("@id", id);
+    }
+
     public static void deleteService(@Required Long id)
     {
         MapService service = MapService.findById(id);
@@ -122,6 +145,18 @@ public class Admin extends Controller {
         }
         request.format = "json";
         renderTemplate("@layers", layers);
+    }
+
+    public static void editLayer(@Required Long id, @Required String name)
+    {
+        MapLayer layer = MapLayer.findById(id);
+        if (layer == null)
+            error(418, "Layer not found");
+
+        layer.displayName = name;
+        layer.save();
+        request.format = "json";
+        renderTemplate("@id", id);
     }
 
     public static void deleteLayer(@Required Long id)

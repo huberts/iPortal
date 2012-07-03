@@ -7,7 +7,15 @@ GET     /admin/login                            Admin.login
 GET     /admin/logout                           Admin.logout
 POST    /admin/?                                Admin.authenticate
 GET     /admin/?                                Admin.index
-*       /admin/{action}                         Admin.{action}
+PUT     /admin/addSource                        Admin.addSource
+PUT     /admin/addService                       Admin.addService
+POST    /admin/addLayers                        Admin.addLayers
+PUT     /admin/editSource                       Admin.editSource
+PUT     /admin/editService                      Admin.editService
+PUT     /admin/editLayer                        Admin.editLayer
+DELETE  /admin/deleteSource                     Admin.deleteSource
+DELETE  /admin/deleteService                    Admin.deleteService
+DELETE  /admin/deleteLayer                      Admin.deleteLayer
 
 # Main
 GET     /getCapabilities/{serviceUrl}           CapabilitiesGetter.getCapabilities
