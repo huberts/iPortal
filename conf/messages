@@ -33,11 +33,15 @@ app.admin.remember=Zapamiętaj
 app.admin.error=Niepoprawny użytkownik lub hasło
 app.admin.logout=Zostałeś wylogowany
 
-app.admin.sourceName=Nazwa grupy
-app.admin.addSource=Dodaj nową grupę
-app.admin.addSourceButton=Dodaj
-app.admin.addWMS=Dodaj nową usługę WMS
-
 app.admin.layers=Warstwy
 app.admin.locations=Położenia
 app.admin.owner=Właściciel
+
+app.admin.sourceName=Nazwa źródła
+app.admin.addSource=Dodaj nowe źródło
+app.admin.addSourceButton=Dodaj
+app.admin.addWMS=Dodaj nową usługę WMS
+
+app.admin.edit=Edycja
+app.admin.name=Nazwa
+app.admin.saveButton=Zapisz

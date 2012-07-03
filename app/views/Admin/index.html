@@ -4,7 +4,7 @@
     #{script 'OpenLayers-2.11/lib/OpenLayers/Lang/pl.js' /}
     #{script 'OpenLayers-2.11/modules/AppUtils.js' /}
     #{script 'OpenLayers-2.11/lib/OpenLayers/Layer/ArsGeoportal.js' /}
-    #{script 'coffee/Admin.coffee' /}
+    #{script 'coffee/AdminEntryPoint.coffee' /}
     #{script 'coffee/EventHandlers.coffee' /}
     #{script 'coffee/MapUtils.coffee' /}
     #{script 'coffee/MapHandler.coffee' /}
@@ -13,6 +13,9 @@
     #{script 'coffee/CommonLayers.coffee' /}
     #{script 'coffee/AdminLayers.coffee' /}
     #{script 'coffee/MapLocations.coffee' /}
+    #{script 'coffee/Admin.coffee' /}
+    #{script 'coffee/AdminAddSource.coffee' /}
+    #{script 'coffee/AdminEdit.coffee' /}
 #{/set}
 #{set 'moreStyles'}
     #{stylesheet 'less/map.less' /}
@@ -36,7 +39,7 @@
     <div class="tab-content">
         <div class="tab-pane active" id="layers">
             <div id="app_layers">
-                #{adminLayers sources:sources /}
+                #{layersSwitcher sources:sources, admin: 1 /}
             </div>
         </div>
         <div class="tab-pane" id="locations">

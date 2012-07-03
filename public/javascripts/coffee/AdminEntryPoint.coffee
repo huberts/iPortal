@@ -1,0 +1,10 @@
+$ ->
+  do PORTAL.setTopLevelLayout
+  do PORTAL.prepareMap
+  do PORTAL.createControllers
+  do PORTAL.activateLayers
+  do PORTAL.activateMapLocations
+  do PORTAL.activateAdmin
+  do PORTAL.activateAdminAddSource
+  do PORTAL.activateAdminEdit
+  do PORTAL.finishMap

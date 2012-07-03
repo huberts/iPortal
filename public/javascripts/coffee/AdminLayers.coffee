@@ -1,10 +1,10 @@
 PORTAL.Layers.registerWms = (srcId) ->
   $.ajax {
-    type: "POST",
+    type: "PUT",
     url: "admin/addService",
     data: {name: $("#addWmsModalVisibleName").val(), url: $("#addWmsModalUrl").val(), type: 'WMS', sourceId: srcId},
     success: (data) ->
-      if data.id
+      if data.id?
         PORTAL.Layers.doAddNewWms srcId, data.id
         $("#toggler-"+srcId+"-"+data.id).parents(".tier2_header").find(".pull-right > i").on "click", -> PORTAL.Admin.deleteService $(this)
   }
