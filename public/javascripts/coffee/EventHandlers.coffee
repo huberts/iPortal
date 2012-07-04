@@ -31,7 +31,7 @@ PORTAL.Handlers.changeLayerOpacity = (element) ->
 
 
 PORTAL.Handlers.sort = (element) ->
-  element.sortable { stop: PORTAL.Utils.sortLayers  }
+  element.sortable { update: PORTAL.Utils.sortLayers  }
 
 
 
