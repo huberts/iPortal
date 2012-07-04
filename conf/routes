@@ -7,8 +7,8 @@ GET     /admin/login                            Admin.login
 GET     /admin/logout                           Admin.logout
 POST    /admin/?                                Admin.authenticate
 GET     /admin/?                                Admin.index
-PUT     /admin/addSource                        Admin.addSource
-PUT     /admin/addService                       Admin.addService
+POST    /admin/addSource                        Admin.addSource
+POST    /admin/addService                       Admin.addService
 POST    /admin/addLayers                        Admin.addLayers
 PUT     /admin/editSource                       Admin.editSource
 PUT     /admin/editService                      Admin.editService

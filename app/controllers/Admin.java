@@ -147,13 +147,16 @@ public class Admin extends Controller {
         renderTemplate("@layers", layers);
     }
 
-    public static void editLayer(@Required Long id, @Required String name)
+    public static void editLayer(@Required Long id, String name, Boolean defaultVisible)
     {
         MapLayer layer = MapLayer.findById(id);
         if (layer == null)
             error(418, "Layer not found");
 
-        layer.displayName = name;
+        if (name != null)
+            layer.displayName = name;
+        if (defaultVisible != null)
+            layer.defaultVisible = defaultVisible;
         layer.save();
         request.format = "json";
         renderTemplate("@id", id);

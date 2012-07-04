@@ -15,7 +15,7 @@ doAddSource = ->
   sourceName = $("#adminAddSourceModalName").val()
 
   $.ajax {
-    type: "PUT",
+    type: "POST",
     url: "admin/addSource",
     data: "name="+sourceName,
     success: (response) ->

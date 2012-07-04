@@ -60,6 +60,7 @@
             <label for="toggler-${source.id}-${service.id}-${layer.id}">${layer.displayName}</label>
             #{if _admin}
             <div class="pull-right">
+              <i id="default-${source.id}-${service.id}-${layer.id}" class="layer-default ${layer.defaultVisible ? 'icon-white' : ''} icon-eye-open"></i>
               <i id="edit-${source.id}-${service.id}-${layer.id}" class="layer-edit icon-white icon-pencil" data-toggle="modal" data-target="#adminEditModal" data-id="${source.id}-${service.id}-${layer.id}"></i>
               <i id="remove-${source.id}-${service.id}-${layer.id}" class="layer-remove icon-white icon-remove"></i>
             </div>

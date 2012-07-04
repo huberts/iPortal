@@ -1,6 +1,6 @@
 PORTAL.Layers.registerWms = (srcId) ->
   $.ajax {
-    type: "PUT",
+    type: "POST",
     url: "admin/addService",
     data: {name: $("#addWmsModalVisibleName").val(), url: $("#addWmsModalUrl").val(), type: 'WMS', sourceId: srcId},
     success: (data) ->
@@ -9,7 +9,7 @@ PORTAL.Layers.registerWms = (srcId) ->
         $("#toggler-"+srcId+"-"+data.id).parents(".tier2_header").find(".pull-right > i").on "click", PORTAL.Admin.deleteService
         edit = $("<i/>", {
           id: "edit-"+srcId+"-"+data.id,
-          class: "source-remove icon-white icon-pencil",
+          class: "service-remove icon-white icon-pencil",
           "data-toggle": "modal",
           "data-target" : "#adminEditModal",
           "data-id" : srcId+"-"+data.id
@@ -19,7 +19,7 @@ PORTAL.Layers.registerWms = (srcId) ->
 
 PORTAL.Layers.addOLLayers = (srcId, wmsId) ->
   layers = []
-  layers.push {'mapService.id': ''+wmsId, 'name': layer.name, 'displayName': layer.title} for layer in PORTAL.Layers.getLayerNames()
+  layers.push {'mapService.id': ''+wmsId, 'name': layer.name, 'displayName': layer.title, 'defaultVisible': true} for layer in PORTAL.Layers.getLayerNames()
   $.ajax {
     type: "POST",
     url: "admin/addLayers",
@@ -30,10 +30,15 @@ PORTAL.Layers.addOLLayers = (srcId, wmsId) ->
         $("#toggler-"+srcId+"-"+wmsId+"-"+layer.id).parents(".tier3_content").find(".pull-right > i").on "click", PORTAL.Admin.deleteLayer
         edit = $("<i/>", {
           id: "edit-"+srcId+"-"+wmsId+"-"+layer.id,
-          class: "source-remove icon-white icon-pencil",
+          class: "layer-remove icon-white icon-pencil",
           "data-toggle": "modal",
           "data-target" : "#adminEditModal",
           "data-id" : srcId+"-"+wmsId+"-"+layer.id
         })
-        $("#toggler-"+srcId+"-"+wmsId+"-"+layer.id).parents(".tier3_content").find(".pull-right").prepend(" ").prepend(edit)
+        defaultVisible = $("<i/>", {
+          id: "default-"+srcId+"-"+wmsId+"-"+layer.id,
+          class: "layer-default icon-white icon-eye-open",
+          click: -> PORTAL.Admin.defaultLayer $(this)
+        })
+        $("#toggler-"+srcId+"-"+wmsId+"-"+layer.id).parents(".tier3_content").find(".pull-right").prepend(" ").prepend(edit).prepend(" ").prepend(defaultVisible)
   }
