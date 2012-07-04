@@ -6,7 +6,15 @@ PORTAL.Layers.registerWms = (srcId) ->
     success: (data) ->
       if data.id?
         PORTAL.Layers.doAddNewWms srcId, data.id
-        $("#toggler-"+srcId+"-"+data.id).parents(".tier2_header").find(".pull-right > i").on "click", -> PORTAL.Admin.deleteService $(this)
+        $("#toggler-"+srcId+"-"+data.id).parents(".tier2_header").find(".pull-right > i").on "click", PORTAL.Admin.deleteService
+        edit = $("<i/>", {
+          id: "edit-"+srcId+"-"+data.id,
+          class: "source-remove icon-white icon-pencil",
+          "data-toggle": "modal",
+          "data-target" : "#adminEditModal",
+          "data-id" : srcId+"-"+data.id
+        })
+        $("#toggler-"+srcId+"-"+data.id).parents(".tier2_header").find(".pull-right").prepend(" ").prepend(edit)
   }
 
 PORTAL.Layers.addOLLayers = (srcId, wmsId) ->
@@ -18,5 +26,14 @@ PORTAL.Layers.addOLLayers = (srcId, wmsId) ->
     data: {'layer': layers},
     success: (result) ->
       PORTAL.Layers.doAddLayersView srcId, wmsId, result
-      $("#toggler-"+srcId+"-"+wmsId+"-"+layer.id).parents(".tier3_content").find(".pull-right > i").on("click", -> PORTAL.Admin.deleteLayer $(this)) for layer in result
+      $.each result, (i, layer) ->
+        $("#toggler-"+srcId+"-"+wmsId+"-"+layer.id).parents(".tier3_content").find(".pull-right > i").on "click", PORTAL.Admin.deleteLayer
+        edit = $("<i/>", {
+          id: "edit-"+srcId+"-"+wmsId+"-"+layer.id,
+          class: "source-remove icon-white icon-pencil",
+          "data-toggle": "modal",
+          "data-target" : "#adminEditModal",
+          "data-id" : srcId+"-"+wmsId+"-"+layer.id
+        })
+        $("#toggler-"+srcId+"-"+wmsId+"-"+layer.id).parents(".tier3_content").find(".pull-right").prepend(" ").prepend(edit)
   }
