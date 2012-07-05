@@ -1,10 +1,29 @@
 PORTAL.Admin = {}
 
 PORTAL.activateAdmin = ->
+  do activateLayersSortSave
   $(".layer-default").click -> PORTAL.Admin.defaultLayer $(this)
   $(".layer-remove").click -> PORTAL.Admin.deleteLayer $(this)
   $(".source-remove").click -> PORTAL.Admin.deleteSource $(this)
   $(".service-remove").click -> PORTAL.Admin.deleteService $(this)
+
+activateLayersSortSave = ->
+  $("#app_layers, .tier1_content, .tier2_content").sortable { update: sortLayersSave }
+
+sortLayersSave = ->
+  listOfLayers = []
+  $("#app_layers .tier3 input").each (i, e) ->
+    listOfLayers.push {
+      id: parseInt($(this).attr("id").split("-")[3]),
+      sort: i
+    }
+  $.ajax {
+    type: "PUT",
+    url: "admin/orderLayers",
+    data: {listOfLayers: listOfLayers},
+    success: (response) ->
+      dummy = null
+  }
 
 PORTAL.Admin.defaultLayer = (element) ->
   parts = element.attr("id")?.split "-"

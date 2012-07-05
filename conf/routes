@@ -16,6 +16,7 @@ PUT     /admin/editLayer                        Admin.editLayer
 DELETE  /admin/deleteSource                     Admin.deleteSource
 DELETE  /admin/deleteService                    Admin.deleteService
 DELETE  /admin/deleteLayer                      Admin.deleteLayer
+PUT     /admin/orderLayers                      Admin.orderLayers
 
 # Main
 GET     /getCapabilities/{serviceUrl}           CapabilitiesGetter.getCapabilities

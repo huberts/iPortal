@@ -17,6 +17,8 @@ public class MapService extends Model {
     @Required
     public String url;
 
+    public  Long sort;
+
     @Required
     @OneToOne
     public MapServiceType serviceType;
@@ -25,7 +27,7 @@ public class MapService extends Model {
     public MapSource mapSource;
 
     @OneToMany( cascade=CascadeType.ALL, mappedBy="mapService" )
-    @OrderBy( "id" )
+    @OrderBy( "sort, id" )
     public Set<MapLayer> layers;
 
     public MapService(String name, String displayName, String url, MapServiceType serviceType, MapSource mapSource) {

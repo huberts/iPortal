@@ -11,7 +11,7 @@ public class Application extends Controller {
 
     public static void index(Long x, Long y, Long z) {
         Application.sendArgumentsToMap(x, y, z);
-        List<MapSource> sources = MapSourceCollection.getInstance().allSortedBy("id");
+        List<MapSource> sources = MapSourceCollection.getInstance().allSortedBy("sort, id");
         List<MapLocation> locations = MapLocationCollection.getInstance().topLevel();
         render(sources, locations);
     }

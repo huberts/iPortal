@@ -5,8 +5,7 @@ import play.data.validation.Required;
 import play.i18n.Messages;
 import play.mvc.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import models.*;
 
@@ -30,7 +29,7 @@ public class Admin extends Controller {
 
     public static void index() {
         renderArgs.put("user", session.get("username"));
-        List<MapSource> sources = MapSourceCollection.getInstance().allSortedBy("id");
+        List<MapSource> sources = MapSourceCollection.getInstance().allSortedBy("sort, id");
         List<MapLocation> locations = MapLocationCollection.getInstance().topLevel();
         render(sources, locations);
     }
@@ -172,4 +171,35 @@ public class Admin extends Controller {
         request.format = "json";
         renderTemplate("@id", id);
     }
+
+    public static void orderLayers(MapLayer[] listOfLayers)
+    {
+        Map<MapService, Long> servicesOrder = new HashMap<MapService, Long>();
+        Map<MapSource, Long> sourcesOrder = new HashMap<MapSource, Long>();
+        for (MapLayer entity : listOfLayers)
+        {
+            MapLayer layer = MapLayer.findById(entity.id);
+            if (layer == null)
+                error(418, "Layer not found");
+            layer.sort = entity.sort;
+            layer.save();
+            if (!servicesOrder.containsKey(layer.mapService) || servicesOrder.get(layer.mapService) > entity.sort)
+                servicesOrder.put(layer.mapService, entity.sort);
+            if (!sourcesOrder.containsKey(layer.mapService.mapSource) || sourcesOrder.get(layer.mapService.mapSource) > entity.sort)
+                sourcesOrder.put(layer.mapService.mapSource, entity.sort);
+        }
+        for (MapService service: servicesOrder.keySet())
+        {
+            service.sort = servicesOrder.get(service);
+            service.save();
+        }
+        for (MapSource source: sourcesOrder.keySet())
+        {
+            source.sort = sourcesOrder.get(source);
+            source.save();
+        }
+        request.format = "json";
+        renderJSON(MapLayer.all());
+    }
+
 }
