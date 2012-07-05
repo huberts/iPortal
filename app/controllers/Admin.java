@@ -199,7 +199,7 @@ public class Admin extends Controller {
             source.save();
         }
         request.format = "json";
-        renderJSON(MapLayer.all());
+        renderJSON(listOfLayers);
     }
 
 }
