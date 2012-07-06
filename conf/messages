@@ -42,6 +42,10 @@ app.admin.addSource=Dodaj nowe źródło
 app.admin.addSourceButton=Dodaj
 app.admin.addWMS=Dodaj nową usługę WMS
 
-app.admin.edit=Edycja
+app.admin.edit=Edycja nazwy
 app.admin.name=Nazwa
 app.admin.saveButton=Zapisz
+
+app.admin.locationName=Nazwa lokalizacji
+app.admin.addLocation=Dodaj nową lokalizacje
+app.admin.addLocationButton=Dodaj

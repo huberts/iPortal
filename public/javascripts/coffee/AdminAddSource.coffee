@@ -1,7 +1,7 @@
 PORTAL.activateAdminAddSource = ->
   $("#adminAddSourceModal .modal-footer a").click -> addSource()
   $("#adminAddSourceModal").on "show", ->
-    cleanUpModal()
+    $("#adminAddSourceModal input").val ""
     $("#adminAddSourceModal .modal-footer a").attr "disabled", !canAddSource()
   $("#adminAddSourceModalName").on "input", ->
     $("#adminAddSourceModal .modal-footer a").attr "disabled", !canAddSource()
@@ -30,11 +30,24 @@ createSourceView = (source) ->
   input = $("<input/>", {id: "toggler-" + source.id, type: "checkbox", class: "source-toggler"})
   h3 = $("<h3/>", {html: source.name, click: -> PORTAL.Handlers.treeClick $(this)})
   pull_right = $("<div/>", {class: "pull-right"})
-  edit = $("<i/>", {id: "edit-" + source.id, class: "source-remove icon-white icon-pencil", "data-toggle": "modal", "data-target" : "#adminEditModal", "data-id" : source.id })
-  remove = $("<i/>", {id: "remove-" + source.id, class: "source-remove icon-white icon-remove", click: -> PORTAL.Admin.deleteSource $(this)})
+  edit = $("<i/>", {
+    class: "source-edit icon-white icon-pencil",
+    "data-id" : source.id,
+    click: -> PORTAL.Admin.editSource $(this)
+  })
+  remove = $("<i/>", {
+    class: "source-remove icon-white icon-remove",
+    "data-id" : source.id,
+    click: -> PORTAL.Admin.deleteSource $(this)
+  })
 
   tier1Content = $("<div/>", {class: "tier1_content well"})
-  button = $("<button/>", {html: "Dodaj nową usługę WMS", id: "adminAddWmsButton-" + source.id, class: "btn", type: "button", "data-target": "#addWmsModal", "data-toggle": "modal", "data-id": source.id})
+  button = $("<button/>", {
+    html: "Dodaj nową usługę WMS",
+    class: "btn",
+    type: "button",
+    "data-id": source.id,
+    click: -> PORTAL.Layers.addNewWms $(this)})
   PORTAL.Handlers.sort tier1Content
 
   tier1Header.append(plus).append(" ").append(input).append(" ").append(h3).append(pull_right.append(edit).append(" ").append(remove))
@@ -46,6 +59,3 @@ createSourceView = (source) ->
 
 hideModal = ->
   $("#adminAddSourceModal").modal "hide"
-
-cleanUpModal = ->
-  $("#adminAddSourceModal input").val ""

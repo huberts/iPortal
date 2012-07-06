@@ -9,7 +9,7 @@
     <h3>&{"app.ownWms.sourceName"}</h3>
   </div>
   <div id="addWmsTier1Content" class="tier1_content well">
-    <button id="addWmsButton" class="btn" type="button" data-toggle="modal" data-target="#addWmsModal" data-id="0">&{"app.ownWms.addButton"}</button>
+    <button class="service-add btn" type="button" data-id="0">&{"app.ownWms.addButton"}</button>
   </div>
 </div>
 #{/else}
@@ -24,15 +24,15 @@
     <h3>${source.displayName}</h3>
     #{if _admin}
     <div class="pull-right">
-      <i id="edit-${source.id}" class="source-edit icon-white icon-pencil" data-toggle="modal" data-target="#adminEditModal" data-id="${source.id}"></i>
-      <i id="remove-${source.id}" class="source-remove icon-white icon-remove"></i>
+      <i class="source-edit icon-white icon-pencil" data-id="${source.id}" ></i>
+      <i class="source-remove icon-white icon-remove" data-id="${source.id}"></i>
     </div>
     #{/if}
   </div>
 
   <div class="tier1_content well">
   #{if _admin}
-    <button id="adminAddWmsButton" class="btn" type="button" data-toggle="modal" data-target="#addWmsModal" data-id="${source.id}">&{"app.admin.addWMS"}</button>
+    <button class="service-add btn" type="button" data-id="${source.id}">&{"app.admin.addWMS"}</button>
   #{/if}
   #{list source.webMapServices, as:'service'}
   #{if _admin || models.MapServiceCollection.getInstance().canBeUsed(service)}
@@ -44,8 +44,8 @@
         <h4>${service.displayName}</h4>
         #{if _admin}
         <div class="pull-right">
-          <i id="edit-${source.id}-${service.id}" class="service-edit icon-white icon-pencil" data-toggle="modal" data-target="#adminEditModal" data-id="${source.id}-${service.id}"></i>
-          <i id="remove-${source.id}-${service.id}" class="service-remove icon-white icon-remove"></i>
+          <i class="service-edit icon-white icon-pencil" data-id="${service.id}"></i>
+          <i class="service-remove icon-white icon-remove" data-id="${service.id}"></i>
         </div>
         #{/if}
       </div>
@@ -60,9 +60,9 @@
             <label for="toggler-${source.id}-${service.id}-${layer.id}">${layer.displayName}</label>
             #{if _admin}
             <div class="pull-right">
-              <i id="default-${source.id}-${service.id}-${layer.id}" class="layer-default ${layer.defaultVisible ? 'icon-white' : ''} icon-eye-open"></i>
-              <i id="edit-${source.id}-${service.id}-${layer.id}" class="layer-edit icon-white icon-pencil" data-toggle="modal" data-target="#adminEditModal" data-id="${source.id}-${service.id}-${layer.id}"></i>
-              <i id="remove-${source.id}-${service.id}-${layer.id}" class="layer-remove icon-white icon-remove"></i>
+              <i class="layer-default ${layer.defaultVisible ? 'icon-white' : ''} icon-eye-open" data-id="${layer.id}"></i>
+              <i class="layer-edit icon-white icon-pencil" data-id="${layer.id}" ></i>
+              <i class="layer-remove icon-white icon-remove" data-id="${layer.id}" ></i>
             </div>
             #{/if}
             <div class="layer-details">

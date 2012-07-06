@@ -1,6 +1,6 @@
 PORTAL.activateAdminEdit = ->
   $("#adminEditModal .modal-footer a").click save
-  $("#adminEditModal").on "show", prepareModal
+  #$("#adminEditModal").on "show", prepareModal
   $("#adminEditName").on "input", ->
     $("#adminEditName .modal-footer a").attr "disabled", !canSaveEdit()
 
@@ -9,7 +9,8 @@ save = -> doSave() if canSaveEdit()
 prepareModal = ->
   id = String($(this).data('modal').options.id)
   parts = id.split "-"
-  $("#adminEditName").val $("#toggler-" + id).siblings("h3,h4,label").text()
+  parts[0] = "toggler"
+  $("#adminEditName").val $("#" + parts.join("-")).siblings("h3,h4,label").text()
   $("#adminEditModal .modal-footer a").attr "disabled", !canSaveEdit()
 
 canSaveEdit = -> $("#adminEditName").val().length
@@ -18,12 +19,12 @@ doSave = ->
   id = String($("#adminEditModal").data('modal').options.id)
   parts = id.split "-"
   name = $("#adminEditName").val()
-  if (parts.length == 1)
-    PORTAL.Admin.editSource(parts[0], name)
-  else if (parts.length == 2)
-    PORTAL.Admin.editService(parts[0], parts[1], name)
-  else if (parts.length == 3)
-    PORTAL.Admin.editLayer(parts[0], parts[1], parts[2], name)
+  if (parts[0] == "source")
+    PORTAL.Admin.editSource(parts[1], name)
+  else if (parts[0] == "service")
+    PORTAL.Admin.editService(parts[1], parts[2], name)
+  else if (parts[0] == "layer")
+    PORTAL.Admin.editLayer(parts[1], parts[2], parts[3], name)
   $("#adminEditModal .modal-footer a").attr "disabled", true
 
 

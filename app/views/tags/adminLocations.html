@@ -1,3 +1,36 @@
-<div id="admin_content" class="ui-layout-center">
-    Welcome ${user}!
+<button class="btn addLocation" type="button">&{"app.admin.addLocation"}</button>
+#{list _locations, as:'country'}
+<div class="tier1">
+  <div class="tier1_header clearfix">
+    <i id="location-${country.id}" class="icon-minus icon-white"></i>
+    <button type="button" class="btn btn-mini btn-primary" value="${country.xCoordinate}|${country.yCoordinate}|${country.zoomLevel}">
+      <i class="icon-arrow-right icon-white"></i>
+    </button>
+    <h3>${country.displayName}</h3>
+    <div class="pull-right">
+      <i class="location-set icon-white icon-globe" data-id="${country.id}"></i>
+      <i class="location-edit icon-white icon-pencil" data-id="${country.id}"></i>
+      <i class="location-remove icon-white icon-remove" data-id="${country.id}"></i>
+    </div>
+  </div>
+  <div class="tier1_content well">
+    <button class="btn addLocation" type="button" data-id="${country.id}">&{"app.admin.addLocation"}</button>
+    #{list country.children, as:'voivodeship'}
+    <div class="tier2">
+      <div class="tier2_header clearfix">
+        <i id="location-${voivodeship.id}" class="icon-minus icon-white hide"></i>
+        <button type="button" class="btn btn-mini btn-primary" value="${voivodeship.xCoordinate}|${voivodeship.yCoordinate}|${voivodeship.zoomLevel}">
+          <i class="icon-arrow-right icon-white"></i>
+        </button>
+        <h4>${voivodeship.displayName}</h4>
+        <div class="pull-right">
+          <i class="location-set icon-white icon-globe" data-id="${voivodeship.id}"></i>
+          <i class="location-edit icon-white icon-pencil" data-id="${voivodeship.id}"></i>
+          <i class="location-remove icon-white icon-remove" data-id="${voivodeship.id}"></i>
+        </div>
+      </div>
+    </div>
+    #{/list}
+  </div>
 </div>
+#{/list}

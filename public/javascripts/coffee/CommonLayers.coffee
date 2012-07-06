@@ -4,9 +4,9 @@ PORTAL.Layers.list = [];
 PORTAL.activateLayers = ->
   $("#addWmsLayerFailure").hide()
   $("#addWmsModalLoadLayers").click -> loadLayers()
-  $("#addWmsModal .modal-footer a").click -> addNewWms()
+  $(".service-add").click -> PORTAL.Layers.addNewWms $(this)
   $("#addWmsModal").on "show", ->
-    $("#addWmsModal .modal-footer a").attr "disabled", true
+    $("#addWmsModal .modal-footer a").attr "disabled", !canAddWms()
   $("#addWmsModal").on "hidden", ->
     $("#addWmsLayerFailure").hide()
 
@@ -19,11 +19,13 @@ loadLayers = ->
     failure: priv.layersLoadingFailure
   }
 
-addNewWms = ->
-  if canAddWms()
-    hideModal()
-    srcId = $("#addWmsModal").data('modal').options.id
-    PORTAL.Layers.registerWms srcId
+PORTAL.Layers.addNewWms = (element) ->
+  srcId = element.data("id")
+  $("#addWmsModal .modal-footer a").off("click").on "click", ->
+    if canAddWms()
+      hideModal()
+      PORTAL.Layers.registerWms srcId
+  $("#addWmsModal").modal 'show'
 
 canAddWms = -> $("#addWmsModalVisibleName").val().length && $("#addWmsModalUrl").val().length && PORTAL.Layers.getLayerNames().length
 
@@ -42,7 +44,7 @@ addWmsView = (srcId, wmsId) ->
   input = $("<input/>", {id: "toggler-"+srcId+"-"+wmsId, type: "checkbox", class: "wms-toggler", change: -> PORTAL.Handlers.wmsToggled $(this)})
   h4 = $("<h4/>", {html: wmsVisibleName, click: -> PORTAL.Handlers.treeClick $(this)})
   pull_right = $("<div/>", {class: "pull-right"})
-  remove = $("<i/>", {class: "icon-remove icon-white", click: -> PORTAL.Handlers.removeWms $(this)})
+  remove = $("<i/>", {class: "service-remove icon-remove icon-white", "data-id": wmsId , click: -> PORTAL.Handlers.removeWms $(this)})
   tier2Content = $("<div/>", {class: "tier2_content"})
   PORTAL.Handlers.sort tier2Content
 
@@ -71,7 +73,7 @@ createLayerView = (srcId, wmsId, layerId, layerTitle) ->
   button = $("<span/>", {class: "btn btn-mini", "data-toggle": "button", html: "&middot; &middot; &middot;", click: -> PORTAL.Handlers.layerDetails $(this)})
   label = $("<label/>", {for: "toggler-"+srcId+"-"+wmsId+"-"+layerId, text: layerTitle})
   pull_right = $("<div/>", {class: "pull-right"})
-  remove = $("<i/>", {id: "remove-"+srcId+"-"+wmsId+"-"+layerId, class: "icon-remove icon-white", click: -> PORTAL.Handlers.removeLayer $(this)})
+  remove = $("<i/>", {class: "layer-remove icon-remove icon-white", "data-id": layerId, click: -> PORTAL.Handlers.removeLayer $(this)})
   details = $("<div/>", {class: "layer-details"})
   minus = $("<i/>", {class: "icon-minus-sign", click: -> PORTAL.Handlers.changeLayerOpacity $(this)})
   span = $("<span/>", {html: "100%"})
