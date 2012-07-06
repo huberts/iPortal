@@ -15,11 +15,11 @@
     #{script 'coffee/MapLocations.coffee' /}
     #{script 'coffee/Admin.coffee' /}
     #{script 'coffee/AdminAddSource.coffee' /}
-    #{script 'coffee/AdminEdit.coffee' /}
 #{/set}
 #{set 'moreStyles'}
     #{stylesheet 'less/map.less' /}
     #{stylesheet 'less/layers.less' /}
+    #{stylesheet 'less/admin.less' /}
 #{/set}
 #{set 'moreModals'}
     #{adminModals /}
@@ -91,7 +91,7 @@
     zoomLevel: ${country.zoomLevel},
     cssClass: "country"
   });
-  #{list country.children(), as:'voivodeship'}
+  #{list country.children, as:'voivodeship'}
     PORTAL.locations.push({
       displayName: "${voivodeship.displayName}",
       coordinateX: ${voivodeship.xCoordinate},

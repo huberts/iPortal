@@ -65,7 +65,7 @@
     zoomLevel: ${country.zoomLevel},
     cssClass: "country"
   });
-  #{list country.children(), as:'voivodeship'}
+  #{list country.children, as:'voivodeship'}
     PORTAL.locations.push({
       displayName: "${voivodeship.displayName}",
       coordinateX: ${voivodeship.xCoordinate},

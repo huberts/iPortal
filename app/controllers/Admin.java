@@ -202,4 +202,50 @@ public class Admin extends Controller {
         renderJSON(listOfLayers);
     }
 
+    public static void addLocation(@Required String name, @Required Long xCoordinate, @Required Long yCoordinate, @Required Long zoomLevel, Long parentId)
+    {
+        MapLocation location = new MapLocation();
+        location.name = name;
+        location.displayName = name;
+        location.xCoordinate = xCoordinate;
+        location.yCoordinate = yCoordinate;
+        location.zoomLevel = zoomLevel;
+        if (parentId != null)
+            location.parent = MapLocation.findById(parentId);
+        location.save();
+        request.format = "json";
+        Long id = location.id;
+        renderTemplate("@id", id);
+    }
+
+    public static void editLocation(@Required Long id, String name, Long xCoordinate, Long yCoordinate, Long zoomLevel)
+    {
+        MapLocation location = MapLocation.findById(id);
+        if (location == null)
+            error(418, "Service not found");
+
+        if (name != null)
+            location.displayName = name;
+        if (xCoordinate != null && yCoordinate != null && zoomLevel != null)
+        {
+            location.xCoordinate = xCoordinate;
+            location.yCoordinate = yCoordinate;
+            location.zoomLevel = zoomLevel;
+        }
+        location.save();
+        request.format = "json";
+        renderTemplate("@id", id);
+    }
+
+    public static void deleteLocation(@Required Long id)
+    {
+        MapLocation location = MapLocation.findById(id);
+        if (location == null)
+            error(418, "Service not found");
+
+        location.delete();
+        request.format = "json";
+        renderTemplate("@id", id);
+    }
+
 }

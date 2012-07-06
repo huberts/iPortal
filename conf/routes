@@ -10,12 +10,15 @@ GET     /admin/?                                Admin.index
 POST    /admin/addSource                        Admin.addSource
 POST    /admin/addService                       Admin.addService
 POST    /admin/addLayers                        Admin.addLayers
+POST    /admin/addLocation                      Admin.addLocation
 PUT     /admin/editSource                       Admin.editSource
 PUT     /admin/editService                      Admin.editService
 PUT     /admin/editLayer                        Admin.editLayer
+PUT     /admin/editLocation                     Admin.editLocation
 DELETE  /admin/deleteSource                     Admin.deleteSource
 DELETE  /admin/deleteService                    Admin.deleteService
 DELETE  /admin/deleteLayer                      Admin.deleteLayer
+DELETE  /admin/deleteLocation                   Admin.deleteLocation
 PUT     /admin/orderLayers                      Admin.orderLayers
 
 # Main
