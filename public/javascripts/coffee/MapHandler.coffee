@@ -71,11 +71,11 @@ activateLayersSelection = ->
   $("#app_layers .source-toggler").change -> PORTAL.Handlers.sourceToggled $(this)
 
 activateLayersSort = ->
-  PORTAL.Handlers.sort $("#app_layers, .tier1_content, .tier2_content")
-  $(".tier1_content").sortable "option", "items", ".tier2"
+  PORTAL.Handlers.sort $("#app_layers, #app_layers .tier1_content, #app_layers .tier2_content")
+  $("#app_layers .tier1_content").sortable "option", "items", ".tier2"
 
 activateLayersDetails = ->
-  $(".tier3_content").children("span.btn").click -> PORTAL.Handlers.layerDetails $(this)
+  $("#app_layers .tier3_content").children("span.btn").click -> PORTAL.Handlers.layerDetails $(this)
   $(".layer-details i").click -> PORTAL.Handlers.changeLayerOpacity $(this)
 
 addLayersToMap = ->
