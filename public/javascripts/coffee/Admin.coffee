@@ -84,7 +84,7 @@ PORTAL.Admin.addLocation = (element) ->
             class: "btn btn-mini btn-primary",
             type: "button",
             value: xCoordinate+"|"+yCoordinate+"|"+zoomLevel,
-            click: -> setMapOnLocation
+            click: -> setMapOnLocation $(this)
           })
           arrow = $("<i/>", {class: "icon-arrow-right icon-white"})
           h = $("<h"+String(2+tierLevel)+"/>", {html: name})
