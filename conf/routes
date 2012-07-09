@@ -2,11 +2,11 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Administration
-GET     /admin/login                            Admin.login
-GET     /admin/logout                           Admin.logout
-POST    /admin/?                                Admin.authenticate
-GET     /admin/?                                Admin.index
+# Administration panel
+GET     /panel/login                            Admin.login
+GET     /panel/logout                           Admin.logout
+POST    /panel/?                                Admin.authenticate
+GET     /panel/?                                Admin.index
 POST    /admin/addSource                        Admin.addSource
 POST    /admin/addService                       Admin.addService
 POST    /admin/addLayers                        Admin.addLayers
