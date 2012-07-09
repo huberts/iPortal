@@ -24,13 +24,12 @@ app.getUrl.modalConfirm=Zamknij
 app.goToLocation.modalHeader=Przejdź do położenia
 app.goToLocation.modalConfirm=Zamknij
 
-app.admin.modalHeader=Logowanie administratora
-app.admin.username=Nazwa użytkownika
+app.admin.modalHeader=Panel administracyjny
 app.admin.password=Hasło
 app.admin.loginButton=Zaloguj
 app.admin.logoutButton=Wyloguj
 app.admin.remember=Zapamiętaj
-app.admin.error=Niepoprawny użytkownik lub hasło
+app.admin.error=Niepoprawne hasło
 app.admin.logout=Zostałeś wylogowany
 
 app.admin.layers=Warstwy
