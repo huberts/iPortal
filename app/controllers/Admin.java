@@ -22,20 +22,19 @@ public class Admin extends Controller {
     // Every call is checked for authentication, except those listed below
     @Before(unless={"login", "authenticate", "logout"})
     static void checkAccess() throws Throwable {
-        if(!session.contains("username")) {
+        if(!session.contains("loggedin")) {
             login();
         }
     }
 
     public static void index() {
-        renderArgs.put("user", session.get("username"));
         List<MapSource> sources = MapSourceCollection.getInstance().allSortedBy("sort, id");
         List<MapLocation> locations = MapLocationCollection.getInstance().topLevel();
         render(sources, locations);
     }
 
     public static void login() {
-        if(!session.contains("username")) {
+        if(!session.contains("loggedin")) {
             render();
         }
         else {
@@ -48,9 +47,9 @@ public class Admin extends Controller {
         Application.index(null, null, null);
     }
 
-    public static void authenticate(@Required String username, String password) {
-        if (checkUserPass(username, password)) {
-            session.put("username", username);
+    public static void authenticate(String password) {
+        if (checkUserPass(password)) {
+            session.put("loggedin", true);
             index();
         }
         else {
@@ -59,9 +58,8 @@ public class Admin extends Controller {
         }
     }
 
-    private static boolean checkUserPass(@Required String username, String password) {
-        return username.equalsIgnoreCase(Play.configuration.getProperty("admin.user", "admin"))
-                && password.equals(Play.configuration.getProperty("admin.password", "1234"));
+    private static boolean checkUserPass(String password) {
+        return password.equals(Play.configuration.getProperty("admin.password", "1234"));
     }
 
     public static void addSource(@Required String name)

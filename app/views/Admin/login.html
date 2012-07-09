@@ -4,7 +4,9 @@
     $(document).ready(function() {
         PORTAL.setTopLevelLayout();
         $('#adminLogin').modal({backdrop: true, keyboard: false});
-        $('#adminLogin input#adminLoginUsername').focus();
+        $('#adminLogin').bind('shown', function () {
+          $('#adminLogin input#adminLoginPassword').focus();
+        });
         $('#adminLogin').bind('hide', function () {
             return false;
         });
