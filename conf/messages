@@ -2,7 +2,7 @@ app.owner=Systherm Info
 app.name=Geo-Info 6 GiPortal
 
 app.ownWms.sourceName=Własne usługi WMS
-app.ownWms.addButton=Dodaj nową usługę WMS
+app.ownWms.addButton=Nowa usługa WMS
 app.ownWms.modalHeader=Definicja usługi
 app.ownWms.serviceName=Nazwa usługi
 app.ownWms.visibleName=Widoczna nazwa
@@ -37,14 +37,14 @@ app.admin.locations=Położenia
 app.admin.owner=Właściciel
 
 app.admin.sourceName=Nazwa źródła
-app.admin.addSource=Dodaj nowe źródło
+app.admin.addSource=Nowe źródło
 app.admin.addSourceButton=Dodaj
-app.admin.addWMS=Dodaj nową usługę WMS
+app.admin.addWMS=Nowa usługa WMS
 
 app.admin.edit=Edycja nazwy
 app.admin.name=Nazwa
 app.admin.saveButton=Zapisz
 
 app.admin.locationName=Nazwa lokalizacji
-app.admin.addLocation=Dodaj nową lokalizacje
+app.admin.addLocation=Nowa lokalizacja
 app.admin.addLocationButton=Dodaj

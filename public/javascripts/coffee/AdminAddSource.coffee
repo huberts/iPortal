@@ -43,7 +43,7 @@ createSourceView = (source) ->
 
   tier1Content = $("<div/>", {class: "tier1_content well"})
   button = $("<button/>", {
-    html: "Dodaj nową usługę WMS",
+    html: "Nowa usługa WMS",
     class: "btn",
     type: "button",
     "data-id": source.id,
