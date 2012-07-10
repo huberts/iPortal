@@ -14,14 +14,30 @@ public class MapLayer extends Model {
     public String displayName;
 
     @Required
-    public Boolean defaultVisible = false;
+    public boolean defaultVisible = false;
 
     @Required
-    public Boolean canBeUsed = true;
+    public boolean canBeUsed = true;
 
     public String additionalOptions;
+
+    public Long sort;
 
     @ManyToOne
     public MapService mapService;
 
+    public MapLayer()
+    {
+    }
+
+    public MapLayer(String name, String displayName, boolean defaultVisible, boolean canBeUsed, String additionalOptions, MapService mapService) {
+        this.name = name;
+        this.displayName = displayName;
+        this.mapService = mapService;
+        this.defaultVisible = defaultVisible;
+        this.canBeUsed = canBeUsed;
+        this.additionalOptions = additionalOptions;
+        this.mapService = mapService;
+        this.save();
+    }
 }

@@ -1,10 +1,10 @@
 package models;
 
+import org.hibernate.annotations.Cascade;
 import play.db.jpa.Model;
 import play.data.validation.Required;
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class MapLocation extends Model {
@@ -15,7 +15,7 @@ public class MapLocation extends Model {
     @Required
     public String displayName;
 
-    @OneToOne
+    @ManyToOne
     public MapLocation parent;
 
     @Required
@@ -27,7 +27,7 @@ public class MapLocation extends Model {
     @Required
     public Long zoomLevel;
 
-    public List<MapLocation> children() {
-        return find("parent = " + this.id).fetch();
-    }
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, mappedBy = "parent")
+    @Cascade({org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    public List<MapLocation> children;
 }

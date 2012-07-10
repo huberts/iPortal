@@ -14,8 +14,15 @@ public class MapSource extends Model {
     @Required
     public String displayName;
 
+    public Long sort;
+
     @OneToMany( cascade=CascadeType.ALL, mappedBy="mapSource" )
-    @OrderBy( "id" )
+    @OrderBy( "sort, id" )
     public Set<MapService> webMapServices;
 
+    public MapSource(String name, String displayName) {
+        this.name = name;
+        this.displayName = displayName;
+        this.save();
+    }
 }

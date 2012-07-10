@@ -4,26 +4,52 @@
     #{script 'OpenLayers-2.11/lib/OpenLayers/Lang/pl.js' /}
     #{script 'OpenLayers-2.11/modules/AppUtils.js' /}
     #{script 'OpenLayers-2.11/lib/OpenLayers/Layer/ArsGeoportal.js' /}
-    #{script 'coffee/ApplicationEntryPoint.coffee' /}
+    #{script 'coffee/AdminEntryPoint.coffee' /}
     #{script 'coffee/EventHandlers.coffee' /}
     #{script 'coffee/MapUtils.coffee' /}
     #{script 'coffee/MapHandler.coffee' /}
     #{script 'coffee/MapControllers.coffee' /}
     #{script 'coffee/ApplicationLayout.coffee' /}
     #{script 'coffee/CommonLayers.coffee' /}
-    #{script 'coffee/OwnLayers.coffee' /}
+    #{script 'coffee/AdminLayers.coffee' /}
     #{script 'coffee/MapLocations.coffee' /}
+    #{script 'coffee/Admin.coffee' /}
+    #{script 'coffee/AdminAddSource.coffee' /}
 #{/set}
 #{set 'moreStyles'}
     #{stylesheet 'less/map.less' /}
     #{stylesheet 'less/layers.less' /}
+    #{stylesheet 'less/admin.less' /}
 #{/set}
-
+#{set 'moreModals'}
+    #{adminModals /}
+#{/set}
 
 #{extends 'layout.html' /}
 
 <div id="app_content" class="ui-layout-center">#{openLayersMap /}</div>
-<div id="app_layers" class="ui-layout-west">#{layersSwitcher sources:sources /}</div>
+<div class="ui-layout-west">
+    <ul id="tab-bar" class="nav nav-tabs">
+        <li class="active"><a href="#layers" data-toggle="tab">&{'app.admin.layers'}</a></li>
+        <li><a href="#locations" data-toggle="tab">&{'app.admin.locations'}</a></li>
+        <li><a href="#owner" data-toggle="tab">&{'app.admin.owner'}</a></li>
+        <li class="pull-right"><a class="btn-primary" href="@{Admin.logout()}">&{'app.admin.logoutButton'}</a></li>
+    </ul>
+
+    <div class="tab-content ui-layout-content">
+        <div class="tab-pane active" id="layers">
+            <div id="app_layers">
+                #{layersSwitcher sources:sources, admin: 1 /}
+            </div>
+        </div>
+        <div class="tab-pane" id="locations">
+            #{adminLocations locations:locations /}
+        </div>
+        <div class="tab-pane" id="owner">
+            #{adminOwner /}
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
 
@@ -55,7 +81,7 @@
  #{/if}
 #{/list}
 
-  PORTAL.locations = [];
+    PORTAL.locations = [];
 
 #{list locations, as:'country'}
   PORTAL.locations.push({
@@ -72,7 +98,7 @@
       coordinateY: ${voivodeship.yCoordinate},
       zoomLevel: ${voivodeship.zoomLevel},
       cssClass: "voivodeship"
-  });
+    });
   #{/list}
 #{/list}
 

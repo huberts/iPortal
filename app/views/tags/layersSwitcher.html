@@ -1,3 +1,7 @@
+#{if _admin}
+<button id="adminAddSourceButton" class="btn" type="button" data-toggle="modal" data-target="#adminAddSourceModal">&{"app.admin.addSource"}</button>
+#{/if}
+#{else}
 <div class="tier1">
   <div class="tier1_header">
     <i class="icon-plus icon-white"></i>
@@ -5,40 +9,62 @@
     <h3>&{"app.ownWms.sourceName"}</h3>
   </div>
   <div id="addWmsTier1Content" class="tier1_content well">
-    <button id="addWmsButton" class="btn" type="button" data-toggle="modal" data-target="#addWmsModal">&{"app.ownWms.addButton"}</button>
+    <button class="service-add btn" type="button" data-id="0">&{"app.ownWms.addButton"}</button>
   </div>
 </div>
+#{/else}
 
 #{list _sources, as:'source'}
-#{if models.MapSourceCollection.getInstance().canBeUsed(source)}
+#{if _admin || models.MapSourceCollection.getInstance().canBeUsed(source)}
 <div class="tier1">
 
-  <div class="tier1_header">
+  <div class="tier1_header clearfix">
     <i class="icon-plus icon-white"></i>
     <input id="toggler-${source.id}" type="checkbox" class="source-toggler" />
     <h3>${source.displayName}</h3>
+    #{if _admin}
+    <div class="pull-right">
+      <i class="source-edit icon-white icon-pencil" data-id="${source.id}" ></i>
+      <i class="source-remove icon-white icon-remove" data-id="${source.id}"></i>
+    </div>
+    #{/if}
   </div>
 
   <div class="tier1_content well">
+  #{if _admin}
+    <button class="service-add btn" type="button" data-id="${source.id}">&{"app.admin.addWMS"}</button>
+  #{/if}
   #{list source.webMapServices, as:'service'}
-  #{if models.MapServiceCollection.getInstance().canBeUsed(service)}
+  #{if _admin || models.MapServiceCollection.getInstance().canBeUsed(service)}
 
     <div class="tier2">
-
-      <div class="tier2_header">
+      <div class="tier2_header clearfix">
         <i class="icon-plus icon-white"></i>
         <input id="toggler-${source.id}-${service.id}" type="checkbox" class="wms-toggler" />
         <h4>${service.displayName}</h4>
+        #{if _admin}
+        <div class="pull-right">
+          <i class="service-edit icon-white icon-pencil" data-id="${service.id}"></i>
+          <i class="service-remove icon-white icon-remove" data-id="${service.id}"></i>
+        </div>
+        #{/if}
       </div>
 
       <div class="tier2_content">
       #{list service.layers, as: 'layer'}
-      #{if layer.canBeUsed}
+      #{if _admin || layer.canBeUsed}
         <div class="tier3">
-          <div class="tier3_content">
+          <div class="tier3_content clearfix">
             <input id="toggler-${source.id}-${service.id}-${layer.id}" type="checkbox" class="layer-toggler" />
             <span class="btn btn-mini" data-toggle="button">&middot; &middot; &middot;</span>
             <label for="toggler-${source.id}-${service.id}-${layer.id}">${layer.displayName}</label>
+            #{if _admin}
+            <div class="pull-right">
+              <i class="layer-default ${layer.defaultVisible ? 'icon-white' : ''} icon-eye-open" data-id="${layer.id}"></i>
+              <i class="layer-edit icon-white icon-pencil" data-id="${layer.id}" ></i>
+              <i class="layer-remove icon-white icon-remove" data-id="${layer.id}" ></i>
+            </div>
+            #{/if}
             <div class="layer-details">
               <i class="icon-minus-sign"></i>
               <span>100%</span>
