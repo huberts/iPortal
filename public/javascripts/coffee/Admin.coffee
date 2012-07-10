@@ -79,7 +79,11 @@ PORTAL.Admin.addLocation = (element) ->
           tierLevel = if parent.hasClass("tier1_content") then 2 else 1
           tier = $("<div/>", {class: "tier"+tierLevel})
           tierHeader = $("<div/>", {class: "tier"+tierLevel+"_header clearfix"})
-          plus = $("<i/>", {id: "location-"+result.id, class: "icon-minus icon-white hide"})
+          plus = $("<i/>", {
+            id: "location-"+result.id,
+            class: "icon-minus icon-white hide"
+            click: -> PORTAL.Handlers.treeClick $(this)
+          })
           button = $("<button/>", {
             class: "btn btn-mini btn-primary",
             type: "button",
@@ -87,7 +91,7 @@ PORTAL.Admin.addLocation = (element) ->
             click: -> setMapOnLocation $(this)
           })
           arrow = $("<i/>", {class: "icon-arrow-right icon-white"})
-          h = $("<h"+String(2+tierLevel)+"/>", {html: name})
+          h = $("<h"+String(2+tierLevel)+"/>", {html: name, click: -> PORTAL.Handlers.treeClick $(this)})
           pull_right = $("<div/>", {class: "pull-right"})
           set = $("<i/>", {
             class: "location-set icon-white icon-globe",
@@ -105,6 +109,7 @@ PORTAL.Admin.addLocation = (element) ->
             click: -> PORTAL.Admin.deleteLocation $(this)
           })
           if tierLevel == 1
+            plus.removeClass("hide");
             tierContent = $("<div/>", {class: "tier"+tierLevel+"_content well"})
             addButton = $("<button/>", {
               html: element.text(),
@@ -115,7 +120,7 @@ PORTAL.Admin.addLocation = (element) ->
             })
             tierContent.append(addButton)
 
-          tierHeader.append(plus).append(button.append(arrow)).append(" ").append(h)
+          tierHeader.append(plus).append(" ").append(button.append(arrow)).append(" ").append(h)
           tierHeader.append(pull_right.append(set).append(" ").append(edit).append(" ").append(remove))
           parent.append(tier.append(tierHeader).append(tierContent))
           $("#adminAddLocationModal").modal "hide"
