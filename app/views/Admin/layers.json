@@ -1,0 +1,10 @@
+[
+#{list layers, as: 'layer'}
+    {
+        "id": "${layer.id}",
+        "name": "${layer.name}",
+        "displayName": "${layer.displayName}"
+    }
+    #{if !layer_isLast},#{/if}
+#{/list}
+]

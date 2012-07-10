@@ -1,0 +1,23 @@
+#{set 'moreScripts'}
+#{script 'coffee/ApplicationLayout.coffee' /}
+<script type="text/javascript">
+    $(document).ready(function() {
+        PORTAL.setTopLevelLayout();
+        $('#adminLogin').modal({backdrop: true, keyboard: false});
+        $('#adminLogin').bind('shown', function () {
+          $('#adminLogin input#adminLoginPassword').focus();
+        });
+        $('#adminLogin').bind('hide', function () {
+            return false;
+        });
+    });
+</script>
+#{/set}
+#{set 'moreModals'}
+    #{adminModals /}
+#{/set}
+
+#{extends 'layout.html' /}
+
+<div id="admin_content" class="ui-layout-center">
+</div>
