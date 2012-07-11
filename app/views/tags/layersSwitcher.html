@@ -41,9 +41,13 @@
       <div class="tier2_header clearfix">
         <i class="icon-plus icon-white"></i>
         <input id="toggler-${source.id}-${service.id}" type="checkbox" class="wms-toggler" />
+        <button type="button" class="btn btn-mini btn-primary" value="${service.xCoordinate}|${service.yCoordinate}|${service.zoomLevel}">
+          <i class="icon-arrow-right icon-white"></i>
+        </button>
         <h4>${service.displayName}</h4>
         #{if _admin}
         <div class="pull-right">
+          <i class="service-set icon-white icon-globe" data-id="${service.id}"></i>
           <i class="service-edit icon-white icon-pencil" data-id="${service.id}"></i>
           <i class="service-remove icon-white icon-remove" data-id="${service.id}"></i>
         </div>
