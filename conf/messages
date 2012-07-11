@@ -14,7 +14,6 @@ app.ownWms.modalConfirm=Dodaj
 
 app.controller.zoomToExtent=pokaż całość
 app.controller.zoomIn=przybliż
-app.controller.zoomOut=oddal
 app.controller.saveUrl=zapisz odnośnik
 app.controller.goToLocation=przejdź do położenia
 

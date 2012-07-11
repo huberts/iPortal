@@ -24,12 +24,10 @@ createProjections = ->
 
 createMapEventListeners = ->
   PORTAL.zoomIn = new OpenLayers.Control.ZoomBox {active: false}
-  PORTAL.zoomOut = new OpenLayers.Control.ZoomBox {active: false, out: true}
   PORTAL.mapEventListeners = {
     zoomend: (event) ->
       PORTAL.zoomIn.deactivate()
-      PORTAL.zoomOut.deactivate()
-      $("#open_layers_button_zoom_in, #open_layers_button_zoom_out").removeClass "active"
+      $("#open_layers_button_zoom_in").removeClass "active"
   }
 
 ###########################################################
