@@ -58,7 +58,6 @@ createLayersSwitcher = ->
   do activateTreeComponent
   do activateLayersSelection
   do activateLayersSort
-  do activateLayersDetails
   do addLayersToMap
 
 disableTextSelection = -> $("#app_layers .well").disableSelection()
@@ -73,10 +72,6 @@ activateLayersSelection = ->
 activateLayersSort = ->
   PORTAL.Handlers.sort $("#app_layers, #app_layers .tier1_content, #app_layers .tier2_content")
   $("#app_layers .tier1_content").sortable "option", "items", ".tier2"
-
-activateLayersDetails = ->
-  $("#app_layers .tier3_content").children("span.btn").click -> PORTAL.Handlers.layerDetails $(this)
-  $(".layer-details i").click -> PORTAL.Handlers.changeLayerOpacity $(this)
 
 addLayersToMap = ->
   PORTAL.Utils.addLayer layer for layer in PORTAL.Layers.list
