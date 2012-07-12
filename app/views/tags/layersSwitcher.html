@@ -60,7 +60,6 @@
         <div class="tier3">
           <div class="tier3_content clearfix">
             <input id="toggler-${source.id}-${service.id}-${layer.id}" type="checkbox" class="layer-toggler" />
-            <span class="btn btn-mini" data-toggle="button">&middot; &middot; &middot;</span>
             <label for="toggler-${source.id}-${service.id}-${layer.id}">${layer.displayName}</label>
             #{if _admin}
             <div class="pull-right">
@@ -69,11 +68,6 @@
               <i class="layer-remove icon-white icon-remove" data-id="${layer.id}" ></i>
             </div>
             #{/if}
-            <div class="layer-details">
-              <i class="icon-minus-sign"></i>
-              <span>100%</span>
-              <i class="icon-plus-sign"></i>
-            </div>
           </div>
          </div>
       #{/if}

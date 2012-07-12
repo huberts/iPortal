@@ -77,16 +77,10 @@ createLayerView = (srcId, wmsId, layerId, layerTitle) ->
   tier3 = $("<div/>", {class: "tier3"})
   tier3Content = $("<div/>", {class: "tier3_content clearfix"})
   input = $("<input/>", {id: "toggler-"+srcId+"-"+wmsId+"-"+layerId, type: "checkbox", class: "layer-toggler", change: -> PORTAL.Handlers.layerToggled $(this)})
-  button = $("<span/>", {class: "btn btn-mini", "data-toggle": "button", html: "&middot; &middot; &middot;", click: -> PORTAL.Handlers.layerDetails $(this)})
   label = $("<label/>", {for: "toggler-"+srcId+"-"+wmsId+"-"+layerId, text: layerTitle})
   pull_right = $("<div/>", {class: "pull-right"})
   remove = $("<i/>", {class: "layer-remove icon-remove icon-white", "data-id": layerId, click: -> PORTAL.Handlers.removeLayer $(this)})
-  details = $("<div/>", {class: "layer-details"})
-  minus = $("<i/>", {class: "icon-minus-sign", click: -> PORTAL.Handlers.changeLayerOpacity $(this)})
-  span = $("<span/>", {html: "100%"})
-  plus = $("<i/>", {class: "icon-plus-sign", click: -> PORTAL.Handlers.changeLayerOpacity $(this)})
-  details.append(minus).append(span).append(plus)
-  tier3.append tier3Content.append(input).append(button).append(label).append(pull_right.append(remove)).append(details)
+  tier3.append tier3Content.append(input).append(label).append(pull_right.append(remove))
 
 sortLayers = -> PORTAL.Utils.sortLayers()
 

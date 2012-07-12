@@ -57,7 +57,7 @@ PORTAL.createControllers = ->
   }
 
 
-  PORTAL.map.addControls [PORTAL.zoomIn, PORTAL.zoomOut]
+  PORTAL.map.addControls [PORTAL.zoomIn]
 
   $("#open_layers_button_extent").click ->
     PORTAL.map.zoomToMaxExtent()
@@ -65,20 +65,9 @@ PORTAL.createControllers = ->
   $("#open_layers_button_zoom_in").click ->
     $(this).toggleClass "active"
     if $(this).hasClass "active"
-      $("#open_layers_button_zoom_out").removeClass "active"
-      PORTAL.zoomOut.deactivate()
       PORTAL.zoomIn.activate()
     else
       PORTAL.zoomIn.deactivate()
-
-  $("#open_layers_button_zoom_out").click ->
-    $(this).toggleClass "active"
-    if $(this).hasClass "active"
-      $("#open_layers_button_zoom_in").removeClass "active"
-      PORTAL.zoomIn.deactivate()
-      PORTAL.zoomOut.activate()
-    else
-      PORTAL.zoomOut.deactivate()
 
 
   $("#open_layers_button_save_url").click ->
@@ -98,10 +87,6 @@ PORTAL.createControllers = ->
   }
   $("#open_layers_button_zoom_in").tooltip {
     title: PORTAL.messages.zoomIn,
-    placement: "bottom"
-  }
-  $("#open_layers_button_zoom_out").tooltip {
-    title: PORTAL.messages.zoomOut,
     placement: "bottom"
   }
   $("#open_layers_button_save_url").tooltip {

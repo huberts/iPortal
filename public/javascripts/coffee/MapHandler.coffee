@@ -24,12 +24,10 @@ createProjections = ->
 
 createMapEventListeners = ->
   PORTAL.zoomIn = new OpenLayers.Control.ZoomBox {active: false}
-  PORTAL.zoomOut = new OpenLayers.Control.ZoomBox {active: false, out: true}
   PORTAL.mapEventListeners = {
     zoomend: (event) ->
       PORTAL.zoomIn.deactivate()
-      PORTAL.zoomOut.deactivate()
-      $("#open_layers_button_zoom_in, #open_layers_button_zoom_out").removeClass "active"
+      $("#open_layers_button_zoom_in").removeClass "active"
   }
 
 ###########################################################
@@ -58,7 +56,6 @@ createLayersSwitcher = ->
   do activateTreeComponent
   do activateLayersSelection
   do activateLayersSort
-  do activateLayersDetails
   do addLayersToMap
 
 disableTextSelection = -> $("#app_layers .well").disableSelection()
@@ -73,10 +70,6 @@ activateLayersSelection = ->
 activateLayersSort = ->
   PORTAL.Handlers.sort $("#app_layers, #app_layers .tier1_content, #app_layers .tier2_content")
   $("#app_layers .tier1_content").sortable "option", "items", ".tier2"
-
-activateLayersDetails = ->
-  $("#app_layers .tier3_content").children("span.btn").click -> PORTAL.Handlers.layerDetails $(this)
-  $(".layer-details i").click -> PORTAL.Handlers.changeLayerOpacity $(this)
 
 addLayersToMap = ->
   PORTAL.Utils.addLayer layer for layer in PORTAL.Layers.list

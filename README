@@ -12,7 +12,7 @@ Do uruchomienia aplikacji wystarczy Java oraz framework Play, z którym będzie 
 w trybie developerskim odbywa się - jak zwykle w PlayFramework - przez komendę "play run". Aby uruchomić jako oddzielny
 proces: "play start". Zatrzymanie procesu to "play stop". Jeśli potrzebne jest przekierowanie portu 9000 (domyślny port
 aplikacji) przez bramowy serwer HTTP (np. Apache), wówczas należy także zresetować serwer po uruchomieniu procesu
-aplikacji. Szczegóły konfiguracji znaleźć można pod adresem http://www.playframework.org/documentation/1.2.4/production.
+aplikacji. Szczegóły konfiguracji znaleźć można pod adresem http://www.playframework.org/documentation/1.2.5/production.
 
 W pliku "application.conf" zebrana jest konfiguracja programu:
 
@@ -31,6 +31,21 @@ map.initial.cartographer_x_coordinate = 620000 // początkowe położenie mapy
 map.initial.cartographer_y_coordinate = 245000
 map.initial.z = 4 // początkowe przybliżenie mapy
 url.slash_replacement = -.. // wyrażenie zastępujące slash w transmisji URL podczas żądania getCapabilities
+
+
+Aby skompilować Twitter Bootstrap, należy postąpić tak jak na http://twitter.github.com/bootstrap/less.html#compiling.
+Należy wybrać sekcję "Node with makefile" i postępować zgodnie z instrukcją. Dodatkowo ze strony
+http://bootswatch.com/cyborg/ pobieramy pliki LESS i wkładamy do katalogu less/ ściągniętych źródeł Bootstrapa.
+Następnie modyfikujemy plik variables.less i ustawiamy:
+@textColor: @white;
+@iconSpritePath:          "../images/glyphicons-halflings.png";
+@iconWhiteSpritePath:     "../images/glyphicons-halflings-white.png";
+Na końcu pliku bootstrap.less należy dołożyć import pliku bootswatch.less:
+@import "bootswatch.less";
+Całość kompilujemy przy pomocy komendy:
+make bootstrap
+W rezultacie powstaje katalog bootstrap, z którego należy pobrać plik bootstrap.css i podmienić z aktualnym.
+
 
 Pozdrowienia,
 

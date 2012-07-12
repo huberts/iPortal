@@ -5,7 +5,7 @@ app.ownWms.sourceName=Własne usługi WMS
 app.ownWms.addButton=Nowa usługa WMS
 app.ownWms.modalHeader=Definicja usługi
 app.ownWms.serviceName=Nazwa usługi
-app.ownWms.visibleName=Widoczna nazwa
+app.ownWms.visibleName=Nazwa
 app.ownWms.serviceAddress=Adres WMS
 app.ownWms.serviceURL=URL usługi
 app.ownWms.loadLayers=Wczytaj warstwy
@@ -14,7 +14,6 @@ app.ownWms.modalConfirm=Dodaj
 
 app.controller.zoomToExtent=pokaż całość
 app.controller.zoomIn=przybliż
-app.controller.zoomOut=oddal
 app.controller.saveUrl=zapisz odnośnik
 app.controller.goToLocation=przejdź do położenia
 
