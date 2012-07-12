@@ -27,7 +27,6 @@ public class MapLocation extends Model {
     @Required
     public Long zoomLevel;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH}, mappedBy = "parent")
-    @Cascade({org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "parent")
     public List<MapLocation> children;
 }
