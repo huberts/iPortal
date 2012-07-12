@@ -12,7 +12,12 @@ PORTAL.Layers.registerWms = (srcId) ->
           "data-id" : data.id,
           click: -> PORTAL.Admin.editService $(this)
         })
-        $("#toggler-"+srcId+"-"+data.id).parents(".tier2_header").find(".pull-right").prepend(" ").prepend(edit)
+        set = $("<i/>", {
+          class: "service-set icon-white icon-globe",
+          "data-id" : data.id,
+          click: -> PORTAL.Admin.setService $(this)
+        })
+        $("#toggler-"+srcId+"-"+data.id).parents(".tier2_header").find(".pull-right").prepend(" ").prepend(edit).prepend(" ").prepend(set)
   }
 
 PORTAL.Layers.addOLLayers = (srcId, wmsId) ->

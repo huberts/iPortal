@@ -107,13 +107,20 @@ public class Admin extends Controller {
         renderTemplate("@id", id);
     }
 
-    public static void editService(@Required Long id, @Required String name)
+    public static void editService(@Required Long id, String name, Long xCoordinate, Long yCoordinate, Long zoomLevel)
     {
         MapService service = MapService.findById(id);
         if (service == null)
             error(418, "Service not found");
 
-        service.displayName = name;
+        if (name != null)
+            service.displayName = name;
+        if (xCoordinate != null && yCoordinate != null && zoomLevel != null)
+        {
+            service.xCoordinate = xCoordinate;
+            service.yCoordinate = yCoordinate;
+            service.zoomLevel = zoomLevel;
+        }
         service.save();
         request.format = "json";
         renderTemplate("@id", id);

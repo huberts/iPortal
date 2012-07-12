@@ -17,6 +17,12 @@ public class MapService extends Model {
     @Required
     public String url;
 
+    public Long xCoordinate;
+
+    public Long yCoordinate;
+
+    public Long zoomLevel;
+
     public  Long sort;
 
     @Required

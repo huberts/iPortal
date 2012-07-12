@@ -4,7 +4,7 @@ PORTAL.activateAdmin = ->
   do activateEditModal
   do activateLocationsTree
   do activateLocationsModal
-  do activateLayersSortSave
+  do activateLayersTree
 
   $(".layer-default").click -> PORTAL.Admin.defaultLayer $(this)
 
@@ -44,8 +44,10 @@ activateLocationsModal = ->
 
 canAddLocation = -> $("#adminAddLocationModalName").val().length
 
-activateLayersSortSave = ->
+activateLayersTree = ->
   $("#app_layers, #app_layers .tier1_content, #app_layers .tier2_content").bind "sortupdate", sortLayersSave
+  $("#layers .tier2_header > button").click -> setMapOnLocation $(this)
+  $(".service-set").click -> PORTAL.Admin.setService $(this)
 
 sortLayersSave = ->
   listOfLayers = []
@@ -137,7 +139,20 @@ PORTAL.Admin.setLocation = (element) ->
     url: "admin/editLocation",
     data: {id: locationId, xCoordinate: xCoordinate, yCoordinate: yCoordinate, zoomLevel: zoomLevel},
     success: (result) ->
-      element.closest("button").val(xCoordinate+"|"+yCoordinate+"|"+zoomLevel)
+      element.parent().siblings("button").val(xCoordinate+"|"+yCoordinate+"|"+zoomLevel)
+  }
+
+PORTAL.Admin.setService = (element) ->
+  wmsId = element.data("id")
+  xCoordinate = PORTAL.map.getCenter().lat.toFixed(0)
+  yCoordinate = PORTAL.map.getCenter().lon.toFixed(0)
+  zoomLevel = PORTAL.map.getZoom()
+  $.ajax {
+    type: "PUT",
+    url: "admin/editService",
+    data: {id: wmsId, xCoordinate: xCoordinate, yCoordinate: yCoordinate, zoomLevel: zoomLevel},
+    success: (result) ->
+      element.parent().siblings("button").val(xCoordinate+"|"+yCoordinate+"|"+zoomLevel)
   }
 
 PORTAL.Admin.defaultLayer = (element) ->
