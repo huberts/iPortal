@@ -33,7 +33,7 @@ app.admin.logout=Zostałeś wylogowany
 
 app.admin.layers=Warstwy
 app.admin.locations=Położenia
-app.admin.owner=Właściciel
+app.admin.settings=Ustawienia
 
 app.admin.sourceName=Nazwa źródła
 app.admin.addSource=Nowe źródło
@@ -43,7 +43,16 @@ app.admin.addWMS=Nowa usługa WMS
 app.admin.edit=Edycja nazwy
 app.admin.name=Nazwa
 app.admin.saveButton=Zapisz
+app.admin.saveButtonLoading=Zapisuje...
 
 app.admin.locationName=Nazwa lokalizacji
 app.admin.addLocation=Nowa lokalizacja
 app.admin.addLocationButton=Dodaj
+
+app.admin.passwordHeader=Zmiana hasła do panelu administratora
+app.admin.oldPassword=Stare hasło
+app.admin.newPassword=Nowe hasło
+app.admin.confirmPassword=Potwierdź nowe hasło
+
+app.admin.mapHeader=Ustawienia mapy
+app.admin.initialMapCoordinates=Początkowe położenie mapy
