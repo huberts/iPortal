@@ -62,8 +62,6 @@ public class Admin extends Controller {
         MapSetting panelPassword = MapSetting.findByKey(MapSetting.ADMIN_PASSWORD);
         String panelPasswordEncrypted = panelPassword.value;
         String inputPasswordEncrypted = MapSetting.encryptPassword(inputPassword);
-        System.out.println(inputPasswordEncrypted);
-        System.out.println(panelPasswordEncrypted);
         return inputPasswordEncrypted.equalsIgnoreCase(panelPasswordEncrypted);
     }
 
