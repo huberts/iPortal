@@ -5,11 +5,14 @@ PORTAL.prepareMap = ->
   do createLayersSwitcher
 
 PORTAL.finishMap = ->
+  PORTAL.Utils.sortLayers()
+  PORTAL.navHistory.clear();
   PORTAL.map.setCenter(
     new OpenLayers.LonLat(PORTAL.configurationSettings.mapInitialX, PORTAL.configurationSettings.mapInitialY),
     PORTAL.configurationSettings.mapInitialZ
   )
-  PORTAL.Utils.sortLayers()
+  PORTAL.navHistory.onNextChange();
+  PORTAL.navHistory.onPreviousChange();
 
 ###########################################################
 
@@ -29,6 +32,21 @@ createMapEventListeners = ->
       PORTAL.zoomIn.deactivate()
       $("#open_layers_button_zoom_in").removeClass "active"
   }
+  PORTAL.navHistory = new OpenLayers.Control.NavigationHistory()
+  PORTAL.navHistory.onNextChange = (state, length) ->
+    if state
+      PORTAL.navHistory.next.activate()
+      $("#open_layers_button_history_next").attr("disabled", false)
+    else
+      PORTAL.navHistory.next.deactivate()
+      $("#open_layers_button_history_next").attr("disabled", true).tooltip('hide')
+  PORTAL.navHistory.onPreviousChange = (state, length) ->
+    if state
+      PORTAL.navHistory.previous.activate()
+      $("#open_layers_button_history_prev").attr("disabled", false)
+    else
+      PORTAL.navHistory.previous.deactivate()
+      $("#open_layers_button_history_prev").attr("disabled", true).tooltip('hide')
 
 ###########################################################
 
