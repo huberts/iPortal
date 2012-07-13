@@ -17,7 +17,7 @@ PORTAL.messages = {
   zoomIn: "przybliż",
   zoomOut: "oddal",
   saveUrl: "zapisz odnośnik",
-  goToLocation: "przejdź do położenia",
+  goToLocation: "przejdź do położenia"
 }
 
 PORTAL.layers = [
@@ -37,6 +37,7 @@ PORTAL.layers = [
 ];
 
 PORTAL.locations = [];
-
+PORTAL.Layers = {};
+PORTAL.Layers.list = [];
 
 function alert() {}
