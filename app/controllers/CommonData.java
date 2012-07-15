@@ -26,5 +26,6 @@ public class CommonData extends Controller {
         renderArgs.put("urlSlashReplacement", Play.configuration.getProperty("url.slash_replacement"));
         renderArgs.put("systhermSourceId", 0);
         renderArgs.put("systhermServiceId", 0);
+        renderArgs.put("systhermLayerId", 0);
     }
 }

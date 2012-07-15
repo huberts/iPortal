@@ -50,12 +50,14 @@ PORTAL.Utils.buildIdWithPrefix = (oldPrefixedId, newPrefix) ->
 PORTAL.Utils.systhermInstallation = ->
   sourceId = PORTAL.configurationSettings.systhermSourceId
   serviceId = PORTAL.configurationSettings.systhermServiceId
-  if sourceId==0 || serviceId==0
+  layerId = PORTAL.configurationSettings.systhermLayerId
+  if sourceId==0 || serviceId==0 || layerId==0
     return
   sourceElement = $("#toggler-"+sourceId)
   serviceElement = $("#toggler-"+sourceId+"-"+serviceId)
-  if !serviceElement.is(":checked")
-    serviceElement.click();
+  layerElement = $("#toggler-"+sourceId+"-"+serviceId+"-"+layerId)
+  if !layerElement.is(":checked")
+    layerElement.click();
   sourceElement.siblings("i").click();
   serviceElement.siblings("i").click();
 

@@ -1,6 +1,7 @@
 package controllers;
 
 import models.*;
+import play.Logger;
 import play.mvc.Controller;
 import play.mvc.With;
 
@@ -34,5 +35,9 @@ public class SysthermInstallation extends Controller {
         renderArgs.put("mapInitialZ", service.zoomLevel);
         renderArgs.put("systhermSourceId", service.mapSource.id);
         renderArgs.put("systhermServiceId", service.id);
+        MapLayer layer = MapLayerCollection.getInstance().getByNameFromMapService(service, "gminy");
+        if (layer!=null) {
+            renderArgs.put("systhermLayerId", layer.id);
+        }
     }
 }
