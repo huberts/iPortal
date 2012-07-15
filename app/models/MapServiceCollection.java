@@ -15,4 +15,8 @@ public class MapServiceCollection {
         return false;
     }
 
+    public MapService findByName(String name) {
+        return MapService.find("lower(name) = ?", name.toLowerCase()).first();
+    }
+
 }

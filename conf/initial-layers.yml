@@ -13,13 +13,15 @@ MapService(Systherm_Bierun):
   name: Bierun
   displayName: Bieruń
   url: http://212.244.173.51/cgi-bin/bierun
+  xCoordinate: 247050
+  yCoordinate: 511300
+  zoomLevel: 6
   serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Bierun_Gminy):
   name: GMINY
   displayName: Gminy
   mapService: Systherm_Bierun
-  defaultVisible: false
 MapLayer(Systherm_Bierun_Obreby):
   name: OBREBY
   displayName: Obręby
@@ -59,7 +61,6 @@ MapLayer(Systherm_Choszczno_Gminy):
   name: gminy
   displayName: Gminy
   mapService: Systherm_Choszczno
-  defaultVisible: false
 MapLayer(Systherm_Choszczno_Obreby):
   name: obreby
   displayName: Obręby
@@ -99,7 +100,6 @@ MapLayer(Systherm_Gryfice_Gminy):
   name: gminy
   displayName: Gminy
   mapService: Systherm_Gryfice
-  defaultVisible: true
 MapLayer(Systherm_Gryfice_Obreby):
   name: obreby
   displayName: Obręby
@@ -139,7 +139,6 @@ MapLayer(Systherm_KamienPomorski_Gminy):
   name: gminy
   displayName: Gminy
   mapService: Systherm_KamienPomorski
-  defaultVisible: true
 MapLayer(Systherm_KamienPomorski_Obreby):
   name: obreby
   displayName: Obręby
@@ -179,7 +178,6 @@ MapLayer(Systherm_Koscian_Gminy):
   name: gminy
   displayName: Gminy
   mapService: Systherm_Koscian
-  defaultVisible: true
 MapLayer(Systherm_Koscian_Obreby):
   name: obreby
   displayName: Obręby
@@ -219,7 +217,6 @@ MapLayer(Systherm_Lobez_Gminy):
   name: gminy
   displayName: Gminy
   mapService: Systherm_Lobez
-  defaultVisible: true
 MapLayer(Systherm_Lobez_Obreby):
   name: obreby
   displayName: Obręby
@@ -259,7 +256,6 @@ MapLayer(Systherm_Mysliborz_Gminy):
   name: gminy
   displayName: Gminy
   mapService: Systherm_Mysliborz
-  defaultVisible: true
 MapLayer(Systherm_Mysliborz_Obreby):
   name: obreby
   displayName: Obręby
@@ -299,7 +295,6 @@ MapLayer(Systherm_Police_Gminy):
   name: gminy
   displayName: Gminy
   mapService: Systherm_Police
-  defaultVisible: false
 MapLayer(Systherm_Police_Obreby):
   name: obreby
   displayName: Obręby
@@ -339,7 +334,6 @@ MapLayer(Systherm_Pyrzyce_Gminy):
   name: gminy
   displayName: Gminy
   mapService: Systherm_Pyrzyce
-  defaultVisible: true
 MapLayer(Systherm_Pyrzyce_Obreby):
   name: obreby
   displayName: Obręby
@@ -379,7 +373,6 @@ MapLayer(Systherm_Stargard_Gminy):
   name: gminy
   displayName: Gminy
   mapService: Systherm_Stargard
-  defaultVisible: true
 MapLayer(Systherm_Stargard_Obreby):
   name: obreby
   displayName: Obręby
@@ -419,7 +412,6 @@ MapLayer(Systherm_Swinoujscie_Gminy):
   name: gminy
   displayName: Gminy
   mapService: Systherm_Swinoujscie
-  defaultVisible: true
 MapLayer(Systherm_Swinoujscie_Obreby):
   name: obreby
   displayName: Obręby
@@ -502,13 +494,11 @@ MapLayer(Geoportal_ARS_ORTOFOTO):
   name: Ortofoto
   displayName: Ortofoto
   mapService: Geoportal_ARS
-  defaultVisible: false
   additionalOptions: zoomOffset:=-6|maxExtent:=0,0,1228800,819200|resolutions:=25,12.5,6.25,3.125,1.5625,0.78125|urlParams:=service=ORTOFOTO,cs=EPSG2180,fileIDX=L\$\{z\}X\$\{x\}Y\$\{y\}.jpg
 MapLayer(Geoportal_ARS_TOPO):
   name: Topo
   displayName: Topo
   mapService: Geoportal_ARS
-  defaultVisible: false
   additionalOptions: zoomOffset:=0|maxExtent:=0,0,1228800,819200|resolutions:=1600,800,400,200,100,50,25,12.5,6.25,3.125,1.5625,0.78125|urlParams:=service=RASTER_TOPO,cs=EPSG2180,fileIDX=L\$\{z\}X\$\{x\}Y\$\{y\}.jpg
 
 MapService(Geoportal_DaneKatastralne):

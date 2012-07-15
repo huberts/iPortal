@@ -24,5 +24,7 @@ public class CommonData extends Controller {
         renderArgs.put("mapInitialY", Play.configuration.getProperty("map.initial.cartographer_x_coordinate"));
         renderArgs.put("mapInitialZ", Play.configuration.getProperty("map.initial.z"));
         renderArgs.put("urlSlashReplacement", Play.configuration.getProperty("url.slash_replacement"));
+        renderArgs.put("systhermSourceId", 0);
+        renderArgs.put("systhermServiceId", 0);
     }
 }

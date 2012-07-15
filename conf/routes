@@ -26,6 +26,9 @@ GET     /getCapabilities/{serviceUrl}           CapabilitiesGetter.getCapabiliti
 GET     /x/{x}/y/{y}/z/{z}                      Application.index
 GET     /                                       Application.index
 
+# Systherm Installation
+ GET    /systherm/{installation}                SysthermInstallation.index
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

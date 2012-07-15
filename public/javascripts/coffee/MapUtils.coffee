@@ -46,6 +46,20 @@ PORTAL.Utils.buildIdWithPrefix = (oldPrefixedId, newPrefix) ->
   parts[0] = newPrefix
   parts.join "-"
 
+
+PORTAL.Utils.systhermInstallation = ->
+  sourceId = PORTAL.configurationSettings.systhermSourceId
+  serviceId = PORTAL.configurationSettings.systhermServiceId
+  if sourceId==0 || serviceId==0
+    return
+  sourceElement = $("#toggler-"+sourceId)
+  serviceElement = $("#toggler-"+sourceId+"-"+serviceId)
+  if !serviceElement.is(":checked")
+    serviceElement.click();
+  sourceElement.siblings("i").click();
+  serviceElement.siblings("i").click();
+
+
 priv = {}
 
 priv.addWMSLayer = (layer) ->

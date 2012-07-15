@@ -5,11 +5,12 @@ PORTAL.prepareMap = ->
   do createLayersSwitcher
 
 PORTAL.finishMap = ->
+  PORTAL.Utils.sortLayers()
   PORTAL.map.setCenter(
     new OpenLayers.LonLat(PORTAL.configurationSettings.mapInitialX, PORTAL.configurationSettings.mapInitialY),
     PORTAL.configurationSettings.mapInitialZ
   )
-  PORTAL.Utils.sortLayers()
+  PORTAL.Utils.systhermInstallation()
 
 ###########################################################
 
