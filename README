@@ -40,6 +40,14 @@ Następnie modyfikujemy plik variables.less i ustawiamy:
 @textColor: @white;
 @iconSpritePath:          "../images/glyphicons-halflings.png";
 @iconWhiteSpritePath:     "../images/glyphicons-halflings-white.png";
+Modyfikacja pliku forms.less (ustawiony color: @black):
+// Shared size and type resets
+select,
+(...)
+.uneditable-input {
+(...)
+  color: @black;
+}
 Na końcu pliku bootstrap.less należy dołożyć import pliku bootswatch.less:
 @import "bootswatch.less";
 Całość kompilujemy przy pomocy komendy:
