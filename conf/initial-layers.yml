@@ -15,7 +15,7 @@ MapService(Systherm_Bierun):
   url: http://212.244.173.51/cgi-bin/bierun
   xCoordinate: 247050
   yCoordinate: 511300
-  zoomLevel: 6
+  zoomLevel: 4
   serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Bierun_Gminy):
@@ -55,6 +55,9 @@ MapService(Systherm_Choszczno):
   name: Choszczno
   displayName: Choszczno
   url: http://79.190.167.51/cgi-bin/choszczno
+  xCoordinate: 592300
+  yCoordinate: 270600
+  zoomLevel: 4
   serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Choszczno_Gminy):
@@ -94,6 +97,9 @@ MapService(Systherm_Gryfice):
   name: Gryfice
   displayName: Gryfice
   url: http://83.0.172.114/cgi-bin/gryfice
+  xCoordinate: 676625
+  yCoordinate: 251425
+  zoomLevel: 4
   serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Gryfice_Gminy):
@@ -133,6 +139,9 @@ MapService(Systherm_KamienPomorski):
   name: KamienPomorski
   displayName: Kamień Pomorski
   url: http://83.168.84.21/cgi-bin/kamien
+  xCoordinate: 680525
+  yCoordinate: 226775
+  zoomLevel: 4
   serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_KamienPomorski_Gminy):
@@ -172,6 +181,9 @@ MapService(Systherm_Koscian):
   name: Koscian
   displayName: Kościan
   url: http://88.199.154.173/cgi-bin/koscian
+  xCoordinate: 465625
+  yCoordinate: 344575
+  zoomLevel: 4
   serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Koscian_Gminy):
@@ -211,6 +223,9 @@ MapService(Systherm_Lobez):
   name: Lobez
   displayName: Łobez
   url: http://80.52.227.211/cgi-bin/lobez
+  xCoordinate: 649025
+  yCoordinate: 267975
+  zoomLevel: 4
   serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Lobez_Gminy):
@@ -250,6 +265,9 @@ MapService(Systherm_Mysliborz):
   name: Mysliborz
   displayName: Myślibórz
   url: http://83.3.190.54/cgi-bin/mysliborz
+  xCoordinate: 569375
+  yCoordinate: 229875
+  zoomLevel: 4
   serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Mysliborz_Gminy):
@@ -289,6 +307,9 @@ MapService(Systherm_Police):
   name: Police
   displayName: Police
   url: http://46.170.65.211/cgi-bin/police
+  xCoordinate: 637025
+  yCoordinate: 203575
+  zoomLevel: 4
   serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Police_Gminy):
@@ -328,6 +349,9 @@ MapService(Systherm_Pyrzyce):
   name: Pyrzyce
   displayName: Pyrzyce
   url: http://78.159.69.27/cgi-bin/pyrzyce
+  xCoordinate: 590825
+  yCoordinate: 234075
+  zoomLevel: 4
   serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Pyrzyce_Gminy):
@@ -367,6 +391,9 @@ MapService(Systherm_Stargard):
   name: Stargard
   displayName: Stargard
   url: http://mapserv.podgik.stargard.pl/mapserv/mapserv?MAP=/usr/local/wms/htdocs/stargard.map
+  xCoordinate: 613125
+  yCoordinate: 254075
+  zoomLevel: 4
   serviceType: WMS
   mapSource: Systherm
 MapLayer(Systherm_Stargard_Gminy):
@@ -405,6 +432,9 @@ MapLayer(Systherm_Stargard_PunktyAdresowe):
 MapService(Systherm_Swinoujscie):
   name: Swinoujscie
   displayName: Świnoujście
+  xCoordinate: 674625
+  yCoordinate: 195125
+  zoomLevel: 4
   url: http://80.54.123.217/cgi-bin/swinoujscie
   serviceType: WMS
   mapSource: Systherm
