@@ -13,6 +13,7 @@ PORTAL.finishMap = ->
   )
   PORTAL.navHistory.onNextChange();
   PORTAL.navHistory.onPreviousChange();
+  PORTAL.Utils.systhermInstallation()
 
 ###########################################################
 
