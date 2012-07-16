@@ -1,0 +1,39 @@
+MapSetting(app.use_arms):
+  key: app.use_arms
+  value: 0
+
+MapSetting(admin.password):
+  key: admin.password
+  value: c93ccd78b2076528346216b3b2f701e6
+
+MapSetting(map.bounding_box.left):
+  key: map.bounding_box.left
+  value: 130000
+
+MapSetting(map.bounding_box.bottom):
+  key: map.bounding_box.bottom
+  value: 120000
+
+MapSetting(map.bounding_box.right):
+  key: map.bounding_box.right
+  value: 980000
+
+MapSetting(map.bounding_box.top):
+  key: map.bounding_box.top
+  value: 780000
+
+MapSetting(map.resolutions):
+  key: map.resolutions
+  value: '[1600,800,400,200,100,50,25,12.5,6.25,3.125,1.5625,0.78125]'
+
+MapSetting(map.initial.cartographer_x_coordinate):
+  key: map.initial.cartographer_x_coordinate
+  value: 620000
+
+MapSetting(map.initial.cartographer_y_coordinate):
+  key: map.initial.cartographer_y_coordinate
+  value: 245000
+
+MapSetting(map.initial.z):
+  key: map.initial.z
+  value: 4

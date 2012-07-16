@@ -15,26 +15,31 @@
 
 <div id="app_content" class="ui-layout-center">#{openLayersMap /}</div>
 <div class="ui-layout-west">
-    <ul id="tab-bar" class="nav nav-tabs">
-        <li class="active"><a href="#layers" data-toggle="tab">&{'app.admin.layers'}</a></li>
-        <li><a href="#locations" data-toggle="tab">&{'app.admin.locations'}</a></li>
-        <li><a href="#owner" data-toggle="tab">&{'app.admin.owner'}</a></li>
-        <li class="pull-right"><a class="btn-primary" href="@{Admin.logout()}">&{'app.admin.logoutButton'}</a></li>
-    </ul>
-
-    <div class="tab-content ui-layout-content">
-        <div class="tab-pane active" id="layers">
-            <div id="app_layers">
-                #{layersSwitcher sources:sources, admin: 1 /}
-            </div>
-        </div>
-        <div class="tab-pane" id="locations">
-            #{adminLocations locations:locations /}
-        </div>
-        <div class="tab-pane" id="owner">
-            #{adminOwner /}
-        </div>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container" style="width: auto;">
+        <a class="btn btn-primary pull-right" href="@{Admin.logout()}">&{'app.admin.logoutButton'}</a>
+        <ul id="tab-bar" class="nav">
+          <li class="active"><a href="#layers" data-toggle="tab">&{'app.admin.layers'}</a></li>
+          <li><a href="#locations" data-toggle="tab">&{'app.admin.locations'}</a></li>
+          <li><a href="#settings" data-toggle="tab">&{'app.admin.settings'}</a></li>
+        </ul>
+      </div>
     </div>
+  </div>
+  <div class="tab-content ui-layout-content">
+    <div class="tab-pane active" id="layers">
+      <div id="app_layers">
+        #{layersSwitcher sources:sources, admin: 1 /}
+      </div>
+    </div>
+    <div class="tab-pane" id="locations">
+      #{adminLocations locations:locations /}
+    </div>
+    <div class="tab-pane" id="settings">
+      #{adminSettings /}
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">

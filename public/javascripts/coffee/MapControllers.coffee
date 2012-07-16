@@ -57,7 +57,13 @@ PORTAL.createControllers = ->
   }
 
 
-  PORTAL.map.addControls [PORTAL.zoomIn]
+  PORTAL.map.addControls [PORTAL.zoomIn, PORTAL.navHistory]
+
+  $("#open_layers_button_history_prev").click ->
+    PORTAL.navHistory.previous.trigger()
+
+  $("#open_layers_button_history_next").click ->
+    PORTAL.navHistory.next.trigger()
 
   $("#open_layers_button_extent").click ->
     PORTAL.map.zoomToMaxExtent()
@@ -81,6 +87,14 @@ PORTAL.createControllers = ->
   $("#getUrlModal a").click -> $("#getUrlModal").modal "hide"
 
 
+  $("#open_layers_button_history_prev").tooltip {
+    title: PORTAL.messages.historyPrev,
+    placement: "bottom"
+  }
+  $("#open_layers_button_history_next").tooltip {
+    title: PORTAL.messages.historyNext,
+    placement: "bottom"
+  }
   $("#open_layers_button_extent").tooltip {
     title: PORTAL.messages.zoomToExtent,
     placement: "bottom"
