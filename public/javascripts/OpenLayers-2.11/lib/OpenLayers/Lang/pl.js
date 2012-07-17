@@ -73,7 +73,7 @@ OpenLayers.Lang.en = {
         "<a href='http://trac.openlayers.org/wiki/${layerLib}' " +
         "target='_blank'>click here</a>",
 
-    'Scale = 1 : ${scaleDenom}': "1 : ${scaleDenom}",
+    'Scale = 1 : ${scaleDenom}': "skala: 1 : ${scaleDenom}",
     
     //labels for the graticule control
     'W': 'W',
