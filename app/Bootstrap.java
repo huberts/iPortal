@@ -11,6 +11,7 @@ public class Bootstrap extends Job {
         if (MapLayer.count()==0) {
             Fixtures.loadModels("initial-layers.yml");
             Fixtures.loadModels("initial-locations.yml");
+            Fixtures.loadModels("initial-settings.yml");
         }
     }
 

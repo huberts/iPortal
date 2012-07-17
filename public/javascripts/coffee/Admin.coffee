@@ -1,6 +1,7 @@
 PORTAL.Admin = {}
 
 PORTAL.activateAdmin = ->
+  do activateSettings
   do activateEditModal
   do activateLocationsTree
   do activateLocationsModal
@@ -17,6 +18,42 @@ PORTAL.activateAdmin = ->
   $(".source-edit").click -> PORTAL.Admin.editSource $(this)
   $(".service-edit").click -> PORTAL.Admin.editService $(this)
   $(".location-edit").click -> PORTAL.Admin.editLocation $(this)
+
+activateSettings = ->
+  $("#settings h3, #settings h4, #settings i.icon-plus, #settings i.icon-minus").click -> PORTAL.Handlers.treeClick $(this)
+  $('.alert > .close').click ->
+     $('.alert').hide "fast";
+  $("#savePassword").on "click", ->
+    oldPassword = $("#oldPassword").val()
+    newPassword = $("#newPassword").val()
+    confirmPassword = $("#confirmPassword").val()
+    alertbox = $(this).siblings(".alert")
+    alertbox.hide 'fast'
+    if newPassword.length < 6
+      alertbox.removeClass("alert-success").addClass("alert-error")
+      alertbox.children("span").text "Hasło musi mieć conajmniej 6 znaków"
+      alertbox.show 'fast'
+    else if confirmPassword == newPassword
+      $(this).button('loading')
+      $.ajax {
+        type: "PUT",
+        url: "admin/changePassword",
+        data: {oldPassword: oldPassword, newPassword: newPassword},
+        success: (result) ->
+          $("#savePassword").button "reset"
+          alertbox.removeClass("alert-error").addClass("alert-success")
+          alertbox.children("span").text "Hasło zostało pomyślnie zmienione"
+          alertbox.show 'fast'
+        error: (result) ->
+          $("#savePassword").button "reset"
+          alertbox.removeClass("alert-success").addClass("alert-error")
+          alertbox.children("span").text "Nie poprawne hasło"
+          alertbox.show 'fast'
+      }
+    else
+      alertbox.removeClass("alert-success").addClass("alert-error")
+      alertbox.children("span").text "Nowe hasło nie zgadza się z polem weryfikacji hasła"
+      alertbox.show 'fast'
 
 activateEditModal = ->
   $("#adminEditModal").on "shown", ->

@@ -1,7 +1,7 @@
 package controllers;
 
-import play.Play;
 import play.data.validation.Required;
+import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.mvc.*;
 
@@ -21,7 +21,7 @@ public class Admin extends Controller {
 
     // Every call is checked for authentication, except those listed below
     @Before(unless={"login", "authenticate", "logout"})
-    static void checkAccess() throws Throwable {
+    private static void checkAccess() throws Throwable {
         if(!session.contains("loggedin")) {
             login();
         }
@@ -58,8 +58,11 @@ public class Admin extends Controller {
         }
     }
 
-    private static boolean checkUserPass(String password) {
-        return password.equals(Play.configuration.getProperty("admin.password", "1234"));
+    private static boolean checkUserPass(String inputPassword) {
+        MapSetting panelPassword = MapSetting.findByKey(MapSetting.ADMIN_PASSWORD);
+        String panelPasswordEncrypted = panelPassword.value;
+        String inputPasswordEncrypted = MapSetting.encryptPassword(inputPassword);
+        return inputPasswordEncrypted.equalsIgnoreCase(panelPasswordEncrypted);
     }
 
     public static void addSource(@Required String name)
@@ -251,6 +254,21 @@ public class Admin extends Controller {
         location.delete();
         request.format = "json";
         renderTemplate("@id", id);
+    }
+
+    @Transactional
+    public static void changePassword(@Required String oldPassword, @Required String newPassword)
+    {
+        MapSetting password = MapSetting.findByKey(MapSetting.ADMIN_PASSWORD);
+        String encryptedOldPassword = MapSetting.encryptPassword(oldPassword);
+        String encryptedPanelPassword = password.value;
+        if (encryptedPanelPassword.compareToIgnoreCase(encryptedOldPassword) != 0)
+            error(418, "Invalid password");
+
+        MapSetting.createNewSalt();
+        password.value = MapSetting.encryptPassword(newPassword);
+        password.save();
+        renderText("OK");
     }
 
 }
