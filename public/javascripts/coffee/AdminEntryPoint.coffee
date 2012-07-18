@@ -8,3 +8,4 @@ $ ->
   do PORTAL.activateAdminAddSource
   do PORTAL.activateAdminUpload
   do PORTAL.finishMap
+  do PORTAL.tooltips
