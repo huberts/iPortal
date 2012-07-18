@@ -58,5 +58,7 @@ app.admin.confirmPassword=Potwierdź nowe hasło
 app.admin.mapHeader=Ustawienia mapy
 app.admin.initialMapCoordinates=Początkowe położenie mapy
 
+app.admin.uploadModal=Dodaj godło
+app.admin.uploadModalFile=Plik z godłem
 app.admin.uploadSuccess=Plik został wysłany
 app.admin.uploadModalConfirm=Zamknij
