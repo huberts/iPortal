@@ -83,8 +83,13 @@ canAddLocation = -> $("#adminAddLocationModalName").val().length
 
 activateLayersTree = ->
   $("#app_layers, #app_layers .tier1_content, #app_layers .tier2_content").bind "sortupdate", sortLayersSave
-  $("#layers .tier2_header > button").click -> setMapOnLocation $(this)
-  $(".service-set").click -> PORTAL.Admin.setService $(this)
+  $("#layers .tier2_header > .service-location").click -> setMapOnServiceLocation $(this)
+  $(".service-setlocation").click -> PORTAL.Admin.setServiceLocation $(this)
+  $(".service-setarms").click -> PORTAL.Admin.setServiceArms $(this)
+
+setMapOnServiceLocation = (element) ->
+  coordinates = element.data("location").split "|"
+  PORTAL.map.setCenter new OpenLayers.LonLat(coordinates[1], coordinates[0]), coordinates[2]
 
 sortLayersSave = ->
   listOfLayers = []
@@ -179,7 +184,7 @@ PORTAL.Admin.setLocation = (element) ->
       element.parent().siblings("button").val(xCoordinate+"|"+yCoordinate+"|"+zoomLevel)
   }
 
-PORTAL.Admin.setService = (element) ->
+PORTAL.Admin.setServiceLocation = (element) ->
   wmsId = element.data("id")
   xCoordinate = PORTAL.map.getCenter().lat.toFixed(0)
   yCoordinate = PORTAL.map.getCenter().lon.toFixed(0)
@@ -189,8 +194,18 @@ PORTAL.Admin.setService = (element) ->
     url: "admin/editService",
     data: {id: wmsId, xCoordinate: xCoordinate, yCoordinate: yCoordinate, zoomLevel: zoomLevel},
     success: (result) ->
-      element.parent().siblings("button").val(xCoordinate+"|"+yCoordinate+"|"+zoomLevel)
+      element.parent().siblings(".service-showlocation").data("location", xCoordinate+"|"+yCoordinate+"|"+zoomLevel)
   }
+
+PORTAL.Admin.setServiceArms = (element) ->
+  wmsId = element.data("id")
+  input = $("<input/>", {type: "hidden", name: "id", value: wmsId})
+  $("#adminUploadModal form").append(input)
+  $("#adminUploadModal iframe").off("load").on "load", ->
+    result = $(this).contents().find("img.result")
+    img = element.closest(".tier2").find(".service-location > img")
+    img.attr("src", result.attr("src")) if result && img
+  $("#adminUploadModal").modal 'show'
 
 PORTAL.Admin.defaultLayer = (element) ->
   layerId = element.data("id")
