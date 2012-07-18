@@ -28,12 +28,12 @@ MapSetting(map.resolutions):
 
 MapSetting(map.initial.cartographer_x_coordinate):
   key: map.initial.cartographer_x_coordinate
-  value: 620000
+  value: 460000
 
 MapSetting(map.initial.cartographer_y_coordinate):
   key: map.initial.cartographer_y_coordinate
-  value: 245000
+  value: 500000
 
 MapSetting(map.initial.z):
   key: map.initial.z
-  value: 4
+  value: 0
