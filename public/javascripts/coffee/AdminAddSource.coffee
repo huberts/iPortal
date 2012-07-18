@@ -21,6 +21,7 @@ doAddSource = ->
     success: (response) ->
       $.extend response, {name: sourceName}
       createSourceView response
+      PORTAL.tooltips()
   }
 
 createSourceView = (source) ->

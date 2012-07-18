@@ -167,6 +167,7 @@ PORTAL.Admin.addLocation = (element) ->
           tierHeader.append(plus).append(" ").append(button.append(arrow)).append(" ").append(h)
           tierHeader.append(pull_right.append(set).append(" ").append(edit).append(" ").append(remove))
           parent.append(tier.append(tierHeader).append(tierContent))
+          PORTAL.tooltips()
           $("#adminAddLocationModal").modal "hide"
       }
   $("#adminAddLocationModal").modal 'show'

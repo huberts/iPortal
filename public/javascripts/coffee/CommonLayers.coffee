@@ -35,6 +35,7 @@ hideModal = -> $("#addWmsModal").modal "hide"
 PORTAL.Layers.doAddNewWms = (srcId, wmsId) ->
   addWmsView srcId, wmsId
   PORTAL.Layers.addOLLayers srcId, wmsId
+  PORTAL.tooltips()
 
 addWmsView = (srcId, wmsId) ->
   wmsVisibleName = $("#addWmsModalVisibleName").val()
