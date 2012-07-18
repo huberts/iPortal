@@ -62,3 +62,6 @@ app.admin.uploadModal=Dodaj godło
 app.admin.uploadModalFile=Plik z godłem
 app.admin.uploadSuccess=Plik został wysłany
 app.admin.uploadModalConfirm=Zamknij
+
+app.help.modalHeader=Informacje
+app.help.modalConfirm=Zamknij
