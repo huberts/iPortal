@@ -102,12 +102,16 @@ PORTAL.Handlers.removeLayer = (layer) ->
     wmsCheckbox              = $(this).parents(".tier2").find(".wms-toggler")
     $(this).remove()
 
-    if priv.areAllLayersActivated layerCheckboxesOnMyLevel
-      priv.setCheckboxState wmsCheckbox, priv.STATE_ON
-    else if priv.areAllLayersDeactivated layerCheckboxesOnMyLevel
-      priv.setCheckboxState wmsCheckbox, priv.STATE_OFF
+    hasLayers = layerCheckboxesOnMyLevel.find(".layer-toggler").length > 0
+    if hasLayers
+      if priv.areAllLayersActivated layerCheckboxesOnMyLevel
+        priv.setCheckboxState wmsCheckbox, priv.STATE_ON
+      else if priv.areAllLayersDeactivated layerCheckboxesOnMyLevel
+        priv.setCheckboxState wmsCheckbox, priv.STATE_OFF
+      else
+        priv.setCheckboxState wmsCheckbox, priv.STATE_MIDDLE
     else
-      priv.setCheckboxState wmsCheckbox, priv.STATE_MIDDLE
+      wmsCheckbox.parent().find("i.service-remove").click()
 
 
 priv = {}
