@@ -41,13 +41,18 @@
       <div class="tier2_header clearfix">
         <i class="icon-plus icon-white"></i>
         <input id="toggler-${source.id}-${service.id}" type="checkbox" class="wms-toggler" />
-        <button type="button" class="btn btn-mini btn-primary" value="${service.xCoordinate}|${service.yCoordinate}|${service.zoomLevel}">
-          <i class="icon-arrow-right icon-white"></i>
-        </button>
+        #{if service.coatOfArms}
+        <a href="#" class="service-location" data-id="${service.id}" data-location="${service.xCoordinate}|${service.yCoordinate}|${service.zoomLevel}"><img src="/public/images/arms/${service.coatOfArms}"></a>
+        #{/if}
+        #{else}
+        <a href="#" class="service-location" data-id="${service.id}" data-location="${service.xCoordinate}|${service.yCoordinate}|${service.zoomLevel}"><img src="/public/images/arms_default.png"></a>
+        #{/else}
+        </a>
         <h4>${service.displayName}</h4>
         #{if _admin}
         <div class="pull-right">
-          <i class="service-set icon-white icon-globe" data-id="${service.id}"></i>
+          <i class="service-setarms icon-white icon-bookmark" data-id="${service.id}"></i>
+          <i class="service-setlocation icon-white icon-globe" data-id="${service.id}"></i>
           <i class="service-edit icon-white icon-pencil" data-id="${service.id}"></i>
           <i class="service-remove icon-white icon-remove" data-id="${service.id}"></i>
         </div>
