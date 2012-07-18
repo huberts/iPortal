@@ -6,4 +6,5 @@ $ ->
   do PORTAL.activateMapLocations
   do PORTAL.activateAdmin
   do PORTAL.activateAdminAddSource
+  do PORTAL.activateAdminUpload
   do PORTAL.finishMap
