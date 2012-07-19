@@ -31,7 +31,7 @@ activateSettings = ->
     alertbox.hide 'fast'
     if newPassword.length < 6
       alertbox.removeClass("alert-success").addClass("alert-error")
-      alertbox.children("span").text "Hasło musi mieć conajmniej 6 znaków"
+      alertbox.children("span").text "Hasło musi mieć co najmniej 6 znaków"
       alertbox.show 'fast'
     else if confirmPassword == newPassword
       $(this).button('loading')
