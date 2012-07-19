@@ -1,10 +1,13 @@
 package controllers;
 
+import play.Play;
 import play.data.validation.Required;
 import play.db.jpa.Transactional;
 import play.i18n.Messages;
+import play.libs.Files;
 import play.mvc.*;
 
+import java.io.File;
 import java.util.*;
 
 import models.*;
@@ -20,7 +23,7 @@ import models.*;
 public class Admin extends Controller {
 
     // Every call is checked for authentication, except those listed below
-    @Before(unless={"login", "authenticate", "logout"})
+    @Before(unless={"login", "authenticate", "logout", "empty"})
     private static void checkAccess() throws Throwable {
         if(!session.contains("loggedin")) {
             login();
@@ -271,4 +274,20 @@ public class Admin extends Controller {
         renderText("OK");
     }
 
+    public static void empty()
+    {
+        render("@upload");
+    }
+
+    public static void uploadArms(Long id, @Required File uploadFile) throws Exception
+    {
+        MapService mapService = MapService.findById(id);
+        mapService.coatOfArms = uploadFile.getName();
+        mapService.save();
+        File arms = Play.getFile("/public/images/arms/" + uploadFile.getName());
+        Files.copy(uploadFile, arms);
+        Files.delete(uploadFile);
+        boolean success = true;
+        renderTemplate("@upload", success, arms);
+    }
 }

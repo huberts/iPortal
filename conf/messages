@@ -12,8 +12,8 @@ app.ownWms.loadLayers=Wczytaj warstwy
 app.ownWms.loadLayersFailure=Wystąpił błąd podczas wczytywania warstw
 app.ownWms.modalConfirm=Dodaj
 
-app.controller.historyPrev=przejdź wstecz
-app.controller.historyNext=przejdź dalej
+app.controller.historyPrev=poprzedni widok
+app.controller.historyNext=następny widok
 app.controller.zoomToExtent=pokaż całość
 app.controller.zoomIn=przybliż
 app.controller.saveUrl=zapisz odnośnik
@@ -31,7 +31,6 @@ app.admin.loginButton=Zaloguj
 app.admin.logoutButton=Wyloguj
 app.admin.remember=Zapamiętaj
 app.admin.error=Niepoprawne hasło
-app.admin.logout=Zostałeś wylogowany
 
 app.admin.layers=Warstwy
 app.admin.locations=Położenia
@@ -58,3 +57,17 @@ app.admin.confirmPassword=Potwierdź nowe hasło
 
 app.admin.mapHeader=Ustawienia mapy
 app.admin.initialMapCoordinates=Początkowe położenie mapy
+
+app.admin.uploadModal=Dodaj godło
+app.admin.uploadModalFile=Plik z godłem
+app.admin.uploadSuccess=Plik został wysłany
+app.admin.uploadModalConfirm=Zamknij
+
+app.help.modalHeader=Informacje
+app.help.modalConfirm=Zamknij
+
+app.tooltips.remove=Usuń
+app.tooltips.edit=Edytuj
+app.tooltips.layerDefaultVisible=Warstwa domyślnie widoczna
+app.tooltips.setLocation=Ustaw bieżący widok mapy jako położenie
+app.tooltips.setArms=Dodaj godło WMS

@@ -35,6 +35,7 @@ hideModal = -> $("#addWmsModal").modal "hide"
 PORTAL.Layers.doAddNewWms = (srcId, wmsId) ->
   addWmsView srcId, wmsId
   PORTAL.Layers.addOLLayers srcId, wmsId
+  PORTAL.tooltips()
 
 addWmsView = (srcId, wmsId) ->
   wmsVisibleName = $("#addWmsModalVisibleName").val()
@@ -43,15 +44,15 @@ addWmsView = (srcId, wmsId) ->
   tier2Header = $("<div/>", {class: "tier2_header clearfix"})
   plus = $("<i/>", {class: "icon-plus icon-white", click: -> PORTAL.Handlers.treeClick $(this)})
   input = $("<input/>", {id: "toggler-"+srcId+"-"+wmsId, type: "checkbox", class: "wms-toggler", change: -> PORTAL.Handlers.wmsToggled $(this)})
-  button = $("<button/>", {class: "btn btn-mini btn-primary", type: "button", click: -> setMapOnLocation $(this)})
-  arrow = $("<i/>", {class: "icon-arrow-right icon-white"})
+  a = $("<a/>", {href :"#", class: "service-location", "data-id": wmsId, "data-location": "||"})
+  img = $("<img/>", {src: "/public/images/arms_default.png"})
   h4 = $("<h4/>", {html: wmsVisibleName, click: -> PORTAL.Handlers.treeClick $(this)})
   pull_right = $("<div/>", {class: "pull-right"})
   remove = $("<i/>", {class: "service-remove icon-remove icon-white", "data-id": wmsId , click: -> PORTAL.Handlers.removeWms $(this)})
   tier2Content = $("<div/>", {class: "tier2_content"})
   PORTAL.Handlers.sort tier2Content
 
-  tier2Header.append(plus).append(" ").append(input).append(" ").append(button.append(arrow)).append(" ").append(h4).append(pull_right.append(remove))
+  tier2Header.append(plus).append(" ").append(input).append(" ").append(a.append(img)).append(" ").append(h4).append(pull_right.append(remove))
   tier2.append(tier2Header).append(tier2Content)
   $('#toggler-' + srcId).parent().parent().children(".tier1_content").append tier2
 

@@ -5,3 +5,4 @@ $ ->
   do PORTAL.activateLayers
   do PORTAL.activateMapLocations
   do PORTAL.finishMap
+  do PORTAL.tooltips

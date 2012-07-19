@@ -25,6 +25,8 @@ public class MapService extends Model {
 
     public  Long sort;
 
+    public String coatOfArms;
+
     @Required
     @OneToOne
     public MapServiceType serviceType;
