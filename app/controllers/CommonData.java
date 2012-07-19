@@ -16,6 +16,7 @@ public class CommonData extends Controller {
     @Before
     private static void commonData() {
         renderArgs.put("useArms", Boolean.parseBoolean(MapSetting.findByKey(MapSetting.APPLICATION_ARMS).value));
+        renderArgs.put("appOwner", MapSetting.findByKey(MapSetting.APPLICATION_TITLE).value);
         renderArgs.put("mapBoundingBoxLeft", Play.configuration.getProperty("map.bounding_box.left"));
         renderArgs.put("mapBoundingBoxBottom", Play.configuration.getProperty("map.bounding_box.bottom"));
         renderArgs.put("mapBoundingBoxRight", Play.configuration.getProperty("map.bounding_box.right"));

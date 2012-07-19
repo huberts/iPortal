@@ -34,6 +34,8 @@ public class MapSetting extends Model{
     public static final String MAP_INITIAL_Y_COORDINATE = "map.initial.cartographer_y_coordinate";
     public static final String MAP_INITIAL_Z = "map.initial.z";
     public static final String APPLICATION_ARMS = "app.use_arms";
+    public static final String APPLICATION_TITLE = "app.title";
+
 
     public static MapSetting findByKey(String key)
     {

@@ -2,6 +2,10 @@ MapSetting(app.use_arms):
   key: app.use_arms
   value: 0
 
+MapSetting(app.title):
+  key: app.title
+  value: Systherm-Info
+
 MapSetting(admin.password):
   key: admin.password
   value: c93ccd78b2076528346216b3b2f701e6
