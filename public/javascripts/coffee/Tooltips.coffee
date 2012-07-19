@@ -20,7 +20,7 @@ PORTAL.tooltips = ->
     title: PORTAL.messages.setArms,
     placement: "bottom"
   }
-  $(".service-view, .initial-view").tooltip {
+  $(".service-showlocation, .initial-showlocation").tooltip {
     title: PORTAL.messages.view,
     placement: "bottom"
   }
