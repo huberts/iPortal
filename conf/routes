@@ -22,7 +22,6 @@ DELETE  /admin/deleteLocation                   Admin.deleteLocation
 PUT     /admin/orderLayers                      Admin.orderLayers
 PUT     /admin/changePassword                   Admin.changePassword
 PUT     /admin/changeInitialMap                 Admin.changeInitialMap
-GET     /admin/empty                            Admin.empty
 POST    /admin/uploadArms                       Admin.uploadArms
 
 # Main

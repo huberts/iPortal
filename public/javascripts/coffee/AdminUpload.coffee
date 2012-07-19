@@ -8,7 +8,7 @@ PORTAL.activateAdminUpload = ->
 
 prepareModal = ->
   $("#adminUploadModal iframe").hide()
-  $("#adminUploadModal iframe").attr "src", "/admin/empty"
+  $("#adminUploadModal iframe").attr "src", "about:blank"
   $("#adminUploadModal form input[type='reset']").click()
 
 cleanUpModal = ->

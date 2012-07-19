@@ -23,7 +23,7 @@ import models.*;
 public class Admin extends Controller {
 
     // Every call is checked for authentication, except those listed below
-    @Before(unless={"login", "authenticate", "logout", "empty"})
+    @Before(unless={"login", "authenticate", "logout"})
     private static void checkAccess() throws Throwable {
         if(!session.contains("loggedin")) {
             login();
@@ -289,11 +289,6 @@ public class Admin extends Controller {
         zoomLevelSetting.save();
 
         renderText("OK");
-    }
-
-    public static void empty()
-    {
-        render("@upload");
     }
 
     public static void uploadArms(Long id, @Required File uploadFile) throws Exception
