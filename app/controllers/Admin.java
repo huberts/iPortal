@@ -274,6 +274,23 @@ public class Admin extends Controller {
         renderText("OK");
     }
 
+    public static void changeInitialMap(@Required Long xCoordinate, @Required Long yCoordinate, @Required Long zoomLevel)
+    {
+        MapSetting xCoordinateSetting = MapSetting.findByKey(MapSetting.MAP_INITIAL_X_COORDINATE);
+        MapSetting yCoordinateSetting = MapSetting.findByKey(MapSetting.MAP_INITIAL_Y_COORDINATE);
+        MapSetting zoomLevelSetting = MapSetting.findByKey(MapSetting.MAP_INITIAL_Z);
+
+        xCoordinateSetting.value = xCoordinate.toString();
+        yCoordinateSetting.value = yCoordinate.toString();
+        zoomLevelSetting.value = zoomLevel.toString();
+
+        xCoordinateSetting.save();
+        yCoordinateSetting.save();
+        zoomLevelSetting.save();
+
+        renderText("OK");
+    }
+
     public static void empty()
     {
         render("@upload");
