@@ -291,7 +291,7 @@ public class Admin extends Controller {
         renderText("OK");
     }
 
-    public static void uploadArms(Long id, @Required File uploadFile) throws Exception
+    public static void uploadArms(@Required Long id, @Required File uploadFile) throws Exception
     {
         MapService mapService = MapService.findById(id);
         mapService.coatOfArms = uploadFile.getName();
@@ -299,7 +299,27 @@ public class Admin extends Controller {
         File arms = Play.getFile("/public/images/arms/" + uploadFile.getName());
         Files.copy(uploadFile, arms);
         Files.delete(uploadFile);
-        boolean success = true;
-        renderTemplate("@upload", success, arms);
+        renderTemplate("@upload", arms);
+    }
+
+    public static void uploadOwnerArms(@Required boolean armsUse, String appTitle, File armsFile) throws Exception
+    {
+        MapSetting useArmsSetting = MapSetting.findByKey(MapSetting.APPLICATION_ARMS);
+        MapSetting appTitleSetting = MapSetting.findByKey(MapSetting.APPLICATION_TITLE);
+        File arms = Play.getFile("/public/images/app_arms.png");
+
+        useArmsSetting.value = Boolean.toString(armsUse);
+        useArmsSetting.save();
+        appTitleSetting.value = appTitle;
+        appTitleSetting.save();
+
+        if (armsFile != null)
+        {
+            Files.copy(armsFile, arms);
+            Files.delete(armsFile);
+        }
+
+        String title = armsUse ? appTitleSetting.value : Messages.get("app.owner");
+        renderTemplate("@upload", armsUse, arms, title);
     }
 }

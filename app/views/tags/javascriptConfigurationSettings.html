@@ -1,5 +1,7 @@
 var PORTAL = {}
 PORTAL.configurationSettings = {
+  useArms: ${play.mvc.Scope.RenderArgs.current().useArms},
+  appOwner: "${play.mvc.Scope.RenderArgs.current().appOwner}",
   mapBoundingLeft: ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxLeft},
   mapBoundingBottom: ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxBottom},
   mapBoundingRight: ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxRight},
