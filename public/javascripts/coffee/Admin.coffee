@@ -205,7 +205,7 @@ PORTAL.Admin.setServiceArms = (element) ->
   $("#adminUploadModal iframe").off("load").on "load", ->
     result = $(this).contents().find("img.result")
     img = element.closest(".tier2").find(".service-showlocation > img")
-    img.attr("src", result.attr("src")) if result && img
+    img.attr("src", result.attr("src")) if result.length && img.result.length
   $("#adminUploadModal").modal 'show'
 
 PORTAL.Admin.defaultLayer = (element) ->
