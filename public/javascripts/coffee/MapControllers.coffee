@@ -111,3 +111,8 @@ PORTAL.createControllers = ->
     title: PORTAL.messages.goToLocation,
     placement: "bottom"
   }
+
+  $("#open_layers_button_help").tooltip {
+  title: PORTAL.messages.help,
+  placement: "bottom"
+  }

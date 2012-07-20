@@ -18,6 +18,7 @@ app.controller.zoomToExtent=pokaż całość
 app.controller.zoomIn=przybliż
 app.controller.saveUrl=zapisz odnośnik
 app.controller.goToLocation=przejdź do położenia
+app.controller.help=pomoc
 
 app.getUrl.modalHeader=Zapisz odnośnik
 app.getUrl.modalConfirm=Zamknij
