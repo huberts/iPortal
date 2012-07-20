@@ -67,8 +67,8 @@ app.admin.uploadModalConfirm=Zamknij
 app.help.modalHeader=Informacje
 app.help.modalConfirm=Zamknij
 
-app.tooltips.remove=Usuń
-app.tooltips.edit=Edytuj
-app.tooltips.layerDefaultVisible=Warstwa domyślnie widoczna
-app.tooltips.setLocation=Ustaw bieżący widok mapy jako położenie
-app.tooltips.setArms=Dodaj godło WMS
+app.tooltips.remove=usuwanie
+app.tooltips.edit=edycja
+app.tooltips.layerDefaultVisible=warstwa domyślnie widoczna
+app.tooltips.setLocation=bieżący widok mapy jako położenie
+app.tooltips.setArms=zmiana godła WMS
