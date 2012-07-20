@@ -17,10 +17,10 @@ public class CommonData extends Controller {
     private static void commonData() {
         renderArgs.put("useArms", Boolean.parseBoolean(MapSetting.findByKey(MapSetting.APPLICATION_ARMS).value));
         renderArgs.put("appOwner", MapSetting.findByKey(MapSetting.APPLICATION_TITLE).value);
-        renderArgs.put("mapBoundingBoxLeft", Play.configuration.getProperty("map.bounding_box.left"));
-        renderArgs.put("mapBoundingBoxBottom", Play.configuration.getProperty("map.bounding_box.bottom"));
-        renderArgs.put("mapBoundingBoxRight", Play.configuration.getProperty("map.bounding_box.right"));
-        renderArgs.put("mapBoundingBoxTop", Play.configuration.getProperty("map.bounding_box.top"));
+        renderArgs.put("mapBoundingBoxLeft", MapSetting.findByKey(MapSetting.MAP_BOUNDINGBOX_LEFT).value);
+        renderArgs.put("mapBoundingBoxBottom", MapSetting.findByKey(MapSetting.MAP_BOUNDINGBOX_BOTTOM).value);
+        renderArgs.put("mapBoundingBoxRight", MapSetting.findByKey(MapSetting.MAP_BOUNDINGBOX_RIGHT).value);
+        renderArgs.put("mapBoundingBoxTop", MapSetting.findByKey(MapSetting.MAP_BOUNDINGBOX_TOP).value);
         renderArgs.put("mapResolutions", MapSetting.findByKey(MapSetting.MAP_RESOLUTIONS).value);
         renderArgs.put("mapInitialX", MapSetting.findByKey(MapSetting.MAP_INITIAL_Y_COORDINATE).value);
         renderArgs.put("mapInitialY", MapSetting.findByKey(MapSetting.MAP_INITIAL_X_COORDINATE).value);

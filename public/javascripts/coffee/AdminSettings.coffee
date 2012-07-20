@@ -1,6 +1,7 @@
 PORTAL.activateAdminSettings = ->
   do activateInitialMap
   do activateArmsModal
+  do activateBoundingBox
 
 
 activateInitialMap = ->
@@ -50,3 +51,38 @@ prepareArmsModal = ->
   $("#adminArmsModal form input[type='reset']").click()
   $("#adminArmsModal form #armsUse").prop "checked", PORTAL.configurationSettings.useArms
   $("#adminArmsModal form #appTitle").val PORTAL.configurationSettings.appOwner
+
+activateBoundingBox = ->
+  $("#adminBBoxModal").on "show", prepareBoundingBoxModal
+  $(".boundingbox-set").on "click", ->
+    $("#adminBBoxModal").modal 'show'
+  $("#adminBBoxModal .modal-footer a").on "click", ->
+    $("#adminBBoxModal .modal-footer a").attr "disabled", true
+    mapBoundingLeft = parseInt $("#boundingBoxLeft").val()
+    mapBoundingTop = parseInt $("#boundingBoxTop").val()
+    mapBoundingRight = parseInt $("#boundingBoxRight").val()
+    mapBoundingBottom = parseInt $("#boundingBoxBottom").val()
+    $.ajax {
+      type: "PUT",
+      url: "admin/changeBoundingBox",
+      data: {mapBoundingLeft: mapBoundingLeft, mapBoundingTop: mapBoundingTop, mapBoundingRight: mapBoundingRight, mapBoundingBottom: mapBoundingBottom},
+      success: (result) ->
+        PORTAL.configurationSettings.mapBoundingLeft = mapBoundingLeft
+        PORTAL.configurationSettings.mapBoundingTop = mapBoundingTop
+        PORTAL.configurationSettings.mapBoundingRight = mapBoundingRight
+        PORTAL.configurationSettings.mapBoundingBottom = mapBoundingBottom
+        PORTAL.map.setOptions {maxExtent: new OpenLayers.Bounds(
+          PORTAL.configurationSettings.mapBoundingLeft,
+          PORTAL.configurationSettings.mapBoundingBottom,
+          PORTAL.configurationSettings.mapBoundingRight,
+          PORTAL.configurationSettings.mapBoundingTop
+        )}
+        $("#adminBBoxModal").modal 'hide'
+    }
+
+prepareBoundingBoxModal = ->
+  $("#boundingBoxLeft").val PORTAL.configurationSettings.mapBoundingLeft
+  $("#boundingBoxTop").val PORTAL.configurationSettings.mapBoundingTop
+  $("#boundingBoxRight").val PORTAL.configurationSettings.mapBoundingRight
+  $("#boundingBoxBottom").val PORTAL.configurationSettings.mapBoundingBottom
+  $("#adminBBoxModal .modal-footer a").attr "disabled", false

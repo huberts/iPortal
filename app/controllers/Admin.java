@@ -291,6 +291,26 @@ public class Admin extends Controller {
         renderText("OK");
     }
 
+    public static void changeBoundingBox(@Required Long mapBoundingLeft, @Required Long mapBoundingTop, @Required Long mapBoundingRight, @Required Long mapBoundingBottom)
+    {
+        MapSetting mapBoundingLeftSetting   = MapSetting.findByKey(MapSetting.MAP_BOUNDINGBOX_LEFT);
+        MapSetting mapBoundingTopSetting    = MapSetting.findByKey(MapSetting.MAP_BOUNDINGBOX_TOP);
+        MapSetting mapBoundingRightSetting  = MapSetting.findByKey(MapSetting.MAP_BOUNDINGBOX_RIGHT);
+        MapSetting mapBoundingBottomSetting = MapSetting.findByKey(MapSetting.MAP_BOUNDINGBOX_BOTTOM);
+
+        mapBoundingLeftSetting.value   = mapBoundingLeft.toString();
+        mapBoundingTopSetting.value    = mapBoundingTop.toString();
+        mapBoundingRightSetting.value  = mapBoundingRight.toString();
+        mapBoundingBottomSetting.value = mapBoundingBottom.toString();
+
+        mapBoundingLeftSetting.save();
+        mapBoundingTopSetting.save();
+        mapBoundingRightSetting.save();
+        mapBoundingBottomSetting.save();
+
+        renderText("OK");
+    }
+
     public static void uploadArms(@Required Long id, @Required File uploadFile) throws Exception
     {
         MapService mapService = MapService.findById(id);
