@@ -1,5 +1,6 @@
 app.owner=Systherm Info
 app.name=Geo-Info 6 GiPortal
+app.layers=Warstwy
 
 app.ownWms.sourceName=Własne usługi WMS
 app.ownWms.addButton=Nowa usługa WMS
