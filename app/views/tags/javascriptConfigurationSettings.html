@@ -1,5 +1,7 @@
 var PORTAL = {}
 PORTAL.configurationSettings = {
+  useArms: ${play.mvc.Scope.RenderArgs.current().useArms},
+  appOwner: "${play.mvc.Scope.RenderArgs.current().appOwner}",
   mapBoundingLeft: ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxLeft},
   mapBoundingBottom: ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxBottom},
   mapBoundingRight: ${play.mvc.Scope.RenderArgs.current().mapBoundingBoxRight},
@@ -24,7 +26,8 @@ PORTAL.messages = {
   help: "&{"app.controller.help"}",
   remove: "&{"app.tooltips.remove"}",
   edit: "&{"app.tooltips.edit"}",
+  view: "&{"app.tooltips.view"}",
   layerDefaultVisible: "&{"app.tooltips.layerDefaultVisible"}",
-  wmsSetLocation: "&{"app.tooltips.setLocation"}",
-  wmsSetArms: "&{"app.tooltips.setArms"}"
+  setLocation: "&{"app.tooltips.setLocation"}",
+  setArms: "&{"app.tooltips.setArms"}"
 }

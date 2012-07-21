@@ -78,12 +78,56 @@
       <label>&{"app.admin.uploadModalFile"}</label>
       <input id="uploadFile" name="uploadFile" type="file" />
       <label></label>
-      <input class="btn btn-primary" id="submit" type="submit" />
+      <input class="btn btn-primary" type="submit" />
       <input class="hide" type="reset">
     </form>
-    <iframe id="postframe" name="postframe" src="@{Admin.empty()}"></iframe>
+    <iframe id="postframe" name="postframe" src="about:blank"></iframe>
   </div>
   <div class="modal-footer">
     <a href="#" class="btn btn-primary">&{"app.admin.uploadModalConfirm"}</a>
+  </div>
+</div>
+<div class="modal fade hide" id="adminArmsModal">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">&times;</button>
+    <h3>&{"app.admin.uploadModal"}</h3>
+  </div>
+  <div class="modal-body">
+    <form method="post" action="/admin/uploadOwnerArms" target="armspostframe" enctype="multipart/form-data" encoding="multipart/form-data" >
+      <label>&{"app.admin.armsUse"}</label>
+      <input id="armsUse" name="armsUse" type="checkbox" />
+      <label>&{"app.admin.armsAppTitle"}</label>
+      <input id="appTitle" name="appTitle" type="text" />
+      <label>&{"app.admin.uploadModalFile"}</label>
+      <input id="armsFile" name="armsFile" type="file" />
+      <label></label>
+      <input class="btn btn-primary" type="submit" />
+      <input class="hide" type="reset">
+    </form>
+    <iframe id="armspostframe" name="armspostframe" src="about:blank"></iframe>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-primary">&{"app.admin.uploadModalConfirm"}</a>
+  </div>
+</div>
+<div class="modal fade hide" id="adminBBoxModal">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">&times;</button>
+    <h3>&{"app.admin.boundingBoxModal"}</h3>
+  </div>
+  <div class="modal-body">
+    <form method="post" action="/admin/uploadOwnerArms" target="armspostframe" enctype="multipart/form-data" encoding="multipart/form-data" >
+      <label>&{"app.admin.boundingBoxLeft"}</label>
+      <input id="boundingBoxLeft" name="boundingBoxLeft" type="number" />
+      <label>&{"app.admin.boundingBoxTop"}</label>
+      <input id="boundingBoxTop" name="boundingBoxTop" type="number" />
+      <label>&{"app.admin.boundingBoxRight"}</label>
+      <input id="boundingBoxRight" name="boundingBoxRight" type="number" />
+      <label>&{"app.admin.boundingBoxBottom"}</label>
+      <input id="boundingBoxBottom" name="boundingBoxBottom" type="number" />
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn btn-primary">&{"app.admin.boundingBoxModalConfirm"}</a>
   </div>
 </div>

@@ -12,11 +12,15 @@ PORTAL.tooltips = ->
     title: PORTAL.messages.layerDefaultVisible,
     placement: "bottom"
   }
-  $(".service-setlocation, .location-set").tooltip {
-    title: PORTAL.messages.wmsSetLocation,
+  $(".service-setlocation, .initial-setlocation, .location-set").tooltip {
+    title: PORTAL.messages.setLocation,
     placement: "bottom"
   }
   $(".service-setarms").tooltip {
-    title: PORTAL.messages.wmsSetArms,
+    title: PORTAL.messages.setArms,
+    placement: "bottom"
+  }
+  $(".service-showlocation, .initial-showlocation").tooltip {
+    title: PORTAL.messages.view,
     placement: "bottom"
   }

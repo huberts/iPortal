@@ -31,7 +31,7 @@ activateSettings = ->
     alertbox.hide 'fast'
     if newPassword.length < 6
       alertbox.removeClass("alert-success").addClass("alert-error")
-      alertbox.children("span").text "Hasło musi mieć conajmniej 6 znaków"
+      alertbox.children("span").text "Hasło musi mieć co najmniej 6 znaków"
       alertbox.show 'fast'
     else if confirmPassword == newPassword
       $(this).button('loading')
@@ -83,7 +83,7 @@ canAddLocation = -> $("#adminAddLocationModalName").val().length
 
 activateLayersTree = ->
   $("#app_layers, #app_layers .tier1_content, #app_layers .tier2_content").bind "sortupdate", sortLayersSave
-  $("#layers .tier2_header > .service-location").click -> setMapOnServiceLocation $(this)
+  $("#layers .tier2_header > .service-showlocation").click -> setMapOnServiceLocation $(this)
   $(".service-setlocation").click -> PORTAL.Admin.setServiceLocation $(this)
   $(".service-setarms").click -> PORTAL.Admin.setServiceArms $(this)
 
@@ -204,8 +204,8 @@ PORTAL.Admin.setServiceArms = (element) ->
   $("#adminUploadModal form").append(input)
   $("#adminUploadModal iframe").off("load").on "load", ->
     result = $(this).contents().find("img.result")
-    img = element.closest(".tier2").find(".service-location > img")
-    img.attr("src", result.attr("src")) if result && img
+    img = element.closest(".tier2").find(".service-showlocation > img")
+    img.attr("src", result.attr("src")) if result.length && img.result.length
   $("#adminUploadModal").modal 'show'
 
 PORTAL.Admin.defaultLayer = (element) ->

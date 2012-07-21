@@ -7,5 +7,6 @@ $ ->
   do PORTAL.activateAdmin
   do PORTAL.activateAdminAddSource
   do PORTAL.activateAdminUpload
+  do PORTAL.activateAdminSettings
   do PORTAL.finishMap
   do PORTAL.tooltips

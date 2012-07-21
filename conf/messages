@@ -67,6 +67,20 @@ app.admin.uploadModalFile=Plik z godłem
 app.admin.uploadSuccess=Plik został wysłany
 app.admin.uploadModalConfirm=Zamknij
 
+app.admin.arms=Godło
+app.admin.armsUse=Włącz własne godło
+app.admin.armsAppTitle=Tytuł
+
+app.admin.boundingbox=Granice mapy
+app.admin.boundingBoxModal=Edycja granic mapy
+app.admin.boundingBoxLeft=Lewa
+app.admin.boundingBoxTop=Góra
+app.admin.boundingBoxRight=Prawa
+app.admin.boundingBoxBottom=Dół
+app.admin.boundingBoxModalConfirm=Zapisz
+
+app.admin.resolutions=Rozdzielczość
+
 app.help.modalHeader=Informacje
 app.help.modalConfirm=Zamknij
 

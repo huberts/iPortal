@@ -40,14 +40,27 @@
     display: none;
   }
 
-  h3, h4, h5 {
-    display: inline;
+  h3 {
+    cursor: pointer;
+  }
+
+  h4 {
+    cursor: default;
+  }
+
+  .tier1, tier2 {
+    h3,h4 {
+      display: inline-block;
+    }
+  }
+
+  i {
     cursor: pointer;
   }
 }
 
-#adminUploadModal {
-  #postframe {
+#adminUploadModal, #adminArmsModal {
+  iframe {
     border: 0;
     width: 100%;
     height: 80px;

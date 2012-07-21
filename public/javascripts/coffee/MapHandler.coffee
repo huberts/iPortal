@@ -3,6 +3,7 @@ PORTAL.prepareMap = ->
   do createMapEventListeners
   do createMap
   do createLayersSwitcher
+  $("#help .modal-footer a").click -> $("#help").modal 'hide'
 
 PORTAL.finishMap = ->
   PORTAL.Utils.sortLayers()

@@ -23,7 +23,7 @@ import models.*;
 public class Admin extends Controller {
 
     // Every call is checked for authentication, except those listed below
-    @Before(unless={"login", "authenticate", "logout", "empty"})
+    @Before(unless={"login", "authenticate", "logout"})
     private static void checkAccess() throws Throwable {
         if(!session.contains("loggedin")) {
             login();
@@ -274,12 +274,44 @@ public class Admin extends Controller {
         renderText("OK");
     }
 
-    public static void empty()
+    public static void changeInitialMap(@Required Long xCoordinate, @Required Long yCoordinate, @Required Long zoomLevel)
     {
-        render("@upload");
+        MapSetting xCoordinateSetting = MapSetting.findByKey(MapSetting.MAP_INITIAL_X_COORDINATE);
+        MapSetting yCoordinateSetting = MapSetting.findByKey(MapSetting.MAP_INITIAL_Y_COORDINATE);
+        MapSetting zoomLevelSetting = MapSetting.findByKey(MapSetting.MAP_INITIAL_Z);
+
+        xCoordinateSetting.value = xCoordinate.toString();
+        yCoordinateSetting.value = yCoordinate.toString();
+        zoomLevelSetting.value = zoomLevel.toString();
+
+        xCoordinateSetting.save();
+        yCoordinateSetting.save();
+        zoomLevelSetting.save();
+
+        renderText("OK");
     }
 
-    public static void uploadArms(Long id, @Required File uploadFile) throws Exception
+    public static void changeBoundingBox(@Required Long mapBoundingLeft, @Required Long mapBoundingTop, @Required Long mapBoundingRight, @Required Long mapBoundingBottom)
+    {
+        MapSetting mapBoundingLeftSetting   = MapSetting.findByKey(MapSetting.MAP_BOUNDINGBOX_LEFT);
+        MapSetting mapBoundingTopSetting    = MapSetting.findByKey(MapSetting.MAP_BOUNDINGBOX_TOP);
+        MapSetting mapBoundingRightSetting  = MapSetting.findByKey(MapSetting.MAP_BOUNDINGBOX_RIGHT);
+        MapSetting mapBoundingBottomSetting = MapSetting.findByKey(MapSetting.MAP_BOUNDINGBOX_BOTTOM);
+
+        mapBoundingLeftSetting.value   = mapBoundingLeft.toString();
+        mapBoundingTopSetting.value    = mapBoundingTop.toString();
+        mapBoundingRightSetting.value  = mapBoundingRight.toString();
+        mapBoundingBottomSetting.value = mapBoundingBottom.toString();
+
+        mapBoundingLeftSetting.save();
+        mapBoundingTopSetting.save();
+        mapBoundingRightSetting.save();
+        mapBoundingBottomSetting.save();
+
+        renderText("OK");
+    }
+
+    public static void uploadArms(@Required Long id, @Required File uploadFile) throws Exception
     {
         MapService mapService = MapService.findById(id);
         mapService.coatOfArms = uploadFile.getName();
@@ -287,7 +319,27 @@ public class Admin extends Controller {
         File arms = Play.getFile("/public/images/arms/" + uploadFile.getName());
         Files.copy(uploadFile, arms);
         Files.delete(uploadFile);
-        boolean success = true;
-        renderTemplate("@upload", success, arms);
+        renderTemplate("@upload", arms);
+    }
+
+    public static void uploadOwnerArms(@Required boolean armsUse, String appTitle, File armsFile) throws Exception
+    {
+        MapSetting useArmsSetting = MapSetting.findByKey(MapSetting.APPLICATION_ARMS);
+        MapSetting appTitleSetting = MapSetting.findByKey(MapSetting.APPLICATION_TITLE);
+        File arms = Play.getFile("/public/images/app_arms.png");
+
+        useArmsSetting.value = Boolean.toString(armsUse);
+        useArmsSetting.save();
+        appTitleSetting.value = appTitle;
+        appTitleSetting.save();
+
+        if (armsFile != null)
+        {
+            Files.copy(armsFile, arms);
+            Files.delete(armsFile);
+        }
+
+        String title = armsUse ? appTitleSetting.value : Messages.get("app.owner");
+        renderTemplate("@upload", armsUse, arms, title);
     }
 }
