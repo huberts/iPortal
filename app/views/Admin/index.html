@@ -1,12 +1,12 @@
 #{set 'moreScripts'}
-  #{script 'coffee/AdminEntryPoint.coffee' /}
-  #{script 'coffee/AdminLayers.coffee' /}
-  #{script 'coffee/Admin.coffee' /}
-  #{script 'coffee/AdminAddSource.coffee' /}
-  #{script 'coffee/AdminUpload.coffee' /}
+  <script type="text/javascript" src="@{'/public/javascripts/coffee/AdminEntryPoint.coffee'}"></script>
+  <script type="text/javascript" src="@{'/public/javascripts/coffee/AdminLayers.coffee'}"></script>
+  <script type="text/javascript" src="@{'/public/javascripts/coffee/Admin.coffee'}"></script>
+  <script type="text/javascript" src="@{'/public/javascripts/coffee/AdminAddSource.coffee'}"></script>
+  <script type="text/javascript" src="@{'/public/javascripts/coffee/AdminUpload.coffee'}"></script>
 #{/set}
 #{set 'moreStyles'}
-  #{stylesheet 'less/admin.less' /}
+  <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/less/admin.less'}" />
 #{/set}
 #{set 'moreModals'}
     #{adminModals /}
