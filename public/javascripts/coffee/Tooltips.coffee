@@ -1,4 +1,3 @@
-
 PORTAL.tooltips = ->
   $(".layer-remove, .source-remove, .service-remove, .location-remove").tooltip {
     title: PORTAL.messages.remove,
