@@ -80,7 +80,7 @@ public class Admin extends Controller {
     {
         MapSource source = MapSource.findById(id);
         if (source == null)
-            error(418, "Source not found");
+            error(404, "Source not found");
         source.displayName = name;
         source.save();
         request.format = "json";
@@ -91,7 +91,7 @@ public class Admin extends Controller {
     {
         MapSource source = MapSource.findById(id);
         if (source == null)
-            error(418, "Source not found");
+            error(404, "Source not found");
 
         source.delete();
         request.format = "json";
@@ -102,10 +102,10 @@ public class Admin extends Controller {
     {
         MapSource source = MapSource.findById(sourceId);
         if (source == null)
-            error(418, "Source not found");
+            error(404, "Source not found");
         MapServiceType serviceType = MapServiceType.find("byName", type).first();
         if (type == null)
-            error(418, "Type not found");
+            error(404, "Type not found");
 
         MapService service = new MapService(name, name, url, serviceType, source);
         request.format = "json";
@@ -117,7 +117,7 @@ public class Admin extends Controller {
     {
         MapService service = MapService.findById(id);
         if (service == null)
-            error(418, "Service not found");
+            error(404, "Service not found");
 
         if (name != null)
             service.displayName = name;
@@ -136,7 +136,7 @@ public class Admin extends Controller {
     {
         MapService service = MapService.findById(id);
         if (service == null)
-            error(418, "Service not found");
+            error(404, "Service not found");
 
         service.delete();
         request.format = "json";
@@ -149,7 +149,7 @@ public class Admin extends Controller {
         for (MapLayer entity : layer)
         {
           if (entity.mapService == null)
-            error(418, "Service not found");
+            error(404, "Service not found");
           entity.save();
           layers.add(entity);
         }
@@ -161,7 +161,7 @@ public class Admin extends Controller {
     {
         MapLayer layer = MapLayer.findById(id);
         if (layer == null)
-            error(418, "Layer not found");
+            error(404, "Layer not found");
 
         if (name != null)
             layer.displayName = name;
@@ -176,7 +176,7 @@ public class Admin extends Controller {
     {
         MapLayer layer = MapLayer.findById(id);
         if (layer == null)
-            error(418, "Layer not found");
+            error(404, "Layer not found");
 
         layer.delete();
         request.format = "json";
@@ -191,7 +191,7 @@ public class Admin extends Controller {
         {
             MapLayer layer = MapLayer.findById(entity.id);
             if (layer == null)
-                error(418, "Layer not found");
+                error(404, "Layer not found");
             layer.sort = entity.sort;
             layer.save();
             if (!servicesOrder.containsKey(layer.mapService) || servicesOrder.get(layer.mapService) > entity.sort)
@@ -233,7 +233,7 @@ public class Admin extends Controller {
     {
         MapLocation location = MapLocation.findById(id);
         if (location == null)
-            error(418, "Service not found");
+            error(404, "Service not found");
 
         if (name != null)
             location.displayName = name;
@@ -252,7 +252,7 @@ public class Admin extends Controller {
     {
         MapLocation location = MapLocation.findById(id);
         if (location == null)
-            error(418, "Service not found");
+            error(404, "Service not found");
 
         location.delete();
         request.format = "json";
@@ -266,7 +266,7 @@ public class Admin extends Controller {
         String encryptedOldPassword = MapSetting.encryptPassword(oldPassword);
         String encryptedPanelPassword = password.value;
         if (encryptedPanelPassword.compareToIgnoreCase(encryptedOldPassword) != 0)
-            error(418, "Invalid password");
+            error(403, "Invalid password");
 
         MapSetting.createNewSalt();
         password.value = MapSetting.encryptPassword(newPassword);

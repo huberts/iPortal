@@ -1,10 +1,12 @@
-#{if play.mvc.Scope.RenderArgs.current().useArms}
-<p id="app_title">${play.mvc.Scope.RenderArgs.current().appOwner}</p>
-<img class="name" src="@{'/public/images/app_logo.png'}" alt="&{'app.name'}" />
-<img id="app_arms" class="arms" src="@{'/public/images/app_arms.png'}" alt="${play.mvc.Scope.RenderArgs.current().appOwner}" />
+#{if play.mvc.Scope.RenderArgs.current().appOwner}
+  <p id="app_title">${play.mvc.Scope.RenderArgs.current().appOwner}</p>
 #{/if}
 #{else}
-<p id="app_title">&{"app.owner"}</p>
-<img class="name" src="@{'/public/images/app_logo.png'}" alt="&{'app.name'}" />
-<img id="app_arms" class="arms hide"/>
+  <p id="app_title">&{"app.owner"}</p>
 #{/else}
+
+<img class="name" src="@{'/public/images/app_logo.png'}" alt="&{'app.name'}" />
+
+#{if play.mvc.Scope.RenderArgs.current().useArms}
+  <img id="app_arms" class="arms" src="@{'/public/images/app_arms.png'}" alt="${play.mvc.Scope.RenderArgs.current().appOwner}" />
+#{/if}
