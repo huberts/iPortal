@@ -1,6 +1,9 @@
 app.owner=Systherm Info
 app.name=Geo-Info 6 GiPortal
 
+app.layersSwitcher.layers=Warstwy
+app.layersSwitcher.arms=herb
+
 app.ownWms.sourceName=Własne usługi WMS
 app.ownWms.addButton=Nowa usługa WMS
 app.ownWms.modalHeader=Definicja usługi
@@ -18,6 +21,7 @@ app.controller.zoomToExtent=pokaż całość
 app.controller.zoomIn=przybliż
 app.controller.saveUrl=zapisz odnośnik
 app.controller.goToLocation=przejdź do położenia
+app.controller.help=pomoc
 
 app.getUrl.modalHeader=Zapisz odnośnik
 app.getUrl.modalConfirm=Zamknij
@@ -80,9 +84,9 @@ app.admin.resolutions=Rozdzielczość
 app.help.modalHeader=Informacje
 app.help.modalConfirm=Zamknij
 
-app.tooltips.remove=Usuń
-app.tooltips.edit=Edytuj
-app.tooltips.view=Pokaż
-app.tooltips.layerDefaultVisible=Warstwa domyślnie widoczna
-app.tooltips.setLocation=Ustaw bieżący widok mapy jako położenie
-app.tooltips.setArms=Dodaj godło WMS
+app.tooltips.remove=usuwanie
+app.tooltips.edit=edycja
+app.tooltips.view=podgląd
+app.tooltips.layerDefaultVisible=warstwa domyślnie widoczna
+app.tooltips.setLocation=bieżący widok mapy jako położenie
+app.tooltips.setArms=zmiana godła WMS
