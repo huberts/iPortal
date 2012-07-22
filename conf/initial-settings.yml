@@ -1,6 +1,6 @@
 MapSetting(app.use_arms):
   key: app.use_arms
-  value: 0
+  value: false
 
 MapSetting(app.title):
   key: app.title
