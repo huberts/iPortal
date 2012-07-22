@@ -83,13 +83,8 @@ canAddLocation = -> $("#adminAddLocationModalName").val().length
 
 activateLayersTree = ->
   $("#app_layers, #app_layers .tier1_content, #app_layers .tier2_content").bind "sortupdate", sortLayersSave
-  $("#layers .tier2_header > .service-showlocation").click -> setMapOnServiceLocation $(this)
   $(".service-setlocation").click -> PORTAL.Admin.setServiceLocation $(this)
   $(".service-setarms").click -> PORTAL.Admin.setServiceArms $(this)
-
-setMapOnServiceLocation = (element) ->
-  coordinates = element.data("location").split "|"
-  PORTAL.map.setCenter new OpenLayers.LonLat(coordinates[1], coordinates[0]), coordinates[2]
 
 sortLayersSave = ->
   listOfLayers = []
