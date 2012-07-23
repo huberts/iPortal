@@ -75,9 +75,9 @@ setMapOnLocation = (element) ->
 activateLocationsModal = ->
   $(".addLocation").click -> PORTAL.Admin.addLocation $(this)
   $("#adminAddLocationModal").on "shown", ->
-    $("#adminAddLocationModalName .modal-footer a").attr "disabled", !canAddLocation()
-  $("#adminAddLocationModal").on "input", ->
-    $("#adminAddLocationModalName .modal-footer a").attr "disabled", !canAddLocation()
+    $("#adminAddLocationModal .modal-footer a").attr "disabled", !canAddLocation()
+  $("#adminAddLocationModalName").on "input", ->
+    $("#adminAddLocationModal .modal-footer a").attr "disabled", !canAddLocation()
 
 canAddLocation = -> $("#adminAddLocationModalName").val().length
 

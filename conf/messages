@@ -80,6 +80,8 @@ app.admin.boundingBoxBottom=Dół
 app.admin.boundingBoxModalConfirm=Zapisz
 
 app.admin.resolutions=Rozdzielczość
+app.admin.resolutionsModal=Edycja rozdzielczości
+app.admin.resolutionsModalConfirm=Zapisz
 
 app.help.modalHeader=Informacje
 app.help.modalConfirm=Zamknij

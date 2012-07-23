@@ -23,6 +23,7 @@ PUT     /admin/orderLayers                      Admin.orderLayers
 PUT     /admin/changePassword                   Admin.changePassword
 PUT     /admin/changeInitialMap                 Admin.changeInitialMap
 PUT     /admin/changeBoundingBox                Admin.changeBoundingBox
+PUT     /admin/changeResolutions                Admin.changeResolutions
 POST    /admin/uploadArms                       Admin.uploadArms
 POST    /admin/uploadOwnerArms                  Admin.uploadOwnerArms
 
