@@ -311,6 +311,16 @@ public class Admin extends Controller {
         renderText("OK");
     }
 
+    public static void changeResolutions(@Required String resolutions)
+    {
+        MapSetting resolutionsSetting   = MapSetting.findByKey(MapSetting.MAP_RESOLUTIONS);
+
+        resolutionsSetting.value = resolutions;
+        resolutionsSetting.save();
+
+        renderJSON(resolutionsSetting);
+    }
+
     public static void uploadArms(@Required Long id, @Required File uploadFile) throws Exception
     {
         MapService mapService = MapService.findById(id);

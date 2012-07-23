@@ -65,6 +65,7 @@ app.admin.initialMapCoordinates=Początkowe położenie mapy
 app.admin.uploadModal=Dodaj godło
 app.admin.uploadModalFile=Plik z godłem
 app.admin.uploadSuccess=Plik został wysłany
+app.admin.uploadModalSend=Wyślij
 app.admin.uploadModalConfirm=Zamknij
 
 app.admin.arms=Godło
@@ -80,12 +81,15 @@ app.admin.boundingBoxBottom=Dół
 app.admin.boundingBoxModalConfirm=Zapisz
 
 app.admin.resolutions=Rozdzielczość
+app.admin.resolutionsModal=Edycja rozdzielczości
+app.admin.resolutionsModalConfirm=Zapisz
 
 app.help.modalHeader=Informacje
 app.help.modalConfirm=Zamknij
 
 app.tooltips.remove=usuwanie
 app.tooltips.edit=edycja
+app.tooltips.view=podgląd
 app.tooltips.layerDefaultVisible=warstwa domyślnie widoczna
 app.tooltips.setLocation=bieżący widok mapy jako położenie
 app.tooltips.setArms=zmiana godła WMS
