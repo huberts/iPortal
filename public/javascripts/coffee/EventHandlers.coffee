@@ -35,6 +35,9 @@ PORTAL.Handlers.layerToggled = (layerCheckbox) ->
 
 PORTAL.Handlers.wmsToggled = (wmsCheckbox) ->
 
+  if priv.getCheckboxState(wmsCheckbox)==priv.STATE_INVALID
+    priv.setCheckboxState wmsCheckbox, priv.STATE_OFF
+
   myChildrenLayerCheckboxesBag = wmsCheckbox.parents(".tier2").children(".tier2_content")
   myChildrenLayerCheckboxes =    wmsCheckbox.parents(".tier2").find(".layer-toggler")
   wmsCheckboxesOnMyLevel =       wmsCheckbox.parents(".tier1_content")
@@ -57,6 +60,9 @@ PORTAL.Handlers.wmsToggled = (wmsCheckbox) ->
 
 
 PORTAL.Handlers.sourceToggled = (sourceCheckbox) ->
+
+  if priv.getCheckboxState(sourceCheckbox)==priv.STATE_INVALID
+    priv.setCheckboxState sourceCheckbox, priv.STATE_OFF
 
   myChildrenWmsCheckboxesBag = sourceCheckbox.parents(".tier1").children(".tier1_content")
   myChildrenWmsCheckboxes =    sourceCheckbox.parents(".tier1").find(".wms-toggler")
@@ -117,6 +123,7 @@ PORTAL.Handlers.removeLayer = (layer) ->
 priv = {}
 priv.STATE_OFF = 0
 priv.STATE_MIDDLE = 0.5
+priv.STATE_INVALID = 0.75
 priv.STATE_ON = 1
 
 
@@ -134,7 +141,7 @@ priv.setCheckboxState = (checkbox, state) ->
       $(e).attr "checked", true
     if state==priv.STATE_MIDDLE
       $(e).addClass "state-middle"
-      $(e).attr "checked", false
+      $(e).attr "checked", true
     if state==priv.STATE_OFF
       $(e).removeClass "state-middle"
       $(e).attr "checked", false
@@ -143,10 +150,15 @@ priv.setCheckboxState = (checkbox, state) ->
 
 priv.getCheckboxState = (checkbox) ->
   if $(checkbox).is ":checked"
-    return priv.STATE_ON
-  if $(checkbox).hasClass "state-middle"
-    return priv.STATE_MIDDLE
-  return priv.STATE_OFF
+    if !$(checkbox).hasClass "state-middle"
+      return priv.STATE_ON
+    else
+      return priv.STATE_MIDDLE
+  else
+    if $(checkbox).hasClass "state-middle"
+      return priv.STATE_INVALID
+    else
+      return priv.STATE_OFF
 
 
 priv.areAllWmsActivated = (tier1Content) -> priv.areAllInTheSameState tier1Content, ".wms-toggler", priv.STATE_ON
