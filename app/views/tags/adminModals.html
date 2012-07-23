@@ -90,7 +90,7 @@
 <div class="modal fade hide" id="adminArmsModal">
   <div class="modal-header">
     <button class="close" data-dismiss="modal">&times;</button>
-    <h3>&{"app.admin.uploadModal"}</h3>
+    <h3>&{"app.admin.armsModal"}</h3>
   </div>
   <div class="modal-body">
     <form method="post" action="/admin/uploadOwnerArms" target="armspostframe" enctype="multipart/form-data">
@@ -98,16 +98,16 @@
       <input id="armsUse" name="armsUse" type="checkbox" />
       <label>&{"app.admin.armsAppTitle"}</label>
       <input id="appTitle" name="appTitle" type="text" />
-      <label>&{"app.admin.uploadModalFile"}</label>
+      <label>&{"app.admin.armsModalFile"}</label>
       <input id="armsFile" name="armsFile" type="file" />
       <label></label>
-      <input class="btn btn-primary" type="submit" value="&{"app.admin.uploadModalSend"}"/>
+      <input class="btn btn-primary" type="submit" value="&{"app.admin.armsModalSend"}"/>
       <input class="hide" type="reset">
     </form>
     <iframe id="armspostframe" name="armspostframe" src="about:blank"></iframe>
   </div>
   <div class="modal-footer">
-    <a href="#" class="btn btn-primary">&{"app.admin.uploadModalConfirm"}</a>
+    <a href="#" class="btn btn-primary">&{"app.admin.armsModalConfirm"}</a>
   </div>
 </div>
 <div class="modal fade hide" id="adminBBoxModal">

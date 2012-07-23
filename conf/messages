@@ -59,20 +59,24 @@ app.admin.oldPassword=Stare hasło
 app.admin.newPassword=Nowe hasło
 app.admin.confirmPassword=Potwierdź nowe hasło
 
-app.admin.mapHeader=Ustawienia mapy
+app.admin.mapHeader=Ustawienia programu
 app.admin.initialMapCoordinates=Początkowe położenie mapy
 
 app.admin.uploadModal=Dodaj godło
 app.admin.uploadModalFile=Plik z godłem
-app.admin.uploadSuccess=Plik został wysłany
+app.admin.uploadSuccess=Zmiany zostały zapisane
 app.admin.uploadModalSend=Wyślij
 app.admin.uploadModalConfirm=Zamknij
 
-app.admin.arms=Godło
-app.admin.armsUse=Włącz własne godło
-app.admin.armsAppTitle=Tytuł
+app.admin.arms=Godło aplikacji
+app.admin.armsModal=Dodaj godło aplikacji
+app.admin.armsUse=Włącz godło aplikacji
+app.admin.armsAppTitle=Nazwa właściciela aplikacji
+app.admin.armsModalFile=Plik z godłem aplikacji
+app.admin.armsModalSend=Zapisz zmiany
+app.admin.armsModalConfirm=Zamknij
 
-app.admin.boundingbox=Granice mapy
+app.admin.boundingBox=Granice mapy
 app.admin.boundingBoxModal=Edycja granic mapy
 app.admin.boundingBoxLeft=Lewa
 app.admin.boundingBoxTop=Góra

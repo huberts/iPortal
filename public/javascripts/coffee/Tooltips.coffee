@@ -3,7 +3,7 @@ PORTAL.tooltips = ->
     title: PORTAL.messages.remove,
     placement: "bottom"
   }
-  $(".layer-edit, .source-edit, .service-edit, .location-edit").tooltip {
+  $(".layer-edit, .source-edit, .service-edit, .location-edit, .boundingbox-set, .resolutions-set, .arms-set").tooltip {
     title: PORTAL.messages.edit,
     placement: "bottom"
   }
