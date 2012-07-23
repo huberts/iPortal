@@ -16,3 +16,5 @@ PORTAL.setTopLevelLayout = ->
     spacing_closed: 5
   $("body").layout {defaults: lite}
   $("#app_page").layout {north: lite, west: layersSwitcherOptions}
+  #Workaround for bootstrap & Opera 12 bug
+  $('.modal').removeClass('fade') if (jQuery.browser.opera && parseInt(jQuery.browser.version) >= 12)

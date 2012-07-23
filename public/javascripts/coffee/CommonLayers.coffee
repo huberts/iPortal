@@ -5,7 +5,7 @@ PORTAL.activateLayers = ->
   $("#addWmsLayerFailure").hide()
   $("#addWmsModalLoadLayers").click -> loadLayers()
   $(".service-add").click -> PORTAL.Layers.addNewWms $(this)
-  $("#app_layers .tier2_header > button").click -> setMapOnLocation $(this)
+  $(".tier2_header > .service-showlocation").click -> setMapOnServiceLocation $(this)
   $("#addWmsModal").on "show", ->
     $("#addWmsModal .modal-footer a").attr "disabled", !canAddWms()
   $("#addWmsModal").on "hidden", ->
@@ -56,8 +56,8 @@ addWmsView = (srcId, wmsId) ->
   tier2.append(tier2Header).append(tier2Content)
   $('#toggler-' + srcId).parent().parent().children(".tier1_content").append tier2
 
-setMapOnLocation = (element) ->
-  coordinates = element.val().split "|"
+setMapOnServiceLocation = (element) ->
+  coordinates = element.data("location").split "|"
   PORTAL.map.setCenter new OpenLayers.LonLat(coordinates[1], coordinates[0]), coordinates[2]
 
 PORTAL.Layers.doAddLayersView = (srcId, wmsId, layers) ->

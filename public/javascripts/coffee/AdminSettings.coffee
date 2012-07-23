@@ -2,6 +2,7 @@ PORTAL.activateAdminSettings = ->
   do activateInitialMap
   do activateArmsModal
   do activateBoundingBox
+  do activateresolutions
 
 
 activateInitialMap = ->
@@ -86,3 +87,37 @@ prepareBoundingBoxModal = ->
   $("#boundingBoxRight").val PORTAL.configurationSettings.mapBoundingRight
   $("#boundingBoxBottom").val PORTAL.configurationSettings.mapBoundingBottom
   $("#adminBBoxModal .modal-footer a").attr "disabled", false
+
+activateresolutions = ->
+  $(".resolutions-set").on "click", ->
+    $("#adminResolutionsModal").modal 'show'
+  $("#adminResolutionsModal").on "show", prepareResolutionsModal
+  $("#adminResolutionsModal").on "shown", ->
+    $("#adminResolutionsModal .modal-footer a").attr "disabled", !validResolutionsString()
+  $("#adminResolutionsModal form #resolutions").on "input", ->
+    $("#adminResolutionsModal .modal-footer a").attr "disabled", !validResolutionsString()
+  $("#adminResolutionsModal .modal-footer a").on "click", ->
+    if validResolutionsString
+      $.ajax {
+        type: "PUT",
+        url: "admin/changeResolutions",
+        data: {resolutions: $("#adminResolutionsModal form #resolutions").val()},
+        success: (result) ->
+          PORTAL.map.setOptions {resolutions: result.value}
+          $("#adminResolutionsModal").modal 'hide'
+      }
+
+prepareResolutionsModal = ->
+  $("#adminResolutionsModal form #resolutions").val PORTAL.configurationSettings.mapResolutions.join()
+
+validResolutionsString = ->
+  resolutions = $("#adminResolutionsModal form #resolutions").val()
+  parts = resolutions.split ","
+  valid = true
+  $.each(parts, (k, v) ->
+    valid = false if !isNumber v
+  )
+  valid
+
+
+isNumber = (n) -> parseFloat(n).toString() == n.toString()

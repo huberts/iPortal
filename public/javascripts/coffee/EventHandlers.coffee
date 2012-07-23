@@ -77,11 +77,12 @@ PORTAL.Handlers.sourceToggled = (sourceCheckbox) ->
 PORTAL.Handlers.removeSource = (source) ->
   source.parents(".tier1").find(".wms-toggler").each (i, wms) ->
     PORTAL.Handlers.removeWms $(wms)
-  tier = source.parents ".tier1"
+  tier = source.closest ".tier1"
   tier.hide "fast", -> $(this).remove()
 
 
 PORTAL.Handlers.removeWms = (wms) ->
+  wms.attr "disabled", true
   wms.parents(".tier2").children(".tier2_content").find("input").each (i, layer) ->
     PORTAL.Handlers.removeLayer $(layer)
   tier = wms.parents ".tier2"
@@ -102,7 +103,7 @@ PORTAL.Handlers.removeWms = (wms) ->
 PORTAL.Handlers.removeLayer = (layer) ->
   layer.parents(".tier3").children(".tier3_content").find("input").each (i, elem) ->
     PORTAL.Utils.removeLayer PORTAL.Utils.buildIdWithPrefix $(elem).attr("id"), "layer"
-  tier = layer.parents ".tier3"
+  tier = layer.closest ".tier3"
   tier.hide "fast", ->
     layerCheckboxesOnMyLevel = $(this).parents(".tier2_content")
     wmsCheckbox              = $(this).parents(".tier2").find(".wms-toggler")
@@ -117,7 +118,8 @@ PORTAL.Handlers.removeLayer = (layer) ->
       else
         priv.setCheckboxState wmsCheckbox, priv.STATE_MIDDLE
     else
-      wmsCheckbox.parent().find("i.service-remove").click()
+      wmsRemove = wmsCheckbox.parent().find("i.service-remove")
+      wmsRemove.click() if !wmsRemove.attr "disabled"
 
 
 priv = {}

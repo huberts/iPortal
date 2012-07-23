@@ -6,6 +6,7 @@ PORTAL.activateAdmin = ->
   do activateLocationsTree
   do activateLocationsModal
   do activateLayersTree
+  do activateAjaxErrors
 
   $(".layer-default").click -> PORTAL.Admin.defaultLayer $(this)
 
@@ -18,6 +19,21 @@ PORTAL.activateAdmin = ->
   $(".source-edit").click -> PORTAL.Admin.editSource $(this)
   $(".service-edit").click -> PORTAL.Admin.editService $(this)
   $(".location-edit").click -> PORTAL.Admin.editLocation $(this)
+
+activateAjaxErrors = ->
+  $.ajaxSetup {
+    beforeSend: ->
+      $('#ajaxloader').show()
+    complete: ->
+      $('#ajaxloader').hide()
+    error: (jqXHR, textStatus, errorThrown) ->
+      ajaxalert = $('<div/>', {class: "alert alert-block alert-error fade in"})
+      ajaxclose = $('<a/>', {class: "close", href: "#", "data-dismiss": "alert", html: "&times;"})
+      ajaxheader = $('<h4/>', {class: "alert-heading", html: "Błąd komunikacji"})
+      ajaxtext = $('<span/>', {html: errorThrown})
+      $("#alerttray").prepend(ajaxalert.append(ajaxclose).append(ajaxheader).append(ajaxtext))
+      setTimeout (-> ajaxalert.hide 'fast'), 15000
+  }
 
 activateSettings = ->
   $("#settings h3, #settings h4, #settings i.icon-plus, #settings i.icon-minus").click -> PORTAL.Handlers.treeClick $(this)
@@ -75,21 +91,16 @@ setMapOnLocation = (element) ->
 activateLocationsModal = ->
   $(".addLocation").click -> PORTAL.Admin.addLocation $(this)
   $("#adminAddLocationModal").on "shown", ->
-    $("#adminAddLocationModalName .modal-footer a").attr "disabled", !canAddLocation()
-  $("#adminAddLocationModal").on "input", ->
-    $("#adminAddLocationModalName .modal-footer a").attr "disabled", !canAddLocation()
+    $("#adminAddLocationModal .modal-footer a").attr "disabled", !canAddLocation()
+  $("#adminAddLocationModalName").on "input", ->
+    $("#adminAddLocationModal .modal-footer a").attr "disabled", !canAddLocation()
 
 canAddLocation = -> $("#adminAddLocationModalName").val().length
 
 activateLayersTree = ->
   $("#app_layers, #app_layers .tier1_content, #app_layers .tier2_content").bind "sortupdate", sortLayersSave
-  $("#layers .tier2_header > .service-showlocation").click -> setMapOnServiceLocation $(this)
   $(".service-setlocation").click -> PORTAL.Admin.setServiceLocation $(this)
   $(".service-setarms").click -> PORTAL.Admin.setServiceArms $(this)
-
-setMapOnServiceLocation = (element) ->
-  coordinates = element.data("location").split "|"
-  PORTAL.map.setCenter new OpenLayers.LonLat(coordinates[1], coordinates[0]), coordinates[2]
 
 sortLayersSave = ->
   listOfLayers = []
@@ -205,7 +216,7 @@ PORTAL.Admin.setServiceArms = (element) ->
   $("#adminUploadModal iframe").off("load").on "load", ->
     result = $(this).contents().find("img.result")
     img = element.closest(".tier2").find(".service-showlocation > img")
-    img.attr("src", result.attr("src")) if result.length && img.result.length
+    img.attr("src", result.attr("src")) if result.length && img.length
   $("#adminUploadModal").modal 'show'
 
 PORTAL.Admin.defaultLayer = (element) ->
