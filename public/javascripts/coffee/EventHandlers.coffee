@@ -36,7 +36,7 @@ PORTAL.Handlers.layerToggled = (layerCheckbox) ->
 PORTAL.Handlers.wmsToggled = (wmsCheckbox) ->
 
   if priv.getCheckboxState(wmsCheckbox)==priv.STATE_INVALID
-    priv.setCheckboxState wmsCheckbox, priv.STATE_OFF
+    priv.setCheckboxState wmsCheckbox, priv.STATE_ON
 
   myChildrenLayerCheckboxesBag = wmsCheckbox.parents(".tier2").children(".tier2_content")
   myChildrenLayerCheckboxes =    wmsCheckbox.parents(".tier2").find(".layer-toggler")
@@ -62,7 +62,7 @@ PORTAL.Handlers.wmsToggled = (wmsCheckbox) ->
 PORTAL.Handlers.sourceToggled = (sourceCheckbox) ->
 
   if priv.getCheckboxState(sourceCheckbox)==priv.STATE_INVALID
-    priv.setCheckboxState sourceCheckbox, priv.STATE_OFF
+    priv.setCheckboxState sourceCheckbox, priv.STATE_ON
 
   myChildrenWmsCheckboxesBag = sourceCheckbox.parents(".tier1").children(".tier1_content")
   myChildrenWmsCheckboxes =    sourceCheckbox.parents(".tier1").find(".wms-toggler")
