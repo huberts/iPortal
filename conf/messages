@@ -65,6 +65,7 @@ app.admin.initialMapCoordinates=Początkowe położenie mapy
 app.admin.uploadModal=Dodaj godło
 app.admin.uploadModalFile=Plik z godłem
 app.admin.uploadSuccess=Plik został wysłany
+app.admin.uploadModalSend=Wyślij
 app.admin.uploadModalConfirm=Zamknij
 
 app.admin.arms=Godło
