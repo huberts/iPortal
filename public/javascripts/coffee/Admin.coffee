@@ -22,6 +22,10 @@ PORTAL.activateAdmin = ->
 
 activateAjaxErrors = ->
   $.ajaxSetup {
+    beforeSend: ->
+      $('#ajaxloader').show()
+    complete: ->
+      $('#ajaxloader').hide()
     error: (jqXHR, textStatus, errorThrown) ->
       ajaxalert = $('<div/>', {class: "alert alert-block alert-error fade in"})
       ajaxclose = $('<a/>', {class: "close", href: "#", "data-dismiss": "alert", html: "&times;"})
