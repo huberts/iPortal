@@ -6,6 +6,7 @@ import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.libs.Files;
 import play.mvc.*;
+import play.vfs.VirtualFile;
 
 import java.io.File;
 import java.util.*;
@@ -324,11 +325,16 @@ public class Admin extends Controller {
     public static void uploadArms(@Required Long id, @Required File uploadFile) throws Exception
     {
         MapService mapService = MapService.findById(id);
+        if (uploadFile == null)
+            error(404, "File not found");
+        if (mapService == null)
+            error(404, "Service not found");
         mapService.coatOfArms = uploadFile.getName();
         mapService.save();
-        File arms = Play.getFile("/public/images/arms/" + uploadFile.getName());
-        Files.copy(uploadFile, arms);
+        File newArms = Play.getFile("public/images/arms/" + uploadFile.getName());
+        Files.copy(uploadFile, newArms);
         Files.delete(uploadFile);
+        VirtualFile arms = Play.getVirtualFile(newArms.getPath());
         renderTemplate("@upload", arms);
     }
 
@@ -336,7 +342,7 @@ public class Admin extends Controller {
     {
         MapSetting useArmsSetting = MapSetting.findByKey(MapSetting.APPLICATION_ARMS);
         MapSetting appTitleSetting = MapSetting.findByKey(MapSetting.APPLICATION_TITLE);
-        File arms = Play.getFile("/public/images/app_arms.png");
+        File newArms = Play.getFile("public/images/app_arms.png");
 
         useArmsSetting.value = Boolean.toString(armsUse);
         useArmsSetting.save();
@@ -345,11 +351,12 @@ public class Admin extends Controller {
 
         if (armsFile != null)
         {
-            Files.copy(armsFile, arms);
+            Files.copy(armsFile, newArms);
             Files.delete(armsFile);
         }
 
         String title = armsUse ? appTitleSetting.value : Messages.get("app.owner");
+        VirtualFile arms = Play.getVirtualFile("public/images/app_arms.png");
         renderTemplate("@upload", armsUse, arms, title);
     }
 }

@@ -214,9 +214,16 @@ PORTAL.Admin.setServiceArms = (element) ->
   input = $("<input/>", {type: "hidden", name: "id", value: wmsId})
   $("#adminUploadModal form").append(input)
   $("#adminUploadModal iframe").off("load").on "load", ->
-    result = $(this).contents().find("img.result")
-    img = element.closest(".tier2").find(".service-showlocation > img")
-    img.attr("src", result.attr("src")) if result.length && img.length
+    if $(this).contents().text().length
+      $("#adminUploadModal").find(".spinner, .alert").hide()
+      result = $(this).contents().find("img.result")
+      img = element.closest(".tier2").find(".service-showlocation > img")
+      if result.length
+        $("#adminUploadModal .alert-success").show 'fast'
+        img?.attr("src", result.attr("src"))
+      else
+        $("#adminUploadModal .alert-error > span").text $(this).contents().find("title").text()
+        $("#adminUploadModal .alert-error").show 'fast'
   $("#adminUploadModal").modal 'show'
 
 PORTAL.Admin.defaultLayer = (element) ->
@@ -237,6 +244,7 @@ PORTAL.Admin.deleteSource = (element) ->
     url: "admin/deleteSource",
     data: "id="+srcId,
     success: (data) ->
+      element.tooltip('hide')
       PORTAL.Handlers.removeSource element
   }
 
@@ -247,6 +255,7 @@ PORTAL.Admin.deleteService = (element) ->
     url: "admin/deleteService",
     data: "id="+wmsId,
     success: (data) ->
+      element.tooltip('hide')
       PORTAL.Handlers.removeWms element
   }
 
@@ -257,6 +266,7 @@ PORTAL.Admin.deleteLayer = (element) ->
     url: "admin/deleteLayer",
     data: "id="+layerId,
     success: (data) ->
+      element.tooltip('hide')
       PORTAL.Handlers.removeLayer element
   }
 
@@ -267,6 +277,7 @@ PORTAL.Admin.deleteLocation = (element) ->
     url: "admin/deleteLocation",
     data: "id="+locationId,
     success: (data) ->
+      element.tooltip('hide')
       element.closest(".tier1, .tier2").hide "fast", -> $(this).remove()
   }
 
