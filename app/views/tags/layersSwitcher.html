@@ -51,7 +51,7 @@
         <i class="icon-plus icon-white"></i>
         <input id="toggler-${source.id}-${service.id}" type="checkbox" class="wms-toggler" />
         #{if service.coatOfArms}
-        <a href="#" class="service-showlocation" data-id="${service.id}" data-location="${service.xCoordinate}|${service.yCoordinate}|${service.zoomLevel}"><img alt="&{'app.layersSwitcher.arms'}" src="/public/images/arms/${service.coatOfArms}" /></a>
+        <a href="#" class="service-showlocation" data-id="${service.id}" data-location="${service.xCoordinate}|${service.yCoordinate}|${service.zoomLevel}"><img alt="&{'app.layersSwitcher.arms'}" src="@{'/public/images/arms'}/${service.coatOfArms}" /></a>
         #{/if}
         #{else}
         <a href="#" class="service-showlocation" data-id="${service.id}" data-location="${service.xCoordinate}|${service.yCoordinate}|${service.zoomLevel}"><img alt="&{'app.layersSwitcher.arms'}" src="@{'/public/images/arms_default.png'}" /></a>
