@@ -6,6 +6,7 @@ import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.libs.Files;
 import play.mvc.*;
+import play.vfs.VirtualFile;
 
 import java.io.File;
 import java.util.*;
@@ -326,8 +327,8 @@ public class Admin extends Controller {
         MapService mapService = MapService.findById(id);
         mapService.coatOfArms = uploadFile.getName();
         mapService.save();
-        File arms = Play.getFile("/public/images/arms/" + uploadFile.getName());
-        Files.copy(uploadFile, arms);
+        VirtualFile arms = Play.getVirtualFile("public/images/arms/" + uploadFile.getName());
+        Files.copy(uploadFile, arms.getRealFile());
         Files.delete(uploadFile);
         renderTemplate("@upload", arms);
     }
@@ -336,7 +337,7 @@ public class Admin extends Controller {
     {
         MapSetting useArmsSetting = MapSetting.findByKey(MapSetting.APPLICATION_ARMS);
         MapSetting appTitleSetting = MapSetting.findByKey(MapSetting.APPLICATION_TITLE);
-        File arms = Play.getFile("/public/images/app_arms.png");
+        VirtualFile arms = Play.getVirtualFile("public/images/app_arms.png");
 
         useArmsSetting.value = Boolean.toString(armsUse);
         useArmsSetting.save();
@@ -345,7 +346,7 @@ public class Admin extends Controller {
 
         if (armsFile != null)
         {
-            Files.copy(armsFile, arms);
+            Files.copy(armsFile, arms.getRealFile());
             Files.delete(armsFile);
         }
 
