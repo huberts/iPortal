@@ -237,6 +237,7 @@ PORTAL.Admin.deleteSource = (element) ->
     url: "admin/deleteSource",
     data: "id="+srcId,
     success: (data) ->
+      element.tooltip('hide')
       PORTAL.Handlers.removeSource element
   }
 
@@ -247,6 +248,7 @@ PORTAL.Admin.deleteService = (element) ->
     url: "admin/deleteService",
     data: "id="+wmsId,
     success: (data) ->
+      element.tooltip('hide')
       PORTAL.Handlers.removeWms element
   }
 
@@ -257,6 +259,7 @@ PORTAL.Admin.deleteLayer = (element) ->
     url: "admin/deleteLayer",
     data: "id="+layerId,
     success: (data) ->
+      element.tooltip('hide')
       PORTAL.Handlers.removeLayer element
   }
 
@@ -267,6 +270,7 @@ PORTAL.Admin.deleteLocation = (element) ->
     url: "admin/deleteLocation",
     data: "id="+locationId,
     success: (data) ->
+      element.tooltip('hide')
       element.closest(".tier1, .tier2").hide "fast", -> $(this).remove()
   }
 
