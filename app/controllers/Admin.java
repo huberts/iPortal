@@ -334,7 +334,7 @@ public class Admin extends Controller {
         File newArms = Play.getFile("public/images/arms/" + uploadFile.getName());
         Files.copy(uploadFile, newArms);
         Files.delete(uploadFile);
-        VirtualFile arms = Play.getVirtualFile(newArms.getPath());
+        String arms = Router.reverse(VirtualFile.open(newArms));
         renderTemplate("@upload", arms);
     }
 
@@ -356,7 +356,7 @@ public class Admin extends Controller {
         }
 
         String title = armsUse ? appTitleSetting.value : Messages.get("app.owner");
-        VirtualFile arms = Play.getVirtualFile("public/images/app_arms.png");
+        String arms = Router.reverse(VirtualFile.open(newArms));
         renderTemplate("@upload", armsUse, arms, title);
     }
 }
