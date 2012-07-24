@@ -327,9 +327,10 @@ public class Admin extends Controller {
         MapService mapService = MapService.findById(id);
         mapService.coatOfArms = uploadFile.getName();
         mapService.save();
-        VirtualFile arms = Play.getVirtualFile("public/images/arms/" + uploadFile.getName());
-        Files.copy(uploadFile, arms.getRealFile());
+        File newArms = Play.getFile("public/images/arms/" + uploadFile.getName());
+        Files.copy(uploadFile, newArms);
         Files.delete(uploadFile);
+        VirtualFile arms = Play.getVirtualFile(newArms.getPath());
         renderTemplate("@upload", arms);
     }
 
@@ -337,7 +338,7 @@ public class Admin extends Controller {
     {
         MapSetting useArmsSetting = MapSetting.findByKey(MapSetting.APPLICATION_ARMS);
         MapSetting appTitleSetting = MapSetting.findByKey(MapSetting.APPLICATION_TITLE);
-        VirtualFile arms = Play.getVirtualFile("public/images/app_arms.png");
+        File newArms = Play.getFile("public/images/app_arms.png");
 
         useArmsSetting.value = Boolean.toString(armsUse);
         useArmsSetting.save();
@@ -346,11 +347,12 @@ public class Admin extends Controller {
 
         if (armsFile != null)
         {
-            Files.copy(armsFile, arms.getRealFile());
+            Files.copy(armsFile, newArms);
             Files.delete(armsFile);
         }
 
         String title = armsUse ? appTitleSetting.value : Messages.get("app.owner");
+        VirtualFile arms = Play.getVirtualFile("public/images/app_arms.png");
         renderTemplate("@upload", armsUse, arms, title);
     }
 }
