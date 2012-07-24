@@ -29,15 +29,22 @@ activateArmsModal = ->
   $("#adminArmsModal .modal-footer a").on "click", ->
     $("#adminArmsModal").modal 'hide'
   $("#adminArmsModal form input[type='submit']").on "click", ->
-    $("#adminArmsModal iframe").show 'fast'
+    $("#adminArmsModal .alert").hide 'fast';
+    $("#adminArmsModal .spinner").show 'fast'
   $(".arms-set").click ->
     $("#adminArmsModal iframe").off("load").on "load", ->
-      result = $(this).contents().find("img.result")
-      if result.length
-        PORTAL.configurationSettings.useArms = result.data("arms")
-        PORTAL.configurationSettings.appTitle = result.data("title")
-        PORTAL.configurationSettings.appLogo = result.attr("src")
-        updateArms()
+      if $(this).contents().text().length
+        $("#adminArmsModal").find(".spinner, .alert").hide()
+        result = $(this).contents().find("img.result")
+        if result.length
+          $("#adminArmsModal .alert-success").show 'fast'
+          PORTAL.configurationSettings.useArms = result.data("arms")
+          PORTAL.configurationSettings.appTitle = result.data("title")
+          PORTAL.configurationSettings.appLogo = result.attr("src")
+          updateArms()
+        else
+          $("#adminArmsModal .alert-error > span").text $(this).contents().find("title").text()
+          $("#adminArmsModal .alert-error").show 'fast'
     $("#adminArmsModal").modal 'show'
 
 updateArms = ->
@@ -47,7 +54,8 @@ updateArms = ->
     $("#app_arms").toggle(PORTAL.configurationSettings.useArms)
 
 prepareArmsModal = ->
-  $("#adminArmsModal iframe").hide()
+  $("#adminArmsModal").find(".alert, .spinner").hide()
+  $("#adminArmsModal iframe").contents().remove()
   $("#adminArmsModal iframe").attr "src", "about:blank"
   $("#adminArmsModal form input[type='reset']").click()
   $("#adminArmsModal form #armsUse").prop "checked", PORTAL.configurationSettings.useArms

@@ -81,7 +81,17 @@
       <input class="btn btn-primary" type="submit" value="&{"app.admin.uploadModalSend"}"/>
       <input class="hide" type="reset">
     </form>
-    <iframe id="postframe" name="postframe" src="about:blank"></iframe>
+    <img class="spinner" src="@{'/public/images/spinner.gif'}" alt=""/>
+    <div class="alert alert-block alert-error hide">
+      <a class="close" href="#">&times;</a>
+      <h4 class="alert-heading">Błąd komunikacji</h4>
+      <span></span>
+    </div>
+    <div class="alert alert-block alert-success hide">
+      <a class="close" href="#">&times;</a>
+      <h4 class="alert-heading">&{"app.admin.uploadSuccess"}</h4>
+    </div>
+    <iframe class="hide" id="postframe" name="postframe" src="about:blank"></iframe>
   </div>
   <div class="modal-footer">
     <a href="#" class="btn btn-primary">&{"app.admin.uploadModalConfirm"}</a>
@@ -104,7 +114,17 @@
       <input class="btn btn-primary" type="submit" value="&{"app.admin.armsModalSend"}"/>
       <input class="hide" type="reset">
     </form>
-    <iframe id="armspostframe" name="armspostframe" src="about:blank"></iframe>
+    <img class="spinner" src="@{'/public/images/spinner.gif'}" alt=""/>
+    <div class="alert alert-block alert-error hide">
+      <a class="close" href="#">&times;</a>
+      <h4 class="alert-heading">Błąd komunikacji</h4>
+      <span></span>
+    </div>
+    <div class="alert alert-block alert-success hide">
+      <a class="close" href="#">&times;</a>
+      <h4 class="alert-heading">&{"app.admin.uploadSuccess"}</h4>
+    </div>
+    <iframe class="hide" id="armspostframe" name="armspostframe" src="about:blank"></iframe>
   </div>
   <div class="modal-footer">
     <a href="#" class="btn btn-primary">&{"app.admin.armsModalConfirm"}</a>

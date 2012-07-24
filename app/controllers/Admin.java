@@ -325,6 +325,10 @@ public class Admin extends Controller {
     public static void uploadArms(@Required Long id, @Required File uploadFile) throws Exception
     {
         MapService mapService = MapService.findById(id);
+        if (uploadFile == null)
+            error(404, "File not found");
+        if (mapService == null)
+            error(404, "Service not found");
         mapService.coatOfArms = uploadFile.getName();
         mapService.save();
         File newArms = Play.getFile("public/images/arms/" + uploadFile.getName());

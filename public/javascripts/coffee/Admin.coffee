@@ -214,9 +214,16 @@ PORTAL.Admin.setServiceArms = (element) ->
   input = $("<input/>", {type: "hidden", name: "id", value: wmsId})
   $("#adminUploadModal form").append(input)
   $("#adminUploadModal iframe").off("load").on "load", ->
-    result = $(this).contents().find("img.result")
-    img = element.closest(".tier2").find(".service-showlocation > img")
-    img.attr("src", result.attr("src")) if result.length && img.length
+    if $(this).contents().text().length
+      $("#adminUploadModal").find(".spinner, .alert").hide()
+      result = $(this).contents().find("img.result")
+      img = element.closest(".tier2").find(".service-showlocation > img")
+      if result.length
+        $("#adminUploadModal .alert-success").show 'fast'
+        img?.attr("src", result.attr("src"))
+      else
+        $("#adminUploadModal .alert-error > span").text $(this).contents().find("title").text()
+        $("#adminUploadModal .alert-error").show 'fast'
   $("#adminUploadModal").modal 'show'
 
 PORTAL.Admin.defaultLayer = (element) ->

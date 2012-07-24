@@ -4,10 +4,12 @@ PORTAL.activateAdminUpload = ->
   $("#adminUploadModal .modal-footer a").on "click", ->
     $("#adminUploadModal").modal 'hide'
   $("#adminUploadModal form input[type='submit']").on "click", ->
-    $("#adminUploadModal iframe").show 'fast'
+    $("#adminUploadModal .alert").hide 'fast';
+    $("#adminUploadModal .spinner").show 'fast'
 
 prepareModal = ->
-  $("#adminUploadModal iframe").hide()
+  $("#adminUploadModal").find(".alert, .spinner").hide()
+  $("#adminUploadModal iframe").contents().remove()
   $("#adminUploadModal iframe").attr "src", "about:blank"
   $("#adminUploadModal form input[type='reset']").click()
 

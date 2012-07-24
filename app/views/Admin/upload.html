@@ -3,16 +3,9 @@
 <head>
   <title>&{"app.name"}</title>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-  #{stylesheets /}
-  <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/less/admin.less'}" />
-  #{script 'jquery-1.7.2.min.js' /}
-  #{script 'bootstrap.js' /}
 </head>
-<body class="upload">
-<div class="alert alert-block alert-success fade in">
-  <a class="close" data-dismiss="alert" href="#">&times;</a>
-  &{"app.admin.uploadSuccess"}
-</div>
-<img src="${arms.relativePath()}" class="hide result" data-title="${title}" data-arms="${armsUse}">
+<body>
+&{"app.admin.uploadSuccess"}
+<img src="${arms.relativePath()}" class="result" data-title="${title}" data-arms="${armsUse}">
 </body>
 </html>
