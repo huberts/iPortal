@@ -6,7 +6,10 @@
 #{extends 'layout.html' /}
 
 <div id="app_content" class="ui-layout-center">#{openLayersMap /}</div>
-<div id="app_layers" class="ui-layout-west">#{layersSwitcher sources:sources /}</div>
+<div class="ui-layout-west">
+  <div id="app_layers_navbar">#{layersNavbar /}</div>
+  <div id="app_layers">#{layersSwitcher sources:sources /}</div>
+</div>
 
 <script type="text/javascript">
 
