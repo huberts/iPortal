@@ -8,13 +8,12 @@ PORTAL.createControllers = ->
   }
 
 
-  PORTAL.map.addControl new OpenLayers.Control.ScaleLine {
-    div:
-      OpenLayers.Util.getElement "open_layers_status_scaleline"
-    bottomInUnits:
-      ""
-    bottomOutUnits:
-      ""
+  PORTAL.map.addControl new OpenLayers.Control.ScaleBar {
+    div: OpenLayers.Util.getElement("open_layers_status_scalebar")
+    divisions: 4
+    subdivisions: 1
+    abbreviateLabel: true
+    singleLine: true
   }
 
 
